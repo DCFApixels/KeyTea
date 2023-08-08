@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Calculator</title>
+
+    <link rel="stylesheet" href="styles/global.css" type="text/css">
+</head>
+<body>
+    <div class="screen" id="login_screen">
+        <div class="form">
+            <h1>Master Password</h1>
+            <input title="Enter master password..." placeholder="Enter master password..." type="password" name="" id="">
+            <button type="button">Continue</button>
+        </div>
+    </div>
+
+    <div class="screen" id="select_screen">
+        <div class="form">
+            <h1>Passwords</h1>
+            <div class="scroll_bar" style="height: 400px;">
+                <ul class="records_list"> 
+                    <li>
+                        <div class="passwords_list_element">
+                            <input type="checkbox" name="" id="">
+                            <label>123</label>
+                            <button type="button" class="trnsp icon_button setting"></button>
+                            <button type="button" class="trnsp icon_button delete"></button>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="passwords_list_element">
+                            <input type="checkbox" name="" id="">
+                            <label>123</label>
+                            <button type="button" class="trnsp icon_button setting"></button>
+                            <button type="button" class="trnsp icon_button delete"></button>
+                        </div>
+                    </li>
+                    <li class="container">
+                        <div class="passwords_list_element">
+                            <input type="checkbox" name="" id="">
+                            <label>123</label>
+                            <button type="button" class="trnsp icon_button setting"></button>
+                            <button type="button" class="trnsp icon_button delete"></button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <input title="Password" readonly placeholder="" id="output_password" type="password" name="" id="">
+            <button class="icon_button copy">.</button>
+        </div>
+    </div>
+
+    <div class="screen" id="edit_password_screen">
+        <div class="form">
+            <h1>Edit password info</h1>
+            <label>Name</label><input type="text"><br>
+            <label>User</label><input type="text"><br>
+            <label>Length</label><input type="text"><br>
+            <label>Version: 1</label><button type="button">Up</button>
+            <div class="scroll_bar" style="height: 200px;">
+                <ul class="records_list"> 
+                    <li>
+                        <div class="passwords_list_element">
+                            <input type="checkbox" name="" id="dc1">
+                            <label>123</label>
+                            <button type="button" class="trnsp icon_button setting"></button>
+                            <button type="button" class="trnsp icon_button delete"></button>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="passwords_list_element">
+                            <input type="checkbox" name="" id="">
+                            <label>123</label>
+                            <button type="button" class="trnsp icon_button setting"></button>
+                            <button type="button" class="trnsp icon_button delete"></button>
+                        </div>
+                    </li>
+                    <li class="container">
+                        <div class="passwords_list_element">
+                            <input type="checkbox" name="" id="">
+                            <label>123</label>
+                            <button type="button" class="trnsp icon_button setting"></button>
+                            <button type="button" class="trnsp icon_button delete"></button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <button type="button" class="green">Save</button>
+            <button type="button">Cancel</button>
+        </div>
+    </div>
+
+    <div class="screen" id="edit_charset_screen">
+        <div class="form">
+            <h1>Edit charset</h1>
+            <label>Name</label><input type="text"><br>
+            <label>Charset</label><input type="text"><br>
+            <label>Priority</label><input type="text"><br>
+            <button type="button" class="green">Save</button>
+            <button type="button">Cancel</button>
+        </div>
+    </div>
+
+    <script src='path/to/decimal.js'></script>
+    <script src="scripts/sha3.js"></script>
+    <script src="scripts/Alphabet.js"></script>
+    <script src="scripts/RawPasswordRecord.js"></script>
+
+    <script src="scripts/test.js"></script>
+</body>
+</html>
