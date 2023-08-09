@@ -1,4 +1,4 @@
-class RawPasswordRecord
+class RawPassword
 {
     keyName = "Unnamed"
     userName = ""
@@ -33,6 +33,6 @@ class RawPasswordRecord
 }
 
 const builtinRawPasswords = {
-    "Google": new RawPasswordRecord("Google"),
-    "Facebook": new RawPasswordRecord("Facebook")
+    "Google": new RawPassword("Google"),
+    "Facebook": new RawPassword("Facebook")
 }

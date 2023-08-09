@@ -6,22 +6,34 @@
 }
 body{
     background-color: #363433;
+
+    padding-top: 120px;
+    padding-bottom: 240px;
+    transition: 0.2s;
 }
 @media screen and (min-aspect-ratio: 4/3){
     body {
-      margin-left: 12.6%;
-      margin-right: 12.6%;
+        padding-left: 12.6%;
+        padding-right: 12.6%;
+        transition: 0.2s;
     }
 }
 /*==============================================================*/
-h1{
+.form header{
+    background-color: #16a2ff;
+    margin: -10px -10px 5px -10px;
+    border-radius: 10px 10px 0 0;
+}
+.form header>h1{
     text-transform: uppercase;
-    color: #16a2ff;
-    margin: 7px 0;
+    color: #ffffff;
+    padding: 12px 0 12px 18px;
     font-size: 16pt;
+    display: block;
 }
 /*==============================================================*/
 .form{
+    box-shadow: 0 0 20px -5px #000000ab;
     margin: 10px;
     padding: 10px;
     background-color: #fcfeff;
@@ -30,28 +42,47 @@ h1{
 .form.disabled{
     background-color: #cad0d6ec;
     pointer-events: none;
+    filter: grayscale(0.85) opacity(0.8);
 }
-/*==============================================================*/
-.scroll_bar{
-    overflow: auto;
-    background-color: #003f880a;
-    border-radius: 5px;
-    margin: 6px 0;
+.form.hidden{
+    display: none;
 }
 /*==============================================================*/
 .records_list{
+    overflow: auto;
+    /*background-color: #003f880a;*/
+    background-color: #f0f5fa;
+    border-radius: 8px 8px 0 0;
+    margin: 10px 0 0 0;
+
+    position: relative;
+    z-index: 100;
+}
+.records_list>ul{
     padding: 0;
 }
-.records_list>li{
+.records_list>ul>li{
     margin: 5px 0px;
     padding: 2px;
     box-shadow: 0 13px 0 -12px #001d382f;
+}
+button.icon_button.records_list_add_button{
+    border-radius: 0 0 10px 10px;
+    background-image: url(../svgs/add_white_24dp.svg);
+    height: 22pt;
+    display: block;
+    width: 100%;
+
+    margin-bottom: 12px;
+
+    position: relative;
+    z-index: 0;
 }
 /*==============================================================*/
 button{
     height: 22pt;
 
-    background-color: #1f93ff;
+    background-color: #16a2ff;
     border-radius: 5px;
     border: 0;
     color: white;
@@ -60,10 +91,10 @@ button{
     font-family: inherit;
 }
 button:hover {
-    background: #4aa7ff;
+    background: #52c8ff;
 }
 button:active {
-    background: #006eff;
+    background: #008cff;
 }
 button:focus {
     /*outline: none;
@@ -76,10 +107,10 @@ button[disabled] {
     background-color: rgba(137, 145, 155, 0.815);
 }
 button.green{
-    background-color: #00e91f;
+    background-color: #00f120;
 }
 button.green:hover{
-    background-color: #06ff2f;
+    background-color: #27ff5d;
 }
 /*==============================================================*/
 .icon_button, 
@@ -117,7 +148,6 @@ button.green:hover{
 label{
     min-width: 100px;
     margin-right: 20px;
-    height: 22pt;
     display: inline-block;
 }
 /*==============================================================*/
@@ -164,42 +194,28 @@ input[type="text"], input[type="password"]{
     order: 3; 
 }
 /*==============================================================*/
-/*
-input[type="checkbox"] {
-    position: relative;
-    left: -9999px;
-}
-input[type="checkbox"] {
-
-    display: inline-flex;
+.result_password_block{
+    display: flex;
     align-items: center;
-    user-select: none;
+    padding: 0 10px;
 }
-input[type="checkbox"]::before {
-    position: relative;
-    left: 9999px;
-
-
-    content: '';
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    flex-shrink: 0;
-    flex-grow: 0;
-    border: 1px solid #adb5bd;
-    border-radius: 0.25em;
-    margin-right: 0.5em;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 50% 50%;
+.result_password_block input{
+    order: 1; 
+    flex-grow: 1; 
+    margin-right: 4px;
+    transition: 0.2s;
 }
-input[type="checkbox"]:checked::before {
-    border-color: #16a2ff;
-    background-color: #16a2ff;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
+.result_password_block button{
+    order: 2; 
 }
-*/
-
+@media screen and (min-aspect-ratio: 4/3){
+    .result_password_block input{
+        order: 1; 
+        flex-grow: 0; 
+        transition: 0.2s;
+    }
+}
+/*==============================================================*/
 input[type="checkbox"] {
     position: relative;
     left: -9999px;
@@ -213,7 +229,6 @@ input[type="checkbox"]::before {
     position: relative;
     left: 9999px;
 
-
     content: '';
     display: inline-block;
     width: 22pt;
@@ -222,10 +237,12 @@ input[type="checkbox"]::before {
     flex-grow: 0;
 
     margin-right: 0.5em;
-    background-image: url(../svgs/check_box_white_24dp.svg);
-    background-repeat: no-repeat;
-    background-position: center center;
-}
-input[type="checkbox"]:checked::before {
     background-image: url(../svgs/check_box_outline_blank_white_24dp.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    transition: 0.12s;
+}
+input[type="checkbox"]:checked::before {
+    background-image: url(../svgs/check_box_white_24dp.svg);
+    transition: 0.12s;
 }
