@@ -171,7 +171,7 @@ input[type="password"]::placeholder {
     font-size: 10pt;
 }
 input[type="text"], input[type="password"]{
-    box-shadow: inset 0 -2px 0 0 #16a2ff;
+    box-shadow: inset 0 -3px 0 -1px #16a2ff;
 }
 /*==============================================================*/
 .passwords_list_element{
@@ -199,14 +199,17 @@ input[type="text"], input[type="password"]{
     align-items: center;
     padding: 0 10px;
 }
-.result_password_block input{
+.result_password_block label{
     order: 1; 
+}
+.result_password_block input{
+    order: 2; 
     flex-grow: 1; 
     margin-right: 4px;
     transition: 0.2s;
 }
 .result_password_block button{
-    order: 2; 
+    order: 3; 
 }
 @media screen and (min-aspect-ratio: 4/3){
     .result_password_block input{
