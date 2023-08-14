@@ -13,8 +13,10 @@
             <header>
                 <h1>Master Password</h1>
             </header>
-            <input title="Enter master password..." placeholder="Enter master password..." type="password" name="" id="master_password_input">
-            <button type="button" id="master_password_continue_button">Continue</button>
+            <div class="input_button_pair">
+                <input title="Master password" placeholder="Enter master password..." type="password" name="" id="master_password_input">
+                <button type="button" id="master_password_continue_button">Continue</button>
+            </div>    
         </div>
     </div>
 
@@ -35,9 +37,11 @@
                 <button class="icon_button copy">.</button>
             </div>
 
-            <p>User data</p>
-            <button type="button">Export</button>
-            <button type="button">Import</button>
+            <label>User data</label>
+            <div class="horizontal_buttons_group">
+                <button type="button">Export</button>
+                <button type="button">Import</button>
+            </div>
         </div>
     </div>
 
@@ -46,10 +50,20 @@
             <header>
                 <h1>Edit password info</h1>
             </header>
-            <label>Name</label><input type="text"><br>
-            <label>User</label><input type="text"><br>
-            <label>Length</label><input type="text"><br>
-            <label>Version: 1</label><button type="button">Up</button>
+            <div class="label_input_pair">
+                <label>Name</label><input type="text">
+            </div>
+            <div class="label_input_pair">
+                <label>User</label><input type="text">
+            </div>
+            <div class="label_input_pair">
+                <label>Length</label><input type="text">
+            </div>
+            <div class="label_input_pair">
+                <label>Version</label>
+                <input type="text">
+                <button type="button">Up</button>
+            </div>
 
             <div class="records_list" style="height: 400px;">
                 <ul id="charsets_list"> 
@@ -58,8 +72,10 @@
             </div>
             <button type="button" class="icon_button records_list_add_button"></button>
 
-            <button type="button" class="green">Save</button>
-            <button type="button">Cancel</button>
+            <div class="horizontal_buttons_group">
+                <button type="button" class="green">Save</button>
+                <button type="button">Cancel</button>
+            </div>
         </div>
     </div>
 
@@ -68,11 +84,19 @@
             <header>
                 <h1>Edit charset</h1>
             </header>
-            <label>Name</label><input type="text"><br>
-            <label>Charset</label><input type="text"><br>
-            <label>Priority</label><input type="text"><br>
-            <button type="button" class="green">Save</button>
-            <button type="button">Cancel</button>
+            <div class="label_input_pair">
+                <label>Name</label><input type="text"><br>
+            </div>
+            <div class="label_input_pair">
+                <label>Charset</label><input type="text"><br>
+            </div>
+            <div class="label_input_pair">
+                <label>Priority</label><input type="text"><br>
+            </div>
+            <div class="horizontal_buttons_group">
+                <button type="button" class="green">Save</button>
+                <button type="button">Cancel</button>
+            </div>
         </div>
     </div>
 

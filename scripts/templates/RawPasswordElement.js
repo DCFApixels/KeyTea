@@ -1,4 +1,5 @@
-class RawPasswordElement{
+class RawPasswordElement
+{
     #checkbox
     #label
     #settingsButton

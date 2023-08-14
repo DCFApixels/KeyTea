@@ -1,17 +1,47 @@
 class Charset
 {
-    keyName = ""
-    chars = ""
+    name = ""
+    #chars = ""
     priority = 1
-    constructor(keyName, chars, priority) 
+
+    get keyName()
     {
-        if(keyName != null)
-            this.keyName = keyName;
+        return this.name.trim().replace(/\s+/g, ' ').toLowerCase();
+    }
+
+    get chars()
+    {
+        return this.#chars;
+    }
+    set chars(chars)
+    {
+        this.#chars = Charset.#SortCharset(chars);
+    }
+
+    constructor(name, chars, priority) 
+    {
+        if(name != null)
+        {
+            this.name = name;
+        }
         if(chars != null)
-            this.chars = chars;
+        {
+            this.#chars = Charset.#SortCharset(chars);
+        }
         if(priority != null)
+        {
             this.priority = priority;
+        }
     } 
+
+    static #SortCharset(str)
+    {
+        var charArray = str.split("");
+        charArray.sort(function(a, b) {
+            return a.charCodeAt(0) - b.charCodeAt(0);
+        });
+        return charArray.join("");;
+    }
 }
 
 const builtinAlphabets = {

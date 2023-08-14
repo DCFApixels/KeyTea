@@ -1,4 +1,5 @@
-class CharsetElement{
+class CharsetElement
+{
     #checkbox
     #label
     #settingsButton
