@@ -8,7 +8,7 @@ class RawPassword
 
     get keyName()
     {
-        return this.name.trim().replace(/\s+/g, ' ').toLowerCase();
+        return StringUtility.SimplifyString(this.name);
     }
 
     constructor(name, userName, usedSymbols, passwordLength) 
@@ -34,9 +34,7 @@ class RawPassword
     GenerateRawString() 
     {
         let str = this.version + this.name.trim() + this.version + this.userName.trim() + this.version;
-        str = str.toLowerCase(); //чтоб было проще запоминать, убираем зависимость от регистров
-        str = str.replace(/\s+/g, ' '); //так же убираем дублирующиеся пробелы
-        return str;
+        return StringUtility.SimplifyString(str);
     }
 
     UpVersion()

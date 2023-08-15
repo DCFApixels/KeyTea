@@ -166,7 +166,8 @@ input{
     height: 22pt;
 }
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+input[type="number"] {
     border: 0;
     background-color: transparent;
     color: black;
@@ -177,12 +178,15 @@ input[type="password"] {
     display: inline-block;
 }
 input[type="text"]::placeholder,
-input[type="password"]::placeholder {
+input[type="password"]::placeholder,
+input[type="number"]::placeholder {
     color: #001d382f;
     font-style: italic;
     font-size: 10pt;
 }
-input[type="text"], input[type="password"]{
+input[type="text"], 
+input[type="password"],
+input[type="number"] {
     box-shadow: inset 0 -3px 0 -1px #16a2ff;
 }
 /*==============================================================*/

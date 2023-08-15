@@ -6,7 +6,7 @@ class Charset
 
     get keyName()
     {
-        return this.name.trim().replace(/\s+/g, ' ').toLowerCase();
+        return StringUtility.SimplifyString(this.name);
     }
 
     get chars()
@@ -15,7 +15,7 @@ class Charset
     }
     set chars(chars)
     {
-        this.#chars = Charset.#SortCharset(chars);
+        this.#chars = StringUtility.SortCharset(chars);
     }
 
     constructor(name, chars, priority) 
@@ -26,22 +26,13 @@ class Charset
         }
         if(chars != null)
         {
-            this.#chars = Charset.#SortCharset(chars);
+            this.#chars = StringUtility.SortCharset(chars);
         }
         if(priority != null)
         {
             this.priority = priority;
         }
     } 
-
-    static #SortCharset(str)
-    {
-        var charArray = str.split("");
-        charArray.sort(function(a, b) {
-            return a.charCodeAt(0) - b.charCodeAt(0);
-        });
-        return charArray.join("");;
-    }
 }
 
 const builtinAlphabets = {
