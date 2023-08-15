@@ -1,4 +1,4 @@
-class CharsetElement
+class CharsetView
 {
     #checkbox
     #label;
@@ -39,7 +39,7 @@ class CharsetElement
         divelem.classList.add("passwords_list_element");
         lielem.appendChild(divelem);
 
-        let result = new CharsetElement(
+        let result = new CharsetView(
             document.createElement("input"),
             document.createElement("label"),
             document.createElement("button"),
@@ -65,27 +65,27 @@ class CharsetElement
 
 let elem = document.getElementById("passwords_list");
 
-let elem1 = CharsetElement.Create(elem);
-let elem2 = CharsetElement.Create(elem);
-let elem3 = CharsetElement.Create(elem);
-let elem4 = CharsetElement.Create(elem);
-let elem5 = CharsetElement.Create(elem);
-let elem6 = CharsetElement.Create(elem);
-let elem8 = CharsetElement.Create(elem);
-let elem9 = CharsetElement.Create(elem);
-let elem10 = CharsetElement.Create(elem);
-let elem11 = CharsetElement.Create(elem);
-let elem12 = CharsetElement.Create(elem);
-let elem13 = CharsetElement.Create(elem);
-let elem14 = CharsetElement.Create(elem);
-let elem15 = CharsetElement.Create(elem);
+let elem1 = CharsetView.Create(elem);
+let elem2 = CharsetView.Create(elem);
+let elem3 = CharsetView.Create(elem);
+let elem4 = CharsetView.Create(elem);
+let elem5 = CharsetView.Create(elem);
+let elem6 = CharsetView.Create(elem);
+let elem8 = CharsetView.Create(elem);
+let elem9 = CharsetView.Create(elem);
+let elem10 = CharsetView.Create(elem);
+let elem11 = CharsetView.Create(elem);
+let elem12 = CharsetView.Create(elem);
+let elem13 = CharsetView.Create(elem);
+let elem14 = CharsetView.Create(elem);
+let elem15 = CharsetView.Create(elem);
 
 elem1.nameProperty.SetValue("12345", false)
 
 
 elem = document.getElementById("charsets_list");
 
-elem1 = CharsetElement.Create(elem);
-elem2 = CharsetElement.Create(elem);
-elem3 = CharsetElement.Create(elem);
-elem4 = CharsetElement.Create(elem);
+elem1 = CharsetView.Create(elem);
+elem2 = CharsetView.Create(elem);
+elem3 = CharsetView.Create(elem);
+elem4 = CharsetView.Create(elem);

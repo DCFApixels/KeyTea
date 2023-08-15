@@ -1,4 +1,4 @@
-class RawPasswordElement
+class RawPasswordView
 {
     #checkbox
     #label
