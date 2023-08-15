@@ -5,13 +5,11 @@
     font-size: 12pt;
 }
 body{
-    background-color: #363433;
-
     padding-top: 120px;
     padding-bottom: 240px;
     transition: 0.2s;
 }
-@media screen and (min-aspect-ratio: 4/3){
+@media screen and (min-aspect-ratio: 1/1){
     body {
         padding-left: 13.6%;
         padding-right: 13.6%;
@@ -25,28 +23,71 @@ body{
     padding: 10px;
     background-color: #fcfeff;
     border-radius: 10px;
+    position: relative;
 }
 .form.disabled{
     background-color: #cad0d6ec;
     pointer-events: none;
     filter: grayscale(0.85) opacity(0.8);
 }
+
 .form.hidden{
-    display: none;
+    display:none;
+    transition: transform 10s;
+
+    animation: formToHidden 0.4s;
 }
+.form:not(.hidden){
+    display:block;
+    transform: translateY(0px);
+    
+    animation: formToVisible 0.4s;
+}
+
+@keyframes formToHidden {
+    0% {
+        display: block;
+        opacity: 1;
+    }
+    1% {
+        display: block;
+        opacity: 1;
+    }
+    100% {
+        display: none;
+        opacity: 0;
+    }
+}
+@keyframes formToVisible {
+    0% {
+        display: none;
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    1% {
+        display: block;
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        display: block;
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
 .form header{
-    background-color: #16a2ff;
+    background-color: #0099ffe8;
     margin: -10px -10px 5px -10px;
     border-radius: 10px 10px 0 0;
 }
 .form header>h1{
     text-transform: uppercase;
-    color: #ffffff;
     padding: 12px 0 12px 18px;
     font-size: 16pt;
     display: block;
 }
-@media screen and (max-aspect-ratio: 4/3){
+@media screen and (max-aspect-ratio: 1/1){
     .form{
         border-radius: 0;
         box-shadow: none;
@@ -58,8 +99,6 @@ body{
 /*==============================================================*/
 .records_list{
     overflow: auto;
-    /*background-color: #003f880a;*/
-    /*background-color: #f0f5fa;*/
 
     border-radius: 10px 10px 0 0;
     margin: 10px 0 0 0;
@@ -68,8 +107,7 @@ body{
     z-index: 100;
 
     padding: 4px;
-
-    box-shadow: inset 0 0 10px #0039b317, inset 0 0 50px #0039b317;
+    height: 46vh;
 }
 .records_list>ul{
     padding: 0;
@@ -77,7 +115,6 @@ body{
 .records_list>ul>li{
     margin: 5px 0px;
     padding: 3px;
-    box-shadow: 0 14px 0 -12px #001d3809;
 }
 button.icon_button.records_list_add_button{
     border-radius: 0 0 10px 10px;
@@ -95,19 +132,22 @@ button.icon_button.records_list_add_button{
 button{
     height: 22pt;
 
-    background-color: #16a2ff;
+    background-color: #0099ffe8;
+    transition: 0.09s background-color;
+
     border-radius: 5px;
     border: 0;
-    color: white;
     padding: 0 10px;
     min-width: 76px;
     font-family: inherit;
 }
 button:hover {
-    background: #52c8ff;
+    background-color: #52c8ff;
+    transition: 0.09s background-color;
 }
 button:active {
-    background: #008cff;
+    background-color: #008cff;
+    transition: 0.09s background-color;
 }
 button:focus {
     /*outline: none;
@@ -120,7 +160,7 @@ button[disabled] {
     background-color: rgba(137, 145, 155, 0.815);
 }
 button.green{
-    background-color: #00f120;
+    background-color: #00f120e8;
 }
 button.green:hover{
     background-color: #27ff5d;
@@ -171,7 +211,7 @@ input[type="number"] {
     border: 0;
     background-color: transparent;
     color: black;
-    padding: 0 10px;
+    padding: 0 4px;
     margin: 4px 0px;
     width: 100%;
     max-width: 300px;
@@ -180,14 +220,13 @@ input[type="number"] {
 input[type="text"]::placeholder,
 input[type="password"]::placeholder,
 input[type="number"]::placeholder {
-    color: #001d382f;
     font-style: italic;
     font-size: 10pt;
 }
 input[type="text"], 
 input[type="password"],
 input[type="number"] {
-    box-shadow: inset 0 -3px 0 -1px #16a2ff;
+    box-shadow: inset 0 -3px 0 -1px #0099ffe8;
 }
 /*==============================================================*/
 .label_input_pair{
@@ -204,7 +243,7 @@ input[type="number"] {
     flex-grow: 0; 
     transition: 0.2s;
 }
-@media screen and (max-aspect-ratio: 4/3){
+@media screen and (max-aspect-ratio: 1/1){
     .label_input_pair>label+*{
         flex-grow: 1; 
         max-width: 100%;
@@ -232,7 +271,7 @@ input[type="number"] {
     order: 2; 
     transition: 0.2s;
 }
-@media screen and (max-aspect-ratio: 4/3){
+@media screen and (max-aspect-ratio: 1/1){
     .input_button_pair>input{
         flex-grow: 1; 
         max-width: 100% !important;
@@ -250,7 +289,7 @@ input[type="number"] {
 .horizontal_buttons_group>button:last-child {
     margin-right: 0;
 }
-@media screen and (max-aspect-ratio: 4/3){
+@media screen and (max-aspect-ratio: 1/1){
     .horizontal_buttons_group>button{
         flex-grow: 1; 
         flex-basis: 0;
@@ -295,7 +334,7 @@ input[type="number"] {
 .result_password_block button{
     order: 3; 
 }
-@media screen and (min-aspect-ratio: 4/3){
+@media screen and (min-aspect-ratio: 1/1){
     .result_password_block input{
         flex-grow: 0; 
         transition: 0.2s;
@@ -336,4 +375,96 @@ input[type="checkbox"]:checked::before {
 #master_password_input{
     max-width: 300px;
     width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (prefers-color-scheme: light) {
+    body{
+        background-color: #29282b;
+    }
+    .form{
+        color: #000000;
+        background-color: #fcfeff;
+    }
+    .form.disabled{
+        background-color: #cad0d6ec;
+    }
+    input[type="text"]::placeholder,
+    input[type="password"]::placeholder,
+    input[type="number"]::placeholder {
+        color: #001d382f;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="number"]{
+        color: #000000;
+    }
+
+    .form header>h1{
+        color: #ffffff;
+    }
+    button{
+        color: #ffffff;
+    }
+
+    .records_list{
+        background-color: transparent;
+        box-shadow: inset 0 0 10px #0039b317, inset 0 0 50px #0039b317;
+    }
+    .records_list>ul>li{
+        box-shadow: 0 14px 0 -12px #001d3809;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    body{
+        background-color: #17171a;
+    }
+    .form{
+        color: #e3ebf1ec;
+        background-color: #474b4e;
+    }
+    .form.disabled{
+        background-color: #3b3e41;
+    }
+    input[type="text"]::placeholder,
+    input[type="password"]::placeholder,
+    input[type="number"]::placeholder {
+        color: #d3ebff41;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="number"]{
+        color: #e3ebf1ec;
+    }
+
+    .form header>h1{
+        color: #29282b;
+    }
+    button{
+        color: #29282b;
+    }
+
+    .records_list{
+        box-shadow: inset 0 0 10px #00000021, inset 0 0 50px #00000021;
+    }
+    .records_list>ul>li{
+        box-shadow: 0 14px 0 -12px #000f1d1f;
+    }
 }
