@@ -8,13 +8,15 @@
     <link rel="stylesheet" href="styles/global.css" type="text/css">
 </head>
 <body>
+    <script src='scripts/MVX/PropertyChannel.js'></script>
+
     <div class="screen" id="login_screen">
         <div class="form">
             <header>
                 <h1>Master Password</h1>
             </header>
             <div class="input_button_pair">
-                <input title="Master password" placeholder="Enter master password..." type="password" name="" id="master_password_input">
+                <input title="Master password" placeholder="Enter master password..." type="password" name="" id="master_password_field">
                 <button type="button" id="master_password_continue_button">Continue</button>
             </div>    
         </div>
@@ -100,10 +102,10 @@
         </div>
     </div>
 
-    <script src='scripts/MVX/PropertyChannel.js'></script>
     <script src='scripts/StringUtility.js'></script>
-    <script src='scripts/templates/CharsetView.js'></script>
-    <script src='scripts/templates/RawPasswordView.js'></script>
+    <script src='scripts/Views/CharsetView.js'></script>
+    <script src='scripts/Views/RawPasswordView.js'></script>
+    <script src='scripts/Views/MasterPasswordScreenView.js'></script>
     <script src='scripts/decimal.js'></script>
     <script src="scripts/sha3.js"></script>
     <script src="scripts/Charset.js"></script>

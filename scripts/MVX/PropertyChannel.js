@@ -48,9 +48,45 @@ class PropertyChannel
 
     SetValue(value, isAnimated)
     {
+        if(value == this.#value)
+            return;
+
         this.#handlers.forEach(handler => {
             handler(value, isAnimated);
         });
         this.#value = value;
+    }
+
+    //сейчас SetValue может вызывать рекурсивно функцию, чтобы избежать этого добавлю вызов приватной функции с аргументом глубыны котоырй повышается на 1 при каждом входе, если глубина большу 1 то функция не выыполняется и сразу выходит
+
+    Bind(propertyChannel){
+        this.AddListener(propertyChannel.SetValue);
+        propertyChannel.AddListener(this.SetValue);
+    }
+    Unbind(propertyChannel){
+        this.RemoveListener(propertyChannel.SetValue);
+        propertyChannel.RemoveListener(this.SetValue);
+    }
+
+    BindWithButton(elem){
+        let self = this;
+        elem.onmousedown = function() {
+            self.SetValue(true, true)
+        };
+        elem.onmouseup = function() {
+            self.SetValue(false, true);
+        };
+    }
+    BindWithCheckbox(elem){
+        let self = this;
+        elem.onchange = function() {
+            self.SetValue(this.value);
+        }
+    }
+    BindWithInput(elem){
+        let self = this;
+        elem.oninput = function() {
+            self.SetValue(this.value);
+        }
     }
 }

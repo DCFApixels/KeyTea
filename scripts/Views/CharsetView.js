@@ -10,10 +10,10 @@ class CharsetView
     #isSettingsButtonPressedProperty;
     #isDeleteButtonPressedProperty;
 
-    get nameProperty() { return this.#nameProperty }
-    get isSelectedProperty() { return this.#isSelectedProperty }
-    get isSettingsButtonPressedProperty() { return this.#isSettingsButtonPressedProperty }
-    get isDeleteButtonPressedProperty() { return this.#isDeleteButtonPressedProperty }
+    get name() { return this.#nameProperty }
+    get isSelected() { return this.#isSelectedProperty }
+    get isSettingsButtonPressed() { return this.#isSettingsButtonPressedProperty }
+    get isDeleteButtonPressed() { return this.#isDeleteButtonPressedProperty }
 
     constructor(checkbox, label, settingsButton, deleteButton){
         this.#checkbox = checkbox;
@@ -22,7 +22,7 @@ class CharsetView
         this.#deleteButton = deleteButton;
  
         this.#nameProperty = new PropertyChannel("", (value) => {
-            this.#label.innerHTML = value 
+            this.#label.innerHTML = value;
         });
         this.#isSelectedProperty = new PropertyChannel(false, (value) => {
             this.#checkbox.checked = value; 
@@ -30,7 +30,27 @@ class CharsetView
         this.#isSettingsButtonPressedProperty = new PropertyChannel(false);
         this.#isDeleteButtonPressedProperty = new PropertyChannel(false);
 
-        settingsButton.onClick = function() {  }
+        var isSelectedProperty = this.#isSelectedProperty;
+        var isSettingsButtonPressedProperty = this.#isSettingsButtonPressedProperty;
+        var isDeleteButtonPressedProperty = this.#isDeleteButtonPressedProperty;
+
+        checkbox.change = () => {
+            isSelectedProperty.SetValue(this.value);
+        }
+        
+        settingsButton.onmousedown = () => { 
+            isSettingsButtonPressedProperty.SetValue(true);
+        }
+        settingsButton.onmouseup = () => { 
+            isSettingsButtonPressedProperty.SetValue(false);
+        }
+
+        deleteButton.onmousedown = () => { 
+            isDeleteButtonPressedProperty.SetValue(true);
+        }
+        deleteButton.onmouseup = () => { 
+            isDeleteButtonPressedProperty.SetValue(false);
+        }
     }
 
     static Create(targetElem){
@@ -80,7 +100,7 @@ let elem13 = CharsetView.Create(elem);
 let elem14 = CharsetView.Create(elem);
 let elem15 = CharsetView.Create(elem);
 
-elem1.nameProperty.SetValue("12345", false)
+elem1.name.SetValue("12345", false)
 
 
 elem = document.getElementById("charsets_list");
