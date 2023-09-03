@@ -3,8 +3,8 @@ class MasterPasswordScreenView
     #passwordField
     #continueButton
 
-    #passwordProperty
-    #continueButtonPressedProperty
+    #passwordProperty = new PropertyChannel("");
+    #continueButtonPressedProperty = new PropertyChannel(false);
 
     get password() {return this.#passwordProperty}
     get continueButtonPressed() {return this.#continueButtonPressedProperty}
@@ -14,18 +14,14 @@ class MasterPasswordScreenView
         this.#passwordField = passwordField;
         this.#continueButton = continueButton;
 
-        this.#passwordProperty = new PropertyChannel("", (value) => {
-            this.#passwordField.value = value;
-        });
-        this.#continueButtonPressedProperty = new PropertyChannel(false);
+        this.#passwordProperty
+            .SubscribeToInput(passwordField)
+            .SubscribeView(passwordField, passwordField.SetValueFromModel);
+        this.#continueButtonPressedProperty
+            .SubscribeToPressed(continueButton);
+    }
 
-        let continueButtonPressedProperty = this.#continueButtonPressedProperty;
-        continueButton.onmousedown = function() {
-            continueButtonPressedProperty.SetValue(true, true)
-        };
-        continueButton.onmouseup = function() {
-            continueButtonPressedProperty.SetValue(false, true);
-        };
+    Destroy(){
     }
 
     static CreateFor(element)

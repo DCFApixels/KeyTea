@@ -5,10 +5,10 @@ class CharsetView
     #settingsButton;
     #deleteButton;
 
-    #nameProperty;
-    #isSelectedProperty;
-    #isSettingsButtonPressedProperty;
-    #isDeleteButtonPressedProperty;
+    #nameProperty = new PropertyChannel("");
+    #isSelectedProperty = new PropertyChannel(false);
+    #isSettingsButtonPressedProperty =  new PropertyChannel(false);
+    #isDeleteButtonPressedProperty =  new PropertyChannel(false);
 
     get name() { return this.#nameProperty }
     get isSelected() { return this.#isSelectedProperty }
@@ -21,36 +21,7 @@ class CharsetView
         this.#settingsButton = settingsButton;
         this.#deleteButton = deleteButton;
  
-        this.#nameProperty = new PropertyChannel("", (value) => {
-            this.#label.innerHTML = value;
-        });
-        this.#isSelectedProperty = new PropertyChannel(false, (value) => {
-            this.#checkbox.checked = value; 
-        });
-        this.#isSettingsButtonPressedProperty = new PropertyChannel(false);
-        this.#isDeleteButtonPressedProperty = new PropertyChannel(false);
-
-        var isSelectedProperty = this.#isSelectedProperty;
-        var isSettingsButtonPressedProperty = this.#isSettingsButtonPressedProperty;
-        var isDeleteButtonPressedProperty = this.#isDeleteButtonPressedProperty;
-
-        checkbox.change = () => {
-            isSelectedProperty.SetValue(this.value);
-        }
-        
-        settingsButton.onmousedown = () => { 
-            isSettingsButtonPressedProperty.SetValue(true);
-        }
-        settingsButton.onmouseup = () => { 
-            isSettingsButtonPressedProperty.SetValue(false);
-        }
-
-        deleteButton.onmousedown = () => { 
-            isDeleteButtonPressedProperty.SetValue(true);
-        }
-        deleteButton.onmouseup = () => { 
-            isDeleteButtonPressedProperty.SetValue(false);
-        }
+        this.#nameProperty.BindWithInput();
     }
 
     static Create(targetElem){
@@ -100,7 +71,7 @@ let elem13 = CharsetView.Create(elem);
 let elem14 = CharsetView.Create(elem);
 let elem15 = CharsetView.Create(elem);
 
-elem1.name.SetValue("12345", false)
+elem1.name.SetValueFromModel("12345", false)
 
 
 elem = document.getElementById("charsets_list");
