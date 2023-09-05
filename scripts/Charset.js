@@ -2,7 +2,7 @@ class Charset
 {
     name = ""
     #chars = ""
-    #priority = 1
+    priority = 1
 
     get keyName() { return StringUtility.SimplifyString(this.name); }
 
@@ -10,9 +10,6 @@ class Charset
     set chars(value) { this.#chars = StringUtility.SortCharset(value); }
 
     get length() { return this.#chars.length; }
-
-    get priority() { return this.#priority; }
-    set priority(value) { this.#priority = Math.min(2, value); }
 
     constructor(name, chars, priority) 
     {
@@ -23,7 +20,7 @@ class Charset
 }
 
 const builtinAlphabets = {
-    "Numbers": new Charset("Numbers", "0123456789", 1),
+    "Numbers": new Charset("Numbers", "0123456789", 5),
     "Specials": new Charset("Specials", ".,~!@#$%^&*()`'\"<>?/\\{}[]:;|+=_-", 0),
     "En Lower": new Charset("En Lower", "abcdefghijklmnopqrstuvwxyz", 1),
     "En Upper": new Charset("En Upper", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", 1),

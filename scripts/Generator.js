@@ -20,32 +20,26 @@ function GeneratePassword(rawPassword, allCharsets, masterPasswordHash)
 
     let charsets = [];
     let charsetsBlock = "";
-    let charsetsChunkBytesCount = 0;
     
     for (let i = 0; i < rawPassword.usedCharsets.length; i++) {
         const charset = allCharsets[rawPassword.usedCharsets[i]];
         charsets.push(charset);
         charsetsBlock += charset.chars;
     } 
-    charsetsChunkBytesCount = charsetsBlock.length / 256;
-
 
     let result = [];
-    let bytesMouse = 0;
     let index = 0;
     for (let i = 0; i < rawPassword.length; i++) {
         randomState = Math.abs(RandomUtility.NextState(randomState));
+        let charsetIndex = GetIndex(randomState, charsets);
 
-        let chunkSum = 0;
-        for (let j = 0; j < charsetsChunkBytesCount; j++) {
-            chunkSum += rawPasswordBytes[bytesMouse];
-            bytesMouse++;
-            if(bytesMouse >= rawPasswordBytes.length)
-                bytesMouse = bytesMouse % rawPasswordBytes.length;
-        } 
+        let byteValue = rawPasswordBytes[i % rawPasswordBytes.length];
 
-        index = (randomState + chunkSum) % charsetsBlock.length;
-        result.push(charsetsBlock.charAt(index));
+        let charset = charsets[charsetIndex];
+
+        randomState = Math.abs(RandomUtility.NextState(randomState));
+        index = (randomState + byteValue) % charset.chars.length;
+        result.push(charset.chars.charAt(index));
 
         //console.log("-----------" + i);
         //console.log("rnd " + randomState);
@@ -64,15 +58,9 @@ function GeneratePassword(rawPassword, allCharsets, masterPasswordHash)
         randomState = Math.abs(RandomUtility.NextState(randomState));
         resultIndex = (resultIndex + randomState) % rawPassword.length;
 
-        let chunkSum = 0;
-        for (let j = 0; j < charsetsChunkBytesCount; j++) {
-            chunkSum += rawPasswordBytes[bytesMouse];
-            bytesMouse++;
-            if(bytesMouse >= rawPasswordBytes.length)
-                bytesMouse = bytesMouse % rawPasswordBytes.length;
-        } 
+        let byteValue = rawPasswordBytes[i % rawPasswordBytes.length];
 
-        index = (randomState + chunkSum) % charset.length;
+        index = (randomState + byteValue) % charset.length;
         result[resultIndex] = charset.chars.charAt(index);
         //console.log(result.join(''));
 
@@ -82,6 +70,32 @@ function GeneratePassword(rawPassword, allCharsets, masterPasswordHash)
     //console.log("-----------");
 
     return result.join('');
+}
+
+function GetIndex(value, charsets) 
+{
+    let sum = 0;
+
+    for (let i = 0; i < charsets.length; i++) 
+    {
+        const charset = charsets[i];
+        sum += charset.priority;
+    } 
+
+    if (sum == 0) 
+        return 0;
+
+    let normalizedValue = value % sum; 
+
+    let n = 0;
+    for (let i = 0; i < charsets.length; i++)
+    {
+        n += charsets[i].priority;
+        if(n > normalizedValue)
+            return i;
+    }
+
+    return priorities.length - 1;
 }
 
 console.log(GeneratePassword(new RawPassword("Google")));

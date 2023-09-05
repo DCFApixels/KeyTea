@@ -1,22 +1,22 @@
 const PriorityUtility = {
-    GetIndex: function(forValue, inPriorities) {
-        chanceMax = this.GetPrioritySum(inPriorities);
+    GetIndex: function(normalizerdValue, priorities) {
+        chanceMax = this.GetPrioritySum(priorities);
 
         if (chanceMax == 0)
             return 0;
 
         precentMax = 0;
-        for (let i = 0; i < inPriorities.length; i++)
+        for (let i = 0; i < priorities.length; i++)
         {
             precentMin = precentMax;
-            precentMax = precentMin + inPriorities[i] / chanceMax;
-            if (precentMin <= forValue && forValue < precentMax)
+            precentMax = precentMin + priorities[i] / chanceMax;
+            if (precentMin <= normalizerdValue && normalizerdValue < precentMax)
             {
                 return i;
             }
         }
 
-        return inPriorities.length - 1;
+        return priorities.length - 1;
     },
 
     GetPriorityPercent: function(priority, priorities) {
