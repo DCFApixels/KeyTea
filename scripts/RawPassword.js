@@ -2,33 +2,18 @@ class RawPassword
 {
     name = "Unnamed"
     userName = ""
-    usedSymbols = ["En Lower", "En Upper", "Specials", "Numbers"]
-    passwordLength = 12
+    usedCharsets = ["En Lower", "En Upper", "Specials", "Numbers"]
+    length = 12
     version = 1
 
-    get keyName()
-    {
-        return StringUtility.SimplifyString(this.name);
-    }
+    get keyName() { return StringUtility.SimplifyString(this.name); }
 
-    constructor(name, userName, usedSymbols, passwordLength) 
+    constructor(name, userName, usedCharsets, length) 
     {
-        if(name != null)
-        {
-            this.name = name;
-        }
-        if(userName != null)
-        {
-            this.userName = userName;
-        }
-        if(usedSymbols != null)
-        {
-            this.usedSymbols = usedSymbols;
-        }
-        if(passwordLength != null)
-        {
-            this.passwordLength = passwordLength;
-        }
+        if(name != null) { this.name = name; }
+        if(userName != null) { this.userName = userName; }
+        if(usedCharsets != null) { this.usedCharsets = usedCharsets; }
+        if(length != null) { this.length = length; }
     }
 
     GenerateRawString() 
