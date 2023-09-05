@@ -1,11 +1,12 @@
 const textEncoder = new TextEncoder();
 const randomRootSeed = 1171693525;
 
+Array.prototype.insert = function ( index, ...items ) {
+    this.splice( index, 0, ...items );
+};
+
 function GeneratePassword(rawPassword, allCharsets, masterPasswordHash)
 {
-    allCharsets = builtinAlphabets;
-    masterPasswordHash = "腾飞";
-
     let randomState = randomRootSeed;
 
     let rawString = rawPassword.GenerateRawString();
@@ -27,46 +28,52 @@ function GeneratePassword(rawPassword, allCharsets, masterPasswordHash)
         charsetsBlock += charset.chars;
     } 
 
+    if(charsets.length <= 0)
+        throw new Error("нет выбранных наборов символов");
+
     let result = [];
     let index = 0;
     for (let i = 0; i < rawPassword.length; i++) {
-        randomState = Math.abs(RandomUtility.NextState(randomState));
+        let byteValue;
+        byteValue = rawPasswordBytes[i % rawPasswordBytes.length];
+        randomState = Math.abs(RandomUtility.NextState(randomState + byteValue));
+
         let charsetIndex = GetIndex(randomState, charsets);
 
-        let byteValue = rawPasswordBytes[i % rawPasswordBytes.length];
+        byteValue = rawPasswordBytes[(i + 1) % rawPasswordBytes.length];
+        randomState = Math.abs(RandomUtility.NextState(randomState + byteValue));
 
         let charset = charsets[charsetIndex];
 
-        randomState = Math.abs(RandomUtility.NextState(randomState));
-        index = (randomState + byteValue) % charset.chars.length;
+        index = randomState % charset.chars.length;
         result.push(charset.chars.charAt(index));
-
-        //console.log("-----------" + i);
-        //console.log("rnd " + randomState);
-        //console.log(index);
-        //console.log(result.join(''));
-
     }
-    //console.log("-----------");
-    //console.log("-----------");
-    //console.log(result.join(''));
 
     //вставка по одному символу из каждого набора, для гарантированного наличия даже при низком преоритете.
-    let resultIndex = rawPasswordBytes[rawPasswordBytes.length - 1];//просто беру с конца байт для дальнейших вычислений, так как он вероятнее всего не использовался еще.
+    let tempCharsets = charsets.slice();
+    let tempCharsetsLength = charsets.length;
+
+    randomState = Math.abs(RandomUtility.NextState(randomState));
+    let indexInResult = (randomState + rawPasswordBytes[rawPasswordBytes.length - 1]) % rawPassword.length;
+
     for (let i = 0; i < charsets.length; i++) {
-        const charset = charsets[i];
+        //берем в рандомном порядке чарсеты, так чтоб они не повторялись
         randomState = Math.abs(RandomUtility.NextState(randomState));
-        resultIndex = (resultIndex + randomState) % rawPassword.length;
+        let tempIndex = randomState % tempCharsetsLength;
+        const charset = tempCharsets[tempIndex];
+        tempCharsets[tempIndex] = tempCharsets[tempCharsetsLength - 1];
+        tempCharsetsLength--;
+        //получен рандомный чарсет
 
         let byteValue = rawPasswordBytes[i % rawPasswordBytes.length];
 
-        index = (randomState + byteValue) % charset.length;
-        result[resultIndex] = charset.chars.charAt(index);
-        //console.log(result.join(''));
+        randomState = Math.abs(RandomUtility.NextState(randomState + byteValue));
+        indexInResult = (indexInResult + 1) % rawPassword.length;
+        index = randomState % charset.length;
 
+        result[indexInResult] = charset.chars.charAt(index);
     }
 
-    //console.log("-----------");
     //console.log("-----------");
 
     return result.join('');
@@ -98,11 +105,18 @@ function GetIndex(value, charsets)
     return priorities.length - 1;
 }
 
-console.log(GeneratePassword(new RawPassword("Google")));
-console.log(GeneratePassword(new RawPassword("Facebook")));
-console.log(GeneratePassword(new RawPassword("VK")));
-console.log(GeneratePassword(new RawPassword("QQ")));
-console.log(GeneratePassword(new RawPassword("Wechat")));
-console.log(GeneratePassword(new RawPassword("Gmail")));
-console.log(GeneratePassword(new RawPassword("Yandex")));
-console.log(GeneratePassword(new RawPassword("Linkedin")));
+console.log(GeneratePassword(new RawPassword("Google"), builtinAlphabets, "123"));
+console.log(GeneratePassword(new RawPassword("Google"), builtinAlphabets, "223"));
+console.log(GeneratePassword(new RawPassword("Google"), builtinAlphabets, "321"));
+console.log(GeneratePassword(new RawPassword("Google"), builtinAlphabets, "222"));
+console.log(GeneratePassword(new RawPassword("Google"), builtinAlphabets, "221"));
+console.log(GeneratePassword(new RawPassword("Google"), builtinAlphabets, "111"));
+console.log(GeneratePassword(new RawPassword("Google"), builtinAlphabets, "000"));
+console.log(GeneratePassword(new RawPassword("Google"), builtinAlphabets, "124"));
+//console.log(GeneratePassword(new RawPassword("Facebook", builtinAlphabets, "123")));
+//console.log(GeneratePassword(new RawPassword("VK", builtinAlphabets, "123")));
+//console.log(GeneratePassword(new RawPassword("QQ", builtinAlphabets, "123")));
+//console.log(GeneratePassword(new RawPassword("Wechat", builtinAlphabets, "123")));
+//console.log(GeneratePassword(new RawPassword("Gmail", builtinAlphabets, "123")));
+//console.log(GeneratePassword(new RawPassword("Yandex", builtinAlphabets, "123")));
+//console.log(GeneratePassword(new RawPassword("Linkedin", builtinAlphabets, "123")));
