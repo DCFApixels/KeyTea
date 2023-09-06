@@ -79,9 +79,7 @@ function GeneratePassword(rawPassword, allCharsets, masterPasswordHash)
 
         result[indexInResult] = charset.chars.charAt(index);
     }
-
     //console.log("-----------");
-
     return result.join('');
 }
 
