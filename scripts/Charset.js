@@ -20,8 +20,8 @@ class Charset
 }
 
 const builtinAlphabets = {
-    "Numbers": new Charset("Numbers", "0123456789", 5),
-    "Specials": new Charset("Specials", ".,~!@#$%^&*()`'\"<>?/\\{}[]:;|+=_-", 0),
+    "Numbers": new Charset("Numbers", "0123456789", 1),
+    "Specials": new Charset("Specials", ".,~!@#$%^&*()`'\"<>?/\\{}[]:;|+=_-", 1),
     "En Lower": new Charset("En Lower", "abcdefghijklmnopqrstuvwxyz", 1),
     "En Upper": new Charset("En Upper", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", 1),
     "Ru Lower": new Charset("Ru Lower", "абвгдеёжзийклмнопрстуфхцчшщъыьэюя", 1),
