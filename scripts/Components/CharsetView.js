@@ -1,19 +1,19 @@
-class CharsetView
+/*class CharsetView
 {
     #checkbox
     #label;
     #settingsButton;
     #deleteButton;
 
-    #nameProperty = new PropertyChannel("");
-    #isSelectedProperty = new PropertyChannel(false);
-    #isSettingsButtonPressedProperty =  new PropertyChannel(false);
-    #isDeleteButtonPressedProperty =  new PropertyChannel(false);
+    //#nameProperty = new PropertyChannel("");
+    //#isSelectedProperty = new PropertyChannel(false);
+    //#isSettingsButtonPressedProperty =  new PropertyChannel(false);
+    //#isDeleteButtonPressedProperty =  new PropertyChannel(false);
 
-    get name() { return this.#nameProperty }
-    get isSelected() { return this.#isSelectedProperty }
-    get isSettingsButtonPressed() { return this.#isSettingsButtonPressedProperty }
-    get isDeleteButtonPressed() { return this.#isDeleteButtonPressedProperty }
+    //get name() { return this.#nameProperty }
+    //get isSelected() { return this.#isSelectedProperty }
+    //get isSettingsButtonPressed() { return this.#isSettingsButtonPressedProperty }
+    //get isDeleteButtonPressed() { return this.#isDeleteButtonPressedProperty }
 
     constructor(checkbox, label, settingsButton, deleteButton){
         this.#checkbox = checkbox;
@@ -21,7 +21,7 @@ class CharsetView
         this.#settingsButton = settingsButton;
         this.#deleteButton = deleteButton;
  
-        this.#nameProperty.BindWithInput();
+        //this.#nameProperty.BindWithInput();
     }
 
     static Create(targetElem){
@@ -71,6 +71,7 @@ let elem13 = CharsetView.Create(elem);
 let elem14 = CharsetView.Create(elem);
 let elem15 = CharsetView.Create(elem);
 
+
 elem1.name.SetValueFromModel("12345", false)
 
 
@@ -80,3 +81,4 @@ elem1 = CharsetView.Create(elem);
 elem2 = CharsetView.Create(elem);
 elem3 = CharsetView.Create(elem);
 elem4 = CharsetView.Create(elem);
+*/

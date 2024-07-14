@@ -1,4 +1,4 @@
-class RawPasswordView
+/*class RawPasswordView
 {
     #checkbox
     #label
@@ -25,3 +25,4 @@ class RawPasswordView
         this.#deleteButton = deleteButton;
     }
 }
+*/

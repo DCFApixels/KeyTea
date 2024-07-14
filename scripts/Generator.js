@@ -5,6 +5,10 @@ Array.prototype.insert = function ( index, ...items ) {
     this.splice( index, 0, ...items );
 };
 
+function GeneratePasswordWithDefaultHash(rawPassword, allCharsets, masterPassword)
+{
+    return GeneratePassword(rawPassword, allCharsets, sha3_512(masterPassword));
+}
 function GeneratePassword(rawPassword, allCharsets, masterPasswordHash)
 {
     let rawString = rawPassword.GenerateRawString();
@@ -13,32 +17,40 @@ function GeneratePassword(rawPassword, allCharsets, masterPasswordHash)
     let masterPasswordHashBytes = textEncoder.encode(masterPasswordHash);
     let charsets = [];
 
-    //перемешиваю матер пароль и рав пароль, но так чтоб значения в массиве не выходила за пределы байта
-    for (let i = 0; i < rawPasswordBytes.length; i++) {
+    //перемешиваю мастер пароль и рав пароль, но так чтоб значения в массиве не выходила за пределы байта.
+    for (let i = 0; i < rawPasswordBytes.length; i++)
+    {
         rawPasswordBytes[i] = (rawPasswordBytes[i] + masterPasswordHashBytes[i % masterPasswordHashBytes.length]) % 256;
     }
-    for (let i = 0; i < rawPassword.usedCharsets.length; i++) {
+    for (let i = 0; i < rawPassword.usedCharsets.length; i++)
+    {
         const charset = allCharsets[rawPassword.usedCharsets[i]];
         charsets.push(charset);
     } 
 
     if(charsets.length <= 0)
+    {
         throw new Error("нет выбранных наборов символов");
+    }
     if(rawPassword.length < charsets.length)
+    {
         throw new Error("длинна пароля меньше числа выбранных наборов символов");
+    }
 
     let passwordLength = rawPassword.length - charsets.length;
 
     let randomState = randomRootSeed;
     let rawPasswordBytesSum = 0;
-    for (let i = 0; i < rawPasswordBytes.length; i++) {
+    for (let i = 0; i < rawPasswordBytes.length; i++)
+    {
         rawPasswordBytesSum += rawPasswordBytes[i];
     }
     randomState = randomState ^ RandomUtility.NextState(rawPasswordBytesSum);
 
     let result = [];
     let index = 0;
-    for (let i = 0; i < passwordLength; i++) {
+    for (let i = 0; i < passwordLength; i++)
+    {
         let byteValue;
         byteValue = rawPasswordBytes[i % rawPasswordBytes.length];
         randomState = Math.abs(RandomUtility.NextState(randomState + byteValue));
@@ -54,14 +66,15 @@ function GeneratePassword(rawPassword, allCharsets, masterPasswordHash)
         result.push(charset.chars.charAt(index));
     }
 
-    //вставка по одному символу из каждого набора, для гарантированного наличия даже при низком преоритете.
+    //вставка по одному символу из каждого набора, для гарантированного наличия даже при низком приоритете.
     let tempCharsets = charsets.slice();
     let tempCharsetsLength = charsets.length;
 
     randomState = Math.abs(RandomUtility.NextState(randomState));
     let indexInResult = (randomState + rawPasswordBytes[rawPasswordBytes.length - 1]) % passwordLength;
 
-    for (let i = 0; i < charsets.length; i++) {
+    for (let i = 0; i < charsets.length; i++)
+    {
         //берем в рандомном порядке чарсеты, так чтоб они не повторялись
         randomState = Math.abs(RandomUtility.NextState(randomState));
         let tempIndex = randomState % tempCharsetsLength;
@@ -108,27 +121,27 @@ function GetIndex(value, charsets)
     return priorities.length - 1;
 }
 
-console.log(GeneratePassword(new RawPassword("Google", null, null, 12), builtinAlphabets, sha3_512("1")));
-console.log(GeneratePassword(new RawPassword("Google", null, null, 12), builtinAlphabets, sha3_512("1")));
-console.log(GeneratePassword(new RawPassword("Google", null, null, 12), builtinAlphabets, sha3_512("2")));
-console.log(GeneratePassword(new RawPassword("Google", null, null, 12), builtinAlphabets, sha3_512("2")));
-console.log(GeneratePassword(new RawPassword("Google", null, null, 12), builtinAlphabets, sha3_512("11")));
-console.log(GeneratePassword(new RawPassword("Google", null, null, 12), builtinAlphabets, sha3_512("11")));
-console.log(GeneratePassword(new RawPassword("Google", null, null, 12), builtinAlphabets, sha3_512("22")));
-console.log(GeneratePassword(new RawPassword("Google", null, null, 12), builtinAlphabets, sha3_512("33")));
-console.log(GeneratePassword(new RawPassword("Google", null, null, 12), builtinAlphabets, sha3_512("44")));
-console.log(GeneratePassword(new RawPassword("Google", null, null, 12), builtinAlphabets, sha3_512("55")));
+console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "1"));
+console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "1"));
+console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "2"));
+console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "2"));
+console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "11"));
+console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "11"));
+console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "22"));
+console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "33"));
+console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "44"));
+console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "55"));
 console.log("----");
-console.log(GeneratePassword(new RawPassword("Google", null, null, 12), builtinAlphabets, sha3_512("33")));
-console.log(GeneratePassword(new RawPassword("Google", null, null, 12), builtinAlphabets, sha3_512("34")));
-console.log(GeneratePassword(new RawPassword("Google", null, null, 12), builtinAlphabets, sha3_512("43")));
-console.log(GeneratePassword(new RawPassword("Google", null, null, 12), builtinAlphabets, sha3_512("44")));
-console.log(GeneratePassword(new RawPassword("Google", null, null, 12), builtinAlphabets, sha3_512("4")));
-console.log(GeneratePassword(new RawPassword("Google", null, null, 12), builtinAlphabets, sha3_512("3")));
-//console.log(GeneratePassword(new RawPassword("Facebook", builtinAlphabets, "123")));
-//console.log(GeneratePassword(new RawPassword("VK", builtinAlphabets, "123")));
-//console.log(GeneratePassword(new RawPassword("QQ", builtinAlphabets, "123")));
-//console.log(GeneratePassword(new RawPassword("Wechat", builtinAlphabets, "123")));
-//console.log(GeneratePassword(new RawPassword("Gmail", builtinAlphabets, "123")));
-//console.log(GeneratePassword(new RawPassword("Yandex", builtinAlphabets, "123")));
-//console.log(GeneratePassword(new RawPassword("Linkedin", builtinAlphabets, "123")));
+console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "33"));
+console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "34"));
+console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "43"));
+console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "44"));
+console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "4"));
+console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "3"));
+//console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Facebook", builtinAlphabets, "123")));
+//console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("VK", builtinAlphabets, "123")));
+//console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("QQ", builtinAlphabets, "123")));
+//console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Wechat", builtinAlphabets, "123")));
+//console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Gmail", builtinAlphabets, "123")));
+//console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Yandex", builtinAlphabets, "123")));
+//console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Linkedin", builtinAlphabets, "123")));

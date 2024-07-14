@@ -1,4 +1,4 @@
-class Charset
+class CharsetRecord
 {
     name = ""
     #chars = ""
@@ -19,11 +19,11 @@ class Charset
     } 
 }
 
-const builtinAlphabets = {
-    "Numbers": new Charset("Numbers", "0123456789", 4),
-    "Specials": new Charset("Specials", ".,~!@#$%^&*()`'\"<>?/\\{}[]:;|+=_-", 1),
-    "En Lower": new Charset("En Lower", "abcdefghijklmnopqrstuvwxyz", 2),
-    "En Upper": new Charset("En Upper", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", 2),
-    "Ru Lower": new Charset("Ru Lower", "абвгдеёжзийклмнопрстуфхцчшщъыьэюя", 1),
-    "Ru Upper": new Charset("Ru Upper", "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ", 1),
+const builtinCharsetRecords = {
+    "Numbers": new CharsetRecord("Numbers", "0123456789", 4),
+    "Specials": new CharsetRecord("Specials", ".,~!@#$%^&*()`'\"<>?/\\{}[]:;|+=_-", 1),
+    "En Lower": new CharsetRecord("En Lower", "abcdefghijklmnopqrstuvwxyz", 2),
+    "En Upper": new CharsetRecord("En Upper", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", 2),
+    "Ru Lower": new CharsetRecord("Ru Lower", "абвгдеёжзийклмнопрстуфхцчшщъыьэюя", 1),
+    "Ru Upper": new CharsetRecord("Ru Upper", "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ", 1),
 }

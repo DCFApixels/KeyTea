@@ -25,22 +25,24 @@
             <header>
                 <h1>Passwords</h1>
             </header>
+
             <div class="records_list">
                 <ul id="passwords_list"> 
-
+                    
                 </ul>
             </div>
             <button type="button" class="icon_button records_list_add_button"></button>
+            
             <div class="result_password_block">
                 <label>Password</label>
-                <input title="Password" readonly placeholder="" id="output_password" type="password" name="" id="">
-                <button class="icon_button copy">.</button>
+                <input id="output_password" title="Password" readonly placeholder="" type="password" name="" id="">
+                <button id="output_password_copy_button" class="icon_button copy">.</button>
             </div>
 
             <label>User data</label>
             <div class="horizontal_buttons_group">
-                <button type="button">Export</button>
-                <button type="button">Import</button>
+                <button type="button" id="user_data_export_button">Export</button>
+                <button type="button" id="user_data_import_button">Import</button>
             </div>
         </div>
     </div>
@@ -109,10 +111,16 @@
     <script src="scripts/RawPassword.js"></script>
     <script src="scripts/Generator.js"></script>
 
+    <!--
     <script src='scripts/Views/CharsetView.js'></script>
     <script src='scripts/Views/RawPasswordView.js'></script>
     <script src='scripts/Views/MasterPasswordScreenView.js'></script>
-
+-->
     <script src="scripts/test.js"></script>
+    <script src="scripts/Utils/Meta.js"></script>
+
+    <script src="scripts/User.js"></script>
+
+    <script src="scripts/Кщще.js"></script>
 </body>
 </html>

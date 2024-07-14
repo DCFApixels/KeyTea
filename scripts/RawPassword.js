@@ -1,4 +1,4 @@
-class RawPassword
+class RawPasswordRecord
 {
     name = "Unnamed"
     userName = ""
@@ -28,7 +28,7 @@ class RawPassword
     }
 }
 
-const builtinRawPasswords = {
-    "Google": new RawPassword("Google"),
-    "Facebook": new RawPassword("Facebook")
+const builtinRawPasswordRecords = {
+    "Google": new RawPasswordRecord("Google"),
+    "Facebook": new RawPasswordRecord("Facebook")
 }
