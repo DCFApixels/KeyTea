@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <title>Password Calculator</title>
 
     <link rel="stylesheet" href="styles/global.css" type="text/css">
@@ -21,7 +22,7 @@
     </div>
 
     <div class="screen" id="select_screen">
-        <div class="form">
+        <div class="form hidden">
             <header>
                 <h1>Passwords</h1>
             </header>
@@ -31,7 +32,7 @@
                     
                 </ul>
             </div>
-            <button type="button" class="icon_button records_list_add_button"></button>
+            <button id="add_raw_password_button" type="button" class="icon_button records_list_add_button"></button>
             
             <div class="result_password_block">
                 <label>Password</label>
@@ -48,23 +49,23 @@
     </div>
 
     <div class="screen" id="edit_password_screen">
-        <div class="form">
+        <div class="form hidden">
             <header>
                 <h1>Edit password info</h1>
             </header>
             <div class="label_input_pair">
-                <label>Name</label><input type="text">
+                <label>Name</label><input id="raw_password_name_field" type="text">
             </div>
             <div class="label_input_pair">
-                <label>User</label><input type="text">
+                <label>User</label><input id="raw_password_user_field" type="text">
             </div>
             <div class="label_input_pair">
-                <label>Length</label><input type="text">
+                <label>Length</label><input id="raw_password_length_field" type="number">
             </div>
             <div class="label_input_pair">
                 <label>Version</label>
-                <input type="number" value="1">
-                <button type="button">Up</button>
+                <input id="raw_password_version_field" type="number" value="1">
+                <button id="raw_password_up_version_button" type="button">Up</button>
             </div>
 
             <div class="records_list">
@@ -75,14 +76,14 @@
             <button type="button" class="icon_button records_list_add_button"></button>
 
             <div class="horizontal_buttons_group">
-                <button type="button" class="green">Save</button>
-                <button type="button">Cancel</button>
+                <button id="raw_password_save_button" type="button" class="green">Save</button>
+                <button id="raw_password_cancel_button" type="button">Cancel</button>
             </div>
         </div>
     </div>
 
     <div class="screen" id="edit_charset_screen">
-        <div class="form">
+        <div class="form hidden">
             <header>
                 <h1>Edit charset</h1>
             </header>
@@ -101,6 +102,8 @@
             </div>
         </div>
     </div>
+    <script src='scripts/Utils/Utility.js'></script>
+    <script src='scripts/Utils/ImportExportDialogUtility.js'></script>
 
     <script src='scripts/Utils/StringUtility.js'></script>
     <script src='scripts/Utils/RandomUtility.js'></script>
@@ -111,16 +114,23 @@
     <script src="scripts/RawPassword.js"></script>
     <script src="scripts/Generator.js"></script>
 
-    <!--
-    <script src='scripts/Views/CharsetView.js'></script>
-    <script src='scripts/Views/RawPasswordView.js'></script>
-    <script src='scripts/Views/MasterPasswordScreenView.js'></script>
--->
+    <script src='scripts/Controllers/MasterPasswordController.js'></script>
+    <script src='scripts/Controllers/SelectRawPasswordController.js'></script>
+    <script src='scripts/Controllers/EditPasswordController.js'></script>
+    <script src='scripts/Controllers/Elements/RawPasswordElementController.js'></script>
+    <script src='scripts/Controllers/Elements/CharsetElementController.js'></script>
+
+    <script src='scripts/Views/ViewBase.js'></script>
+    <script src='scripts/Views/Elements/CharsetElementView.js'></script>
+    <script src='scripts/Views/Elements/RawPasswordElementView.js'></script>
+    <script src='scripts/Views/Screens/MasterPasswordScreenView.js'></script>
+    <script src='scripts/Views/Screens/SelectScreenView.js'></script>
+    <script src='scripts/Views/Screens/EditPasswordScreenView.js'></script>
+
     <script src="scripts/test.js"></script>
-    <script src="scripts/Utils/Meta.js"></script>
 
     <script src="scripts/User.js"></script>
 
-    <script src="scripts/Кщще.js"></script>
+    <script src="scripts/Root.js"></script>
 </body>
 </html>

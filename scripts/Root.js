@@ -1,5 +1,5 @@
 
-class App
+class ScreensController
 {
     screens = new Map();
 
@@ -7,13 +7,13 @@ class App
 
     GetScreen(screenType)
     {
-        let screen = this.screens.get(screenType);
+        let screen = this.screens.get(screenType.prototype);
         return screen;
     }
 
     AddScreen(screen)
     {
-        let screenType = screen.prototype;
+        let screenType = Object.getPrototypeOf(screen);
         this.screens.set(screenType, screen);
         return this;
     }
@@ -28,7 +28,10 @@ class User
 var userSession = new UserSession;
 userSession.data = UserData.Load();
 
-var app = new App();
+var screensController = new ScreensController();
 
-app.AddScreen(new MasterPasswordScreenView());
-app.AddScreen(new SelectScreen());
+screensController.AddScreen(new MasterPasswordController(userSession, new MasterPasswordScreenView(), screensController));
+screensController.AddScreen(new SelectRawPasswordController(userSession, new SelectScreenView(), screensController));
+screensController.AddScreen(new EditPasswordController(userSession, new EditPasswordScreenView(), screensController));
+
+screensController.GetScreen(SelectRawPasswordController).Close();

@@ -1,15 +1,15 @@
 class CharsetRecord
 {
-    name = ""
-    #chars = ""
-    priority = 1
+    name = "";
+    _chars = "";
+    priority = 1;
 
     get keyName() { return StringUtility.SimplifyString(this.name); }
 
-    get chars() { return this.#chars; }
-    set chars(value) { this.#chars = StringUtility.SortCharset(value); }
+    get chars() { return this._chars; }
+    set chars(value) { this._chars = StringUtility.SortCharset(value); }
 
-    get length() { return this.#chars.length; }
+    get length() { return this._chars.length; }
 
     constructor(name, chars, priority) 
     {

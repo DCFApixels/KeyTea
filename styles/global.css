@@ -24,6 +24,13 @@ body{
     border-radius: 10px;
     position: relative;
 }
+
+.form:not(.hidden){
+    display:block;
+    transform: translateY(0px);
+    
+    animation: formToVisible 0.4s;
+}
 .form.disabled{
     background-color: #cad0d6ec;
     pointer-events: none;
@@ -35,12 +42,6 @@ body{
     transition: transform 10s;
 
     animation: formToHidden 0.4s;
-}
-.form:not(.hidden){
-    display:block;
-    transform: translateY(0px);
-    
-    animation: formToVisible 0.4s;
 }
 
 @keyframes formToHidden {
@@ -111,8 +112,11 @@ body{
     padding: 0;
 }
 .records_list>ul>li{
-    margin: 5px 0px;
+    /*margin: 5px 0px;*/
     padding: 3px;
+}
+.records_list>ul>li>div{
+    padding: 5px 0px;
 }
 button.icon_button.records_list_add_button{
     border-radius: 0 0 10px 10px;
@@ -161,6 +165,10 @@ button[disabled] {
 }
 button.green{
     background-color: #00f120e8;
+}
+button.green[disabled] {
+    outline: none;
+    background-color: rgba(137, 155, 148, 0.815);
 }
 button.green:hover{
     background-color: #27ff5d;
@@ -298,6 +306,19 @@ input[type="number"]::placeholder {
     display: flex;
     align-items: center;
     padding: 0 10px;
+    background-color: #0000;
+}
+.passwords_list_element.checked
+{
+    background-color: #54b2ff36;
+} 
+.passwords_list_element:hover{
+    background-color: #54b2ff18;
+    transition: 0.1s;
+}
+.passwords_list_element.checked:hover{
+    background-color: #54b2ff36;
+    transition: 0.1s;
 }
 .passwords_list_element *{
     margin: 0 4px;

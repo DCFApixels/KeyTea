@@ -11,6 +11,7 @@ function GeneratePasswordWithDefaultHash(rawPassword, allCharsets, masterPasswor
 }
 function GeneratePassword(rawPassword, allCharsets, masterPasswordHash)
 {
+    //let rawString = RawPasswordRecord.prototype.GenerateRawString(rawPassword);
     let rawString = rawPassword.GenerateRawString();
     let hashString = sha3_512(rawString);
     let rawPasswordBytes = textEncoder.encode(hashString);

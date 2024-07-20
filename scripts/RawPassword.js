@@ -1,10 +1,10 @@
 class RawPasswordRecord
 {
-    name = "Unnamed"
-    userName = ""
-    usedCharsets = ["En Lower", "En Upper", "Specials", "Numbers"]
-    length = 12
-    version = 1
+    name = "Unnamed";
+    userName = "";
+    usedCharsets = ["En Lower", "En Upper", "Specials", "Numbers"];
+    length = 12;
+    version = 1;
 
     get keyName() { return StringUtility.SimplifyString(this.name); }
 
