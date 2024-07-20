@@ -1,31 +1,31 @@
 class RawPasswordElementView extends ViewBase
 {
     #root;
-    //#checkbox;
+    #div;
     #label;
     #settingsButton;
     #deleteButton;
 
     get name() { return this.#label.innerText; }
     set name(value) { this.#label.innerText = value; }
-    get isSelected() { return this.#root.classList.contains("checked"); }
+    get isSelected() { return this.#div.classList.contains("checked"); }
     set isSelected(value) 
     { 
         if(value)
         {
-            this.#root.classList.add("checked")
+            this.#div.classList.add("checked")
         }
         else
         {
-            this.#root.classList.remove("checked")
+            this.#div.classList.remove("checked")
         }
     }
 
-    constructor(root, checkbox, label, settingsButton, deleteButton)
+    constructor(root, div, label, settingsButton, deleteButton)
     {
         super();
         this.#root = root;
-        //this.#checkbox = checkbox;
+        this.#div = div;
         this.#label = label;
         this.#settingsButton = settingsButton;
         this.#deleteButton = deleteButton;
@@ -60,13 +60,13 @@ class RawPasswordElementView extends ViewBase
     Show()
     {
         if(!this.#isHidden) { return; }
-        this.#root.classList.add('hidden');
+        this.#root.classList.remove('hidden');
         this.#isHidden = false;
     }
     Hide()
     {
         if(this.#isHidden) { return; }
-        this.#root.classList.remove('hidden');
+        this.#root.classList.add('hidden');
         this.#isHidden = true;
     }
 
@@ -85,8 +85,8 @@ class RawPasswordElementView extends ViewBase
         lielem.appendChild(divelem);
 
         let result = new RawPasswordElementView(
+            lielem,
             divelem,
-            null,//document.createElement("input"),
             document.createElement("label"),
             document.createElement("button"),
             document.createElement("button"));

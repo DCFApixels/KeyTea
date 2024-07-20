@@ -51,6 +51,10 @@ class SelectRawPasswordController
     currentRawPasswordNumber;
     OnRawPasswordElementSelected(number)
     {
+        if(number >= this.model.data.rawPasswordRecords.length)
+        {
+            number = -1;
+        }
         this.currentRawPasswordNumber = number;
 
         for (let i = 0; i < this.rawPasswordControllers.length; i++) 
@@ -118,6 +122,7 @@ class SelectRawPasswordController
         {
             this.OnRawPasswordElementSelected(this.currentRawPasswordNumber -1);
         }
+        this.SaveUserData();
         this.#ApplyRawPasswordControllers();
     }
 
@@ -133,7 +138,7 @@ class SelectRawPasswordController
     #OnImportDataComplete(contents)
     {
         this.model.data = UserData.FromJson(contents);
-        UserData.Save(this.model.data);
+        this.SaveUserData();
         this.#ApplyRawPasswordControllers();
     }
 
