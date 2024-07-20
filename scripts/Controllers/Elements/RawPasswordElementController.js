@@ -19,7 +19,14 @@ class RawPasswordElementController
     SetModel(model)
     {
         this.model = model;
+        if(model == null)
+        {
+            this.view.name = "";
+            this.view.Hide();
+            return;
+        }
         this.view.name = model.name;
+        this.view.Show();
     }
 
 
@@ -31,6 +38,10 @@ class RawPasswordElementController
     OnEditButtonClick()
     {
         this.parentController.OnEditRawPasswordButtonClick(this.number);
+    }
+    OnDeleteButtonClick()
+    {
+        this.parentController.OnDeleteRawPasswordButtonClick(this.number);
     }
 
     Select() { this.view.isSelected = true; }

@@ -14,7 +14,7 @@ class SelectRawPasswordController
         this.view.SubscribeController(this);
 
         this.#ApplyRawPasswordControllers();
-        this.OnRawPasswordElementSelected(0);
+        this.OnRawPasswordElementSelected(-1);
         //=//специальная ошибка-напоминался
     }
 
@@ -30,16 +30,29 @@ class SelectRawPasswordController
             this.rawPasswordControllers.push(c);
         }
 
-        for (let i = 0; i < this.rawPasswordControllers.length; i++)
+        for (let i = 0; i < rawPasswordRecordKeys.length; i++)
         {
             const rawPasswordController = this.rawPasswordControllers[i];
             rawPasswordController.SetModel(rawPasswordRecords[rawPasswordRecordKeys[i]]);
         }
+        for (let i = rawPasswordRecordKeys.length; i < this.rawPasswordControllers.length; i++)
+        {
+            const rawPasswordController = this.rawPasswordControllers[i];
+            rawPasswordController.SetModel(null);
+        }
+
+        if(this.currentRawPasswordNumber >= rawPasswordRecordKeys.length)
+        {
+            this.OnRawPasswordElementSelected(-1);
+        }
     }
 
     currentRawPassword;
+    currentRawPasswordNumber;
     OnRawPasswordElementSelected(number)
     {
+        this.currentRawPasswordNumber = number;
+
         for (let i = 0; i < this.rawPasswordControllers.length; i++) 
         {
             const rawPasswordController = this.rawPasswordControllers[i];
@@ -52,6 +65,13 @@ class SelectRawPasswordController
             {
                 rawPasswordController.Deselect();
             }
+        }
+
+        if(number < 0)
+        {
+            this.currentRawPassword = null;
+            this.view.SetOutputPassword("");
+            return;
         }
 
 //TODO добавить сигнал о том что пароль был изменен, а то ни черта не понятно
@@ -86,6 +106,19 @@ class SelectRawPasswordController
         let editPasswordController = this.screensController.GetScreen(EditPasswordController);
         editPasswordController.Open(rawPassword);
         this.Close();
+    }
+    OnDeleteRawPasswordButtonClick(number)
+    {
+        this.model.data.rawPasswordRecords.splice(number, 1);
+        if(this.currentRawPasswordNumber == number)
+        {
+            this.OnRawPasswordElementSelected(-1);
+        }
+        else if(this.currentRawPasswordNumber > number)
+        {
+            this.OnRawPasswordElementSelected(this.currentRawPasswordNumber -1);
+        }
+        this.#ApplyRawPasswordControllers();
     }
 
     OnExportButtonClick()

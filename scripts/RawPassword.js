@@ -28,7 +28,7 @@ class RawPasswordRecord
     }
 }
 
-const builtinRawPasswordRecords = {
-    "Google": new RawPasswordRecord("Google"),
-    "Facebook": new RawPasswordRecord("Facebook")
-}
+const builtinRawPasswordRecords = [
+    new RawPasswordRecord("Google"),
+    new RawPasswordRecord("Facebook"),
+];

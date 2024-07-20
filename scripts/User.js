@@ -28,7 +28,6 @@ class UserData
         {
             userData = UserData.CreateDefault(); 
         }
-        this.Save(userData);
         return userData;
     }
     static Save(userData)
@@ -46,22 +45,21 @@ class UserData
         //пришлось написать костыль, который по хорошему тоже бы переработать.
         //В общем приходится агрессивно вручную восстанавливать прототипы после загрузки.
         //Чтобы исправить нужно просто убрать все поведение из объектов, одних только данных вполне достаточно
-        let rawPasswordRecordKeys = Object.keys(userData.rawPasswordRecords);
         let charsetRecordKeys = Object.keys(userData.charsetRecords);
-        for (let i = 0; i < rawPasswordRecordKeys.length; i++)
+        for (let i = 0; i < userData.rawPasswordRecords.length; i++)
         {
-            const element = userData.rawPasswordRecords[rawPasswordRecordKeys[i]];
+            const element = userData.rawPasswordRecords[i];
             let obj = new RawPasswordRecord();
-            Object.assign(obj, element);
-            userData.rawPasswordRecords[rawPasswordRecordKeys[i]] = obj;
+            userData.rawPasswordRecords[i] = Object.assign(obj, element);;
         }
         for (let i = 0; i < charsetRecordKeys.length; i++)
         {
             const element = userData.charsetRecords[charsetRecordKeys[i]];
             let obj = new CharsetRecord();
-            Object.assign(obj, element);
-            userData.charsetRecords[charsetRecordKeys[i]] = obj;
+            userData.charsetRecords[charsetRecordKeys[i]] = Object.assign(obj, element);
         }
+
+        console.log(userData);
 
         return userData;
     }
@@ -71,18 +69,7 @@ class UserData
         //В общем проблема в том что ключи и строки в полях name должны быть равны, 
         //и для этого при изменении name нужно обновлять ключ
         //PS возможно все не так плохо 
-        let rawPasswordRecordKeys = Object.keys(userData.rawPasswordRecords);
         let charsetRecordKeys = Object.keys(userData.charsetRecords);
-        for (let i = 0; i < rawPasswordRecordKeys.length; i++)
-        {
-            const key = rawPasswordRecordKeys[i];
-            const element = userData.rawPasswordRecords[key];
-            if(key != element.name)
-            {
-                userData.rawPasswordRecords[element.name] = element;
-                delete userData.rawPasswordRecords[key];
-            }
-        }
         for (let i = 0; i < charsetRecordKeys.length; i++)
         {
             const key = charsetRecordKeys[i];

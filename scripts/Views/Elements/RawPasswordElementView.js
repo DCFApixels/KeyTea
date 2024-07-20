@@ -35,18 +35,40 @@ class RawPasswordElementView extends ViewBase
         this.#deleteButton.addEventListener('click', this.#OnDeleteButtonClicked.bind(this));
     }
 
-    #OnCheckboxClicked()
+    #OnCheckboxClicked(event)
     {
         this.controller.OnUserSelect();
+        event.stopPropagation();
     }
-    #OnSettingsButtonClicked()
+    #OnSettingsButtonClicked(event)
     {
         this.controller.OnEditButtonClick();
+        event.stopPropagation();
     }
-    #OnDeleteButtonClicked()
+    #OnDeleteButtonClicked(event)
     {
+        this.controller.OnDeleteButtonClick();
+        event.stopPropagation();
     }
 
+
+    #isHidden = false;
+    get isHidden()
+    {
+        return this.#isHidden;
+    }
+    Show()
+    {
+        if(!this.#isHidden) { return; }
+        this.#root.classList.add('hidden');
+        this.#isHidden = false;
+    }
+    Hide()
+    {
+        if(this.#isHidden) { return; }
+        this.#root.classList.remove('hidden');
+        this.#isHidden = true;
+    }
 
 
 
