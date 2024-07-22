@@ -80,17 +80,10 @@ class SelectRawPasswordController
 
 //TODO добавить сигнал о том что пароль был изменен, а то ни черта не понятно
 
-        //console.log(this.currentRawPassword);
-        //console.log(this.model.data.charsetRecords);
-        //console.log(this.model.data.charsetRecords.Numbers.chars);
-        //console.log(this.model.masterPasswordHash);
-
         let pw = GeneratePasswordWithDefaultHash(
             this.currentRawPassword, 
             this.model.data.charsetRecords, 
             this.model.masterPasswordHash);
-
-        //console.log(pw);
 
         this.view.SetOutputPassword(pw);
     }

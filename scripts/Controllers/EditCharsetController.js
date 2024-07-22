@@ -1,10 +1,13 @@
-class EditPasswordController
+
+class EditCharsetController
 {
     model;
     view;
     screensController;
     
     modelClone;
+
+    requireMessages = [];
 
     constructor(model, view, screensController)
     {
@@ -35,33 +38,16 @@ class EditPasswordController
 
     SaveChanges()
     {
-        if(this.#CheckSaveRequires()) 
-        {
-            Object.assign(this.model, this.modelClone);
-            this.#ReturnToSelectPasswordScreen();
-        }
+        Object.assign(this.model, this.modelClone);
+        this.#ReturnToSelectPasswordScreen();
     }
-
-    requireMessages = [];
-    #CheckSaveRequires()
+    #ShowRequireMessage()
     {
-        this.requireMessages.length = 0;
-        if(this.modelClone.name == null || this.modelClone.name.length <= 0)
-        {
-            this.requireMessages.push("The Name field is empty.");
-        }
-        if(this.modelClone.length < this.modelClone.usedCharsets.length)
-        {
-            this.requireMessages.push("Password length is less than the number of selected character sets.");
-        }
         if(this.requireMessages.length > 0)
         {
             this.view.ShowErrorMessage(this.requireMessages[0]);
         }
-        return this.requireMessages.length <= 0;
     }
-
-
     CancelChanges()
     {
         this.#ReturnToSelectPasswordScreen();
@@ -86,8 +72,6 @@ class EditPasswordController
         this.view.version = model.version;
 
         this.#ApplyChanges();
-
-        this.view.ShowErrorMessage(null);
     }
     Close() { this.view.Close(); }
 
@@ -101,6 +85,6 @@ class EditPasswordController
 
     SetIsCanSave(bool)
     {
-        //this.view.SetIsCanSave(bool)
+        this.view.SetIsCanSave(bool)
     }
 }

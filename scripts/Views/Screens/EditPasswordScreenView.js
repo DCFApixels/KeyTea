@@ -42,6 +42,7 @@ class EditPasswordScreenView extends ViewBase
 
         this.saveButton = this.root.querySelector("#raw_password_save_button");
         this.cancelButton = this.root.querySelector("#raw_password_cancel_button");
+        this.errorLabel = this.root.querySelector("#raw_password_error_label");
 
         this.nameField.addEventListener('input', this.#OnNameFieldChanged.bind(this));
         this.userField.addEventListener('input', this.#OnUserFieldChanged.bind(this));
@@ -52,6 +53,27 @@ class EditPasswordScreenView extends ViewBase
         
         this.saveButton.addEventListener('click', this.#OnSaveButtonClick.bind(this));
         this.cancelButton.addEventListener('click', this.#OnCancelButtonClick.bind(this));
+    }
+
+    ShowErrorMessage(message)
+    {
+        {
+            if(message == null || message == "")
+            {
+                message = "";
+            }
+            this.errorLabel.innerHTML = "" + message;
+            if(this.errorLabel.classList.contains("hidden") == false)
+            {
+                this.errorLabel.classList.add("hidden");
+            }
+            if(message != "")
+            {
+                setTimeout((x) => {
+                    x.classList.remove("hidden");
+                }, 1, this.errorLabel);
+            }
+        }
     }
 
     SetOutputPassword(password)
