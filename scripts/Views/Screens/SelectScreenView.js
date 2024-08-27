@@ -42,6 +42,12 @@ class SelectScreenView extends ViewBase
     {
         console.log(password);
         this.outputPassword.value = password;
+
+        this.outputPassword.classList.add('password_input_blink');
+    
+        setTimeout(() => {
+            this.outputPassword.classList.remove('password_input_blink');
+        }, 230); 
     }
 
     #OnAddRawPasswordButtonClick()

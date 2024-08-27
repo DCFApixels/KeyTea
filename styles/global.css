@@ -537,3 +537,19 @@ input[type="checkbox"]:checked::before {
     99% { display: none; }
     100% { display: none; }
 }
+
+/*==============================================================*/
+
+
+.password_input_blink {
+    animation: shake 0.23s;
+}
+
+@keyframes shake {
+    0% { transform: translateY(0); }
+    /*25% { transform: translateY(-5px); }*/
+    8% { transform: translateY(-3px); }
+    30% { transform: translateY(6px); }
+    /*75% { transform: translateY(-5px); }*/
+    100% { transform: translateY(0); }
+}
