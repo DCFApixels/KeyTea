@@ -65,21 +65,21 @@ class UserData
     }
     static ToJson(userData)
     {
-        //TODO по факту это костыль, тут я плохо продумал структуру данных, так что нужно будет переработать это
-        //В общем проблема в том что ключи и строки в полях name должны быть равны, 
-        //и для этого при изменении name нужно обновлять ключ
-        //PS возможно все не так плохо 
-        let charsetRecordKeys = Object.keys(userData.charsetRecords);
-        for (let i = 0; i < charsetRecordKeys.length; i++)
-        {
-            const key = charsetRecordKeys[i];
-            const element = userData.charsetRecords[key];
-            if(key != element.name)
-            {
-                userData.charsetRecords[element.name] = element;
-                delete userData.charsetRecords[key];
-            }
-        }
+    //    //TODO по факту это костыль, тут я плохо продумал структуру данных, так что нужно будет переработать это
+    //    //В общем проблема в том что ключи и строки в полях name должны быть равны, 
+    //    //и для этого при изменении name нужно обновлять ключ
+    //    //PS возможно все не так плохо 
+    //    let charsetRecordKeys = Object.keys(userData.charsetRecords);
+    //    for (let i = 0; i < charsetRecordKeys.length; i++)
+    //    {
+    //        const key = charsetRecordKeys[i];
+    //        const element = userData.charsetRecords[key];
+    //        if(key != element.name)
+    //        {
+    //            userData.charsetRecords[element.name] = element;
+    //            delete userData.charsetRecords[key];
+    //        }
+    //    }
 
         return JSON.stringify(userData);
     }

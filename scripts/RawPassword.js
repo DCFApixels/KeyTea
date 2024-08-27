@@ -1,8 +1,14 @@
 class RawPasswordRecord
 {
+    myuid = "";
     name = "Unnamed";
     userName = "";
-    usedCharsets = ["En Lower", "En Upper", "Specials", "Numbers"];
+    usedCharsets = [
+        "071050236146145001000000000000000000000000000003", //En Lower
+        "071050236146145001000000000000000000000000000004", //En Upper
+        "071050236146145001000000000000000000000000000002", //Specials
+        "071050236146145001000000000000000000000000000001", //Numbers
+    ];
     length = 12;
     version = 1;
 
@@ -10,6 +16,7 @@ class RawPasswordRecord
 
     constructor(name, userName, usedCharsets, length) 
     {
+        this.myuid = MYUID.Generate();
         if(name != null) { this.name = name; }
         if(userName != null) { this.userName = userName; }
         if(usedCharsets != null) { this.usedCharsets = usedCharsets; }
@@ -26,9 +33,17 @@ class RawPasswordRecord
     {
         this.version++;
     }
+
+    SetMyuid(myuid)
+    {
+        this.myuid = myuid;
+        return this;
+    }
 }
 
 const builtinRawPasswordRecords = [
-    new RawPasswordRecord("Google"),
-    new RawPasswordRecord("Facebook"),
+    new RawPasswordRecord("Google").SetMyuid("033073237146145001000000000000000000000000000001"),
+    new RawPasswordRecord("Facebook").SetMyuid("033073237146145001000000000000000000000000000002"),
 ];
+
+console.log(builtinRawPasswordRecords);

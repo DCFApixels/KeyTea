@@ -1,5 +1,6 @@
 class CharsetRecord
 {
+    myuid = "";
     name = "";
     _chars = "";
     priority = 1;
@@ -13,17 +14,35 @@ class CharsetRecord
 
     constructor(name, chars, priority) 
     {
+        this.myuid = MYUID.Generate();
         if(name != null) { this.name = name; }
         if(chars != null) { this.chars = chars; }
         if(priority != null) { this.priority = priority; }
     } 
+    SetMyuid(myuid)
+    {
+        this.myuid = myuid;
+        return this;
+    }
 }
 
-const builtinCharsetRecords = {
-    "Numbers": new CharsetRecord("Numbers", "0123456789", 4),
-    "Specials": new CharsetRecord("Specials", ".,~!@#$%^&*()`'\"<>?/\\{}[]:;|+=_-", 1),
-    "En Lower": new CharsetRecord("En Lower", "abcdefghijklmnopqrstuvwxyz", 2),
-    "En Upper": new CharsetRecord("En Upper", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", 2),
-    "Ru Lower": new CharsetRecord("Ru Lower", "абвгдеёжзийклмнопрстуфхцчшщъыьэюя", 1),
-    "Ru Upper": new CharsetRecord("Ru Upper", "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ", 1),
+function AddRecord(table, record)
+{
+    table[record.myuid] = record;
 }
+
+const builtinCharsetRecords = {};
+AddRecord(builtinCharsetRecords, new CharsetRecord("Numbers", "0123456789", 4)
+    .SetMyuid("071050236146145001000000000000000000000000000001"));
+AddRecord(builtinCharsetRecords, new CharsetRecord("Specials", ".,~!@#$%^&*()`'\"<>?/\\{}[]:;|+=_-", 1)
+    .SetMyuid("071050236146145001000000000000000000000000000002"));
+AddRecord(builtinCharsetRecords, new CharsetRecord("En Lower", "abcdefghijklmnopqrstuvwxyz", 2)
+    .SetMyuid("071050236146145001000000000000000000000000000003"));
+AddRecord(builtinCharsetRecords, new CharsetRecord("En Upper", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", 2)
+    .SetMyuid("071050236146145001000000000000000000000000000004"));
+AddRecord(builtinCharsetRecords, new CharsetRecord("Ru Lower", "абвгдеёжзийклмнопрстуфхцчшщъыьэюя", 1)
+    .SetMyuid("071050236146145001000000000000000000000000000005"));
+AddRecord(builtinCharsetRecords, new CharsetRecord("Ru Upper", "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ", 1)
+    .SetMyuid("071050236146145001000000000000000000000000000006"));
+
+console.log(builtinCharsetRecords);
