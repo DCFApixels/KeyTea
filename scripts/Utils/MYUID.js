@@ -5,15 +5,15 @@ class MYUID
     static Generate() {
         const array = new Uint8Array(MYUID.size);
         crypto.getRandomValues(array);
-        return this._GenerateDataMarker_Internal(array);
+        return this.#GenerateDataMarker_Internal(array);
     }
     static GenerateWithDataOnly()
     {
         const array = new Uint8Array(MYUID.size);
-        return this._GenerateDataMarker_Internal(array);
+        return this.#GenerateDataMarker_Internal(array);
     }
 
-    static _GenerateDataMarker_Internal(array)
+    static #GenerateDataMarker_Internal(array)
     {
         const timestamp = Date.now();
         const timestampBytes = new Uint8Array(new BigUint64Array([BigInt(timestamp)]).buffer);

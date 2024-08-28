@@ -78,8 +78,6 @@ class SelectRawPasswordController
             return;
         }
 
-//TODO добавить сигнал о том что пароль был изменен, а то ни черта не понятно
-
         let pw = GeneratePasswordWithDefaultHash(
             this.currentRawPassword, 
             this.model.data.charsetRecords, 
@@ -101,7 +99,7 @@ class SelectRawPasswordController
         let rawPassword = rawPasswordController.model;
 
         let editPasswordController = this.screensController.GetScreen(EditPasswordController);
-        editPasswordController.Open(rawPassword);
+        editPasswordController.Open(this.model, rawPassword);
         this.Close();
     }
     OnDeleteRawPasswordButtonClick(number)

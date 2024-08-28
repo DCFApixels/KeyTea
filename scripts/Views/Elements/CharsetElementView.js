@@ -1,5 +1,6 @@
 class CharsetElementView extends ViewBase
 {
+    #root;
     #checkbox
     #label;
     #settingsButton;
@@ -9,15 +10,63 @@ class CharsetElementView extends ViewBase
 
     get name() { return this.#label.innerText; }
     set name(value) { this.#label.innerText = value; }
-    get isSelected() { return this.#checkbox.checked }
+    get isSelected() { return this.#checkbox.checked; }
+    set isSelected(value) 
+    { 
+        if(this.#checkbox.checked != value)
+        {
+            this.#checkbox.checked = value;
+        }
+    }
 
-    constructor(checkbox, label, settingsButton, deleteButton)
+    constructor(root, checkbox, label, settingsButton, deleteButton)
     {
         super();
+        this.#root = root;
         this.#checkbox = checkbox;
         this.#label = label;
         this.#settingsButton = settingsButton;
         this.#deleteButton = deleteButton;
+
+        this.#checkbox.addEventListener('click', this.#OnCheckboxClicked.bind(this));
+        this.#settingsButton.addEventListener('click', this.#OnSettingsButtonClicked.bind(this));
+        this.#deleteButton.addEventListener('click', this.#OnDeleteButtonClicked.bind(this));
+    }
+
+    #OnCheckboxClicked(event)
+    {
+        this.controller.OnUserSelect();
+        event.stopPropagation();
+    }
+    #OnSettingsButtonClicked(event)
+    {
+        this.controller.OnEditButtonClick();
+        event.stopPropagation();
+    }
+    #OnDeleteButtonClicked(event)
+    {
+        this.controller.OnDeleteButtonClick();
+        event.stopPropagation();
+    }
+
+
+    
+    #isHidden = false;
+    get isHidden()
+    {
+        return this.#isHidden;
+    }
+    Show()
+    {
+        if(!this.#isHidden) { return; }
+        this.#root.classList.remove('hidden');
+        this.#isHidden = false;
+    }
+    Hide()
+    {
+        if(this.#isHidden) { return; }
+        this.#root.classList.add('hidden');
+        this.#isHidden = true;
     }
 
 
@@ -29,6 +78,7 @@ class CharsetElementView extends ViewBase
         lielem.appendChild(divelem);
 
         let result = new CharsetElementView(
+            lielem,
             document.createElement("input"),
             document.createElement("label"),
             document.createElement("button"),

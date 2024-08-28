@@ -32,6 +32,7 @@ var screensController = new ScreensController();
 
 screensController.AddScreen(new MasterPasswordController(userSession, new MasterPasswordScreenView(), screensController));
 screensController.AddScreen(new SelectRawPasswordController(userSession, new SelectScreenView(), screensController));
-screensController.AddScreen(new EditPasswordController(userSession, new EditPasswordScreenView(), screensController));
+screensController.AddScreen(new EditPasswordController(null, new EditPasswordScreenView(), screensController));
+screensController.AddScreen(new EditCharsetController(null, new EditCharsetScreenView(), screensController));
 
 screensController.GetScreen(SelectRawPasswordController).Close();
