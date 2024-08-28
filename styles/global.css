@@ -4,25 +4,78 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 12pt;
 }
+html, body{
+    height: 100%;
+    box-sizing: border-box; /* Это помогает предотвратить проблемы с padding */
+    margin: 0;
+}
+
 body{
+    width: 100%;
+    height: 100%;
+}
+
+body{
+    /*
     padding-top: 120px;
     padding-bottom: 240px;
+    */
+
+    display: flex;
+    justify-content: center; /* Центрирование по горизонтали */
+    align-items: center;     /* Центрирование по вертикали */
+
+    transition: 0.2s;
+}
+
+/*==============================================================*/
+
+.screen_group{
+    display:block;
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+    margin: 0;
+
+    /*
+    top: 0%;
+    left: 0%;
+    transform: translate(0%, 0%);
+    */
+
     transition: 0.2s;
 }
 @media screen and (min-aspect-ratio: 1/1){
-    body {
-        padding-left: 13.6%;
-        padding-right: 13.6%;
+    .screen_group {
+        width: 70%;
+        height: auto;
+        margin: auto;
+    /*
+
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        */
+
         transition: 0.2s;
     }
 }
-/*==============================================================*/
+
+.screen{
+    pointer-events: none; /* Делаем родительский элемент неинтерактивным */
+}
+
 .form{
+    pointer-events: auto; /* Делаем дочерние элементы интерактивными */
+    display: block;
     margin: 10px 0;
     padding: 10px;
     background-color: #fcfeff;
     border-radius: 10px;
+
     position: relative;
+
 }
 
 .form:not(.hidden){
@@ -31,17 +84,16 @@ body{
     
     animation: formToVisible 0.4s;
 }
-.form.disabled{
-    background-color: #cad0d6ec;
-    pointer-events: none;
-    filter: grayscale(0.85) opacity(0.8);
-}
-
 .form.hidden{
     display:none;
     transition: transform 10s;
 
     animation: formToHidden 0.4s;
+}
+.form.disabled{
+    background-color: #cad0d6ec;
+    pointer-events: none;
+    filter: grayscale(0.85) opacity(0.8);
 }
 
 @keyframes formToHidden {
@@ -52,13 +104,20 @@ body{
     }
     40% {
         display: block;
-        transform: translateY(-20px);
+        transform: translateY(20px);
         opacity: 0;
     }
     45% {
         display: none;
+        transform: translateY(20px);
+        opacity: 0;
     }
-    100% { }
+    100% 
+    {
+        display: none;
+        transform: translateY(20px);
+        opacity: 0;
+    }
 }
 @keyframes formToVisible {
     0% {
@@ -82,6 +141,9 @@ body{
     background-color: #0099ffe8;
     margin: -10px -10px 5px -10px;
     border-radius: 10px 10px 0 0;
+}
+.form header img{
+    text-align: center;
 }
 .form header>h1{
     text-transform: uppercase;
