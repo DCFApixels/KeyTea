@@ -47,16 +47,18 @@ body{
 @keyframes formToHidden {
     0% {
         display: block;
+        transform: translateY(0px);
         opacity: 1;
     }
-    1% {
+    40% {
         display: block;
-        opacity: 1;
-    }
-    100% {
-        display: none;
+        transform: translateY(-20px);
         opacity: 0;
     }
+    45% {
+        display: none;
+    }
+    100% { }
 }
 @keyframes formToVisible {
     0% {
@@ -64,7 +66,7 @@ body{
         transform: translateY(20px);
         opacity: 0;
     }
-    1% {
+    50% {
         display: block;
         transform: translateY(20px);
         opacity: 0;
@@ -521,18 +523,18 @@ input[type="checkbox"]:checked::before {
     font-size: 10pt;
 }
 .error_label:not(.hidden) {
-    animation: errorLabelFormToHidden 0.264s;
+    animation: errorLabelToHidden 0.264s;
 }
 .error_label.hidden {
-    animation: errorLabelFormToVisible 0.1s;
+    animation: errorLabelToVisible 0.1s;
 }
-@keyframes errorLabelFormToHidden {
+@keyframes errorLabelToHidden {
     0% { filter: opacity(0.3); }
     33% { filter: opacity(1); }
     66% { filter: opacity(0.3); }
     100% { filter: opacity(1); }
 }
-@keyframes errorLabelFormToVisible {
+@keyframes errorLabelToVisible {
     0% { display: inline; }
     99% { display: none; }
     100% { display: none; }
