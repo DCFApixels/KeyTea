@@ -24,8 +24,8 @@ class EditCharsetController
     OnPropertyChanged(propertyKey, value)
     {
         this.modelClone[propertyKey] = value;
-        console.log(this.modelClone);
         //this.#ApplyChanges();
+        return this.modelClone[propertyKey];
     }
     //#ApplyChanges()
     //{
