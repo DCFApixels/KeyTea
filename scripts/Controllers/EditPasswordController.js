@@ -18,7 +18,7 @@ class EditPasswordController
         this.screensController = screensController;
         this.view.SubscribeController(this);
 
-        this.SetIsCanSave(false);
+        //this.SetIsCanSave(false);
 
         this.#ApplyCharsetControllers();
     }
@@ -28,16 +28,16 @@ class EditPasswordController
     {
         this.modelClone[propertyKey] = value;
         console.log(this.modelClone);
-        this.#ApplyChanges();
+        //this.#ApplyChanges();
     }
-    #ApplyChanges()
-    {
-        let isCanSave = 
-            this.modelClone.name != null && 
-            this.modelClone.name.length > 0 &&
-            this.modelClone.length >= this.modelClone.usedCharsets.length;
-        this.SetIsCanSave(isCanSave);
-    }
+    //#ApplyChanges()
+    //{
+    //    let isCanSave = 
+    //        this.modelClone.name != null && 
+    //        this.modelClone.name.length > 0 &&
+    //        this.modelClone.length >= this.modelClone.usedCharsets.length;
+    //    this.SetIsCanSave(isCanSave);
+    //}
 
     SaveChanges()
     {
@@ -81,14 +81,16 @@ class EditPasswordController
         this.Close();
     }
     
-
+    OpenRestore()
+    {
+        this.view.Open(); 
+        this.view.ShowErrorMessage(null);
+        this.#ApplyCharsetControllers();
+        this.OnCharsetElementSelected();
+    }
     Open(db, model) 
     {
-            console.log("Open");
-        console.log(db);
-        console.log(model);
-            console.log("Open");
-            this.SetDB(db);
+        this.SetDB(db);
         this.SetModel(model);
         this.view.Open(); 
 
@@ -97,7 +99,7 @@ class EditPasswordController
         this.view.length = model.length;
         this.view.version = model.version;
 
-        this.#ApplyChanges();
+        //this.#ApplyChanges();
 
         this.view.ShowErrorMessage(null);
         this.#ApplyCharsetControllers();
@@ -129,10 +131,10 @@ class EditPasswordController
     }
 
 
-    SetIsCanSave(bool)
-    {
-        //this.view.SetIsCanSave(bool)
-    }
+    //SetIsCanSave(bool)
+    //{
+    //    //this.view.SetIsCanSave(bool)
+    //}
 
 
 

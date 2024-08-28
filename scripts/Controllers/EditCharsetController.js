@@ -17,7 +17,7 @@ class EditCharsetController
         this.screensController = screensController;
         this.view.SubscribeController(this);
 
-        this.SetIsCanSave(false);
+        //this.SetIsCanSave(false);
     }
 
 
@@ -25,22 +25,18 @@ class EditCharsetController
     {
         this.modelClone[propertyKey] = value;
         console.log(this.modelClone);
-        this.#ApplyChanges();
+        //this.#ApplyChanges();
     }
-    #ApplyChanges()
-    {
-        let isCanSave = 
-            this.modelClone.name != null && 
-            this.modelClone.name.length > 0 &&
-            this.modelClone.length >= this.modelClone.usedCharsets.length;
-        this.SetIsCanSave(isCanSave);
-    }
+    //#ApplyChanges()
+    //{
+    //    let isCanSave = 
+    //        this.modelClone.name != null && 
+    //        this.modelClone.name.length > 0 &&
+    //        this.modelClone.length >= this.modelClone.usedCharsets.length;
+    //    this.SetIsCanSave(isCanSave);
+    //}
 
-    SaveChanges()
-    {
-        Object.assign(this.model, this.modelClone);
-        this.#ReturnToSelectPasswordScreen();
-    }
+
     #ShowRequireMessage()
     {
         if(this.requireMessages.length > 0)
@@ -48,15 +44,20 @@ class EditCharsetController
             this.view.ShowErrorMessage(this.requireMessages[0]);
         }
     }
+    SaveChanges()
+    {
+        Object.assign(this.model, this.modelClone);
+        this.#ReturnToEditRawPasswordScreen();
+    }
     CancelChanges()
     {
-        this.#ReturnToSelectPasswordScreen();
+        this.#ReturnToEditRawPasswordScreen();
     }
-    #ReturnToSelectPasswordScreen()
+    #ReturnToEditRawPasswordScreen()
     {
-        let c = this.screensController.GetScreen(SelectRawPasswordController);
+        let c = this.screensController.GetScreen(EditPasswordController);
         c.SaveUserData();
-        c.Open();
+        c.OpenRestore();
         this.Close();
     }
     
@@ -67,11 +68,10 @@ class EditCharsetController
         this.view.Open(); 
 
         this.view.name = model.name;
-        this.view.user = model.user;
-        this.view.length = model.length;
-        this.view.version = model.version;
+        this.view.chars = model.chars;
+        this.view.priority = model.priority;
 
-        this.#ApplyChanges();
+        //this.#ApplyChanges();
     }
     Close() { this.view.Close(); }
 
@@ -83,8 +83,8 @@ class EditCharsetController
     }
 
 
-    SetIsCanSave(bool)
-    {
-        this.view.SetIsCanSave(bool)
-    }
+    //SetIsCanSave(bool)
+    //{
+    //    this.view.SetIsCanSave(bool)
+    //}
 }

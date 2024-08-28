@@ -3,18 +3,18 @@ class EditCharsetScreenView extends ViewBase
 {
     get name() { return this.nameField.value; }
     set name(value) { this.nameField.value = value; }
-    get chars() { return this.userField.value; }
+    get chars() { return this.charsField.value; }
     set chars(value) 
     {
         if(value == null)
             {
-            this.userField.value = "";
+            this.charsField.value = "";
             return;
         }
-        this.userField.value = value;
+        this.charsField.value = value;
     }
-    get priority() { return parseInt(this.lengthField.value); }
-    set priority(value) { this.lengthField.value = "" + value; }
+    get priority() { return parseInt(this.priorityField.value); }
+    set priority(value) { this.priorityField.value = "" + value; }
 
 
     constructor()
@@ -52,8 +52,8 @@ class EditCharsetScreenView extends ViewBase
         if(message != "")
         {
             setTimeout((x) => {
-            //    x.classList.remove("hidden");
-            }, 1000, this.errorLabel);
+                x.classList.remove("hidden");
+            }, 1, this.errorLabel);
         }
     }
 
@@ -85,5 +85,17 @@ class EditCharsetScreenView extends ViewBase
     #OnCancelButtonClick()
     {
         this.controller.CancelChanges();
+    }
+
+    
+    Open()
+    {
+        this.root.classList.remove('disabled');
+        this.root.classList.remove('hidden');
+    }
+    Close()
+    {
+        //this.root.classList.add('disabled');
+        this.root.classList.add('hidden');
     }
 }

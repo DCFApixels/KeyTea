@@ -57,22 +57,20 @@ class EditPasswordScreenView extends ViewBase
 
     ShowErrorMessage(message)
     {
+        if(message == null || message == "")
         {
-            if(message == null || message == "")
-            {
-                message = "";
-            }
-            this.errorLabel.innerHTML = "" + message;
-            if(this.errorLabel.classList.contains("hidden") == false)
-            {
-                this.errorLabel.classList.add("hidden");
-            }
-            if(message != "")
-            {
-                setTimeout((x) => {
-                    x.classList.remove("hidden");
-                }, 1, this.errorLabel);
-            }
+            message = "";
+        }
+        this.errorLabel.innerHTML = "" + message;
+        if(this.errorLabel.classList.contains("hidden") == false)
+        {
+            this.errorLabel.classList.add("hidden");
+        }
+        if(message != "")
+        {
+            setTimeout((x) => {
+                x.classList.remove("hidden");
+            }, 1, this.errorLabel);
         }
     }
 
