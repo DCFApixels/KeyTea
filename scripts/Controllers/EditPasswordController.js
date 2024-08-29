@@ -27,7 +27,7 @@ class EditPasswordController
     OnPropertyChanged(propertyKey, value)
     {
         this.modelClone[propertyKey] = value;
-        console.log(this.modelClone);
+        //console.log(this.modelClone);
         //this.#ApplyChanges();
     }
     //#ApplyChanges()
@@ -200,6 +200,13 @@ class EditPasswordController
         
     }
 
+    OnAddCharsetButtonClick()
+    {
+        let charsetRecords = this.db.data.charsetRecords;
+        let newRecord = new CharsetRecord();
+        charsetRecords[newRecord.myuid] = newRecord;
+        this.#ApplyCharsetControllers();
+    }
     OnEditCharsetButtonClick(myuid)
     {
         let charset = this.db.data.charsetRecords[myuid];
