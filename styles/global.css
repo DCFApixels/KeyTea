@@ -260,6 +260,13 @@ button.green:hover{
 .icon_button.copy{
     background-image: url(../svgs/file_copy_white_24dp.svg);
 }
+.icon_button.show_aye.on{
+    background-image: url(../svgs/show-svgrepo-com.svg);
+}
+.icon_button.show_aye.off{
+    background-image: url(../svgs/hide-svgrepo-com.svg);
+}
+
 .trnsp.icon_button.setting{
     background-image: url(../svgs/settings_white_24dp.svg);
 }
@@ -419,6 +426,7 @@ input[type="number"]::placeholder {
 }
 .result_password_block button{
     order: 3; 
+    margin: 0 2pt;
 }
 @media screen and (min-aspect-ratio: 1/1){
     .result_password_block input{

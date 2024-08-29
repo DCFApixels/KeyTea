@@ -26,6 +26,7 @@ class SelectScreenView extends ViewBase
 
         this.outputPassword = this.root.querySelector("#output_password");
         this.outputPasswordCopyButton = this.root.querySelector("#output_password_copy_button");
+        this.outputPasswordShowButton = this.root.querySelector("#output_password_show_button");
 
         this.addRawPasswordButton = this.root.querySelector("#add_raw_password_button");
         this.dataExportButton = this.root.querySelector("#user_data_export_button");
@@ -34,6 +35,7 @@ class SelectScreenView extends ViewBase
 
         this.addRawPasswordButton.addEventListener('click', this.#OnAddRawPasswordButtonClick.bind(this));
         this.outputPasswordCopyButton.addEventListener('click', this.#OnOutputPasswordCopyButtonClick.bind(this));
+        this.outputPasswordShowButton.addEventListener('click', this.#OnOutputPasswordShowButtonClick.bind(this));
         this.dataExportButton.addEventListener('click', this.#OnExportButtonClick.bind(this));
         this.dataImportButton.addEventListener('click', this.#OnInputButtonClick.bind(this));
         this.returnToMasterPasswordButton.addEventListener('click', this.#OnReturnToMasterPasswordButtonClick.bind(this));
@@ -59,6 +61,21 @@ class SelectScreenView extends ViewBase
     #OnOutputPasswordCopyButtonClick()
     {
         CopyToClipboard(this.outputPassword.value);
+    }
+    #OnOutputPasswordShowButtonClick()
+    {
+        if(this.outputPasswordShowButton.classList.contains("on"))
+        {
+            this.outputPasswordShowButton.classList.remove("on");
+            this.outputPasswordShowButton.classList.add("off");
+            this.outputPassword.type = "text";
+        }
+        else
+        {
+            this.outputPasswordShowButton.classList.remove("off");
+            this.outputPasswordShowButton.classList.add("on");
+            this.outputPassword.type = "password";
+        }
     }
     #OnExportButtonClick()
     {
