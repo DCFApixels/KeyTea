@@ -3,60 +3,46 @@
     padding: 0;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 12pt;
+    box-sizing: border-box;
 }
 html, body{
+    width: 100%;
     height: 100%;
     box-sizing: border-box; /* Это помогает предотвратить проблемы с padding */
     margin: 0;
+    padding: 0;
 }
 
 body{
     width: 100%;
     height: 100%;
-}
-
-body{
-    /*
-    padding-top: 120px;
-    padding-bottom: 240px;
-    */
-
-    display: flex;
-    justify-content: center; /* Центрирование по горизонтали */
-    align-items: center;     /* Центрирование по вертикали */
-
     transition: 0.2s;
 }
 
 /*==============================================================*/
 
-.screen_group{
-    display:block;
-    position: relative;
+.screen{
+    display: block;
+    position: absolute;
 
     width: 100%;
     height: 100%;
     margin: 0;
 
-    /*
     top: 0%;
     left: 0%;
     transform: translate(0%, 0%);
-    */
 
     transition: 0.2s;
 }
 @media screen and (min-aspect-ratio: 1/1){
-    .screen_group {
+    .screen {
         width: 70%;
         height: auto;
-        margin: auto;
-    /*
 
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        */
 
         transition: 0.2s;
     }
@@ -69,7 +55,6 @@ body{
 .form{
     pointer-events: auto; /* Делаем дочерние элементы интерактивными */
     display: block;
-    margin: 10px 0;
     padding: 10px;
     background-color: #fcfeff;
     border-radius: 10px;
@@ -79,12 +64,14 @@ body{
 }
 
 .form:not(.hidden){
+    pointer-events: auto;
     display:block;
     transform: translateY(0px);
     
     animation: formToVisible 0.4s;
 }
 .form.hidden{
+    pointer-events: none;
     display:none;
     transition: transform 10s;
 
@@ -98,22 +85,20 @@ body{
 
 @keyframes formToHidden {
     0% {
+        pointer-events: none;
         display: block;
         transform: translateY(0px);
         opacity: 1;
     }
-    40% {
-        display: block;
-        transform: translateY(20px);
-        opacity: 0;
-    }
-    45% {
+    50% {
+        pointer-events: none;
         display: none;
         transform: translateY(20px);
         opacity: 0;
     }
     100% 
     {
+        pointer-events: none;
         display: none;
         transform: translateY(20px);
         opacity: 0;
@@ -121,16 +106,19 @@ body{
 }
 @keyframes formToVisible {
     0% {
+        pointer-events: none;
         display: none;
         transform: translateY(20px);
         opacity: 0;
     }
     50% {
+        pointer-events: none;
         display: block;
         transform: translateY(20px);
         opacity: 0;
     }
     100% {
+        pointer-events: auto;
         display: block;
         transform: translateY(0px);
         opacity: 1;
