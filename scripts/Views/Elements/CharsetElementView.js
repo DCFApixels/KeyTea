@@ -28,7 +28,8 @@ class CharsetElementView extends ViewBase
         this.#settingsButton = settingsButton;
         this.#deleteButton = deleteButton;
 
-        this.#checkbox.addEventListener('click', this.#OnCheckboxClicked.bind(this));
+        this.#root.addEventListener('click', this.#OnCheckboxClicked.bind(this));
+        //this.#checkbox.addEventListener('click', this.#OnCheckboxClicked.bind(this));
         this.#settingsButton.addEventListener('click', this.#OnSettingsButtonClicked.bind(this));
         this.#deleteButton.addEventListener('click', this.#OnDeleteButtonClicked.bind(this));
     }
@@ -101,28 +102,3 @@ class CharsetElementView extends ViewBase
         return result;
     }
 }
-
-//let elem = document.getElementById("passwords_list");
-//
-//let elem1 = CharsetElementView.Create(elem);
-//let elem2 = CharsetElementView.Create(elem);
-//let elem3 = CharsetElementView.Create(elem);
-//let elem4 = CharsetElementView.Create(elem);
-//let elem5 = CharsetElementView.Create(elem);
-//let elem6 = CharsetElementView.Create(elem);
-//let elem8 = CharsetElementView.Create(elem);
-//let elem9 = CharsetElementView.Create(elem);
-//let elem10 = CharsetElementView.Create(elem);
-//let elem11 = CharsetElementView.Create(elem);
-//let elem12 = CharsetElementView.Create(elem);
-//let elem13 = CharsetElementView.Create(elem);
-//let elem14 = CharsetElementView.Create(elem);
-//let elem15 = CharsetElementView.Create(elem);
-//
-//
-//elem = document.getElementById("charsets_list");
-//
-//elem1 = CharsetElementView.Create(elem);
-//elem2 = CharsetElementView.Create(elem);
-//elem3 = CharsetElementView.Create(elem);
-//elem4 = CharsetElementView.Create(elem);

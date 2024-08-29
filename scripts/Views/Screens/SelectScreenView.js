@@ -30,11 +30,13 @@ class SelectScreenView extends ViewBase
         this.addRawPasswordButton = this.root.querySelector("#add_raw_password_button");
         this.dataExportButton = this.root.querySelector("#user_data_export_button");
         this.dataImportButton = this.root.querySelector("#user_data_import_button");
+        this.returnToMasterPasswordButton = this.root.querySelector("#return_to_master_password");
 
         this.addRawPasswordButton.addEventListener('click', this.#OnAddRawPasswordButtonClick.bind(this));
         this.outputPasswordCopyButton.addEventListener('click', this.#OnOutputPasswordCopyButtonClick.bind(this));
         this.dataExportButton.addEventListener('click', this.#OnExportButtonClick.bind(this));
         this.dataImportButton.addEventListener('click', this.#OnInputButtonClick.bind(this));
+        this.returnToMasterPasswordButton.addEventListener('click', this.#OnReturnToMasterPasswordButtonClick.bind(this));
     }
 
 
@@ -65,6 +67,10 @@ class SelectScreenView extends ViewBase
     #OnInputButtonClick()
     {
         this.controller.OnImportButtonClick();
+    }
+    #OnReturnToMasterPasswordButtonClick()
+    {
+        this.controller.OnReturnToMasterPasswordButtonClick();
     }
 
     Open()

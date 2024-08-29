@@ -95,6 +95,8 @@ class SelectRawPasswordController
 
     OnEditRawPasswordButtonClick(number)
     {
+        this.OnRawPasswordElementSelected(number);
+
         let rawPasswordController = this.rawPasswordControllers[number];
         let rawPassword = rawPasswordController.model;
 
@@ -125,6 +127,12 @@ class SelectRawPasswordController
     {
         ImportExportDialogUtility.OpenImportDialog(this.#OnImportDataComplete.bind(this));
     }
+    OnReturnToMasterPasswordButtonClick()
+    {
+        let controller = this.screensController.GetScreen(MasterPasswordController);
+        controller.Open();
+        this.Close();
+    }
 
     #OnImportDataComplete(contents)
     {
@@ -142,6 +150,7 @@ class SelectRawPasswordController
     {
         this.view.Open();
         this.#ApplyRawPasswordControllers();
+        this.OnRawPasswordElementSelected(this.currentRawPasswordNumber);
     }
     Close() { this.view.Close(); }
 }

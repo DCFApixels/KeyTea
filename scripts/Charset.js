@@ -1,7 +1,7 @@
 class CharsetRecord
 {
     myuid = "";
-    name = "";
+    name = "Unnamed";
     _chars = "";
     priority = 1;
 

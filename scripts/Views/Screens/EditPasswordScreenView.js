@@ -1,15 +1,5 @@
 class EditPasswordScreenView extends ViewBase
 {
-    root;
-
-    nameField;
-    userField;
-    lengthField;
-    versionField;
-    upVersionButton;
-
-    charsetsList;
-
     get name() { return this.nameField.value; }
     set name(value) { this.nameField.value = value; }
     get user() { return this.userField.value; }
@@ -44,12 +34,17 @@ class EditPasswordScreenView extends ViewBase
         this.cancelButton = this.root.querySelector("#raw_password_cancel_button");
         this.errorLabel = this.root.querySelector("#raw_password_error_label");
 
+        this.addCharsetButton = this.root.querySelector("#add_charset_button");
+
+
         this.nameField.addEventListener('input', this.#OnNameFieldChanged.bind(this));
         this.userField.addEventListener('input', this.#OnUserFieldChanged.bind(this));
         this.lengthField.addEventListener('input', this.#OnLengthFieldChanged.bind(this));
         this.versionField.addEventListener('input', this.#OnVersionFieldChanged.bind(this));
 
+
         this.upVersionButton.addEventListener('click', this.#OnUpVersionButtonClick.bind(this));
+        this.addCharsetButton.addEventListener('click', this.#OnAddCharsetButtonClick.bind(this));
         
         this.saveButton.addEventListener('click', this.#OnSaveButtonClick.bind(this));
         this.cancelButton.addEventListener('click', this.#OnCancelButtonClick.bind(this));
@@ -114,6 +109,10 @@ class EditPasswordScreenView extends ViewBase
         this.controller.OnPropertyChanged(key, value);
     }
 
+    #OnAddCharsetButtonClick()
+    {
+        this.controller.OnAddCharsetButtonClick();
+    }
     #OnSaveButtonClick()
     {
         this.controller.SaveChanges();
