@@ -46,4 +46,4 @@ const builtinRawPasswordRecords = [
     new RawPasswordRecord("Facebook").SetMyuid("033073237146145001000000000000000000000000000002"),
 ];
 
-console.log(builtinRawPasswordRecords);
+//console.log(builtinRawPasswordRecords);

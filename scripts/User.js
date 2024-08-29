@@ -59,28 +59,12 @@ class UserData
             userData.charsetRecords[charsetRecordKeys[i]] = Object.assign(obj, element);
         }
 
-        console.log(userData);
+        //console.log(userData);
 
         return userData;
     }
     static ToJson(userData)
     {
-    //    //TODO по факту это костыль, тут я плохо продумал структуру данных, так что нужно будет переработать это
-    //    //В общем проблема в том что ключи и строки в полях name должны быть равны, 
-    //    //и для этого при изменении name нужно обновлять ключ
-    //    //PS возможно все не так плохо 
-    //    let charsetRecordKeys = Object.keys(userData.charsetRecords);
-    //    for (let i = 0; i < charsetRecordKeys.length; i++)
-    //    {
-    //        const key = charsetRecordKeys[i];
-    //        const element = userData.charsetRecords[key];
-    //        if(key != element.name)
-    //        {
-    //            userData.charsetRecords[element.name] = element;
-    //            delete userData.charsetRecords[key];
-    //        }
-    //    }
-
         return JSON.stringify(userData);
     }
 }
@@ -94,6 +78,6 @@ class UserSession
     {
         //TODO доработать хеширование мастер пароля
         this.masterPasswordHash = GeneratePasswordWithDefaultHash(new RawPasswordRecord("Master", null, null, 32), builtinCharsetRecords, password);
-        console.log(this.masterPasswordHash);
+        //console.log(this.masterPasswordHash);
     }
 }

@@ -45,4 +45,4 @@ AddRecord(builtinCharsetRecords, new CharsetRecord("Ru Lower", "абвгдеёж
 AddRecord(builtinCharsetRecords, new CharsetRecord("Ru Upper", "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ", 1)
     .SetMyuid("071050236146145001000000000000000000000000000006"));
 
-console.log(builtinCharsetRecords);
+//console.log(builtinCharsetRecords);

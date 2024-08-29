@@ -1,9 +1,9 @@
 async function CopyToClipboard(text) {
     try {
         await navigator.clipboard.writeText(text);
-        console.log('Текст скопирован в буфер обмена');
+        console.log('Пароль скопирован в буфер обмена');
     } catch (err) {
-        console.error('Не удалось скопировать текст в буфер обмена: ', err);
+        console.error('Не удалось скопировать пароль в буфер обмена: ', err);
     }
 }
 
@@ -42,7 +42,7 @@ class SelectScreenView extends ViewBase
 
     SetOutputPassword(password)
     {
-        console.log(password);
+        //console.log(password);
         this.outputPassword.value = password;
 
         this.outputPassword.classList.add('password_input_blink');

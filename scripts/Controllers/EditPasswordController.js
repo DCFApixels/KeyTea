@@ -181,7 +181,7 @@ class EditPasswordController
                 this.currentCharsetGroup[myuid] = this.db.data.charsetRecords[myuid];
             }
 
-            console.log(this.currentCharsetGroup);
+            //console.log(this.currentCharsetGroup);
         }
 
         for (let i = 0; i < this.charsetControllers.length; i++) 

@@ -122,23 +122,25 @@ function GetIndex(value, charsets)
     return priorities.length - 1;
 }
 
-console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "1"));
-console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "1"));
-console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "2"));
-console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "2"));
-console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "11"));
-console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "11"));
-console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "22"));
-console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "33"));
-console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "44"));
-console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "55"));
-console.log("----");
-console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "33"));
-console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "34"));
-console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "43"));
-console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "44"));
-console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "4"));
-console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "3"));
+//console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "1"));
+//console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "1"));
+//console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "2"));
+//console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "2"));
+//console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "11"));
+//console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "11"));
+//console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "22"));
+//console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "33"));
+//console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "44"));
+//console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "55"));
+//console.log("----");
+//console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "33"));
+//console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "34"));
+//console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "43"));
+//console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "44"));
+//console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "4"));
+//console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Google", null, null, 12), builtinCharsetRecords, "3"));
+
+
 //console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("Facebook", builtinAlphabets, "123")));
 //console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("VK", builtinAlphabets, "123")));
 //console.log(GeneratePasswordWithDefaultHash(new RawPasswordRecord("QQ", builtinAlphabets, "123")));
