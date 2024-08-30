@@ -69,8 +69,8 @@ class EditCharsetScreenView extends ViewBase
     #OnPriorityFieldChanged(event)
     {
         let v = Utility.parseInt(event.target.value);
-        this.lengthField.value = v;
-        event.target.value = this.#OnPropertyChanged("priority", v);
+        event.target.value = v;
+        this.#OnPropertyChanged("priority", v);
     }
     #OnPropertyChanged(key, value)
     {
