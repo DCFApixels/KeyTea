@@ -15,31 +15,45 @@ body{
     height: 100%;
     transition: 0.2s;
     overflow: hidden;
+    position: absolute;
 }
-
+.version span{
+    position: fixed;
+    top: 2px;
+    right: 2px;
+    font-size: 7pt;
+    color: #ffffff70;
+}
 /*==============================================================*/
+.screen_group
+{
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+
+    transition: 0.2s;
+}
+@media screen and (min-aspect-ratio: 1/1){
+    .screen_group {
+        width: 70%;
+        height: 100%;
+        margin: auto;
+
+        transition: 0.2s;
+    }
+}
 
 .screen{
     display: block;
     position: absolute;
-
-    width: 100%;
     height: 100%;
-    margin: 0;
-
-    left: 0%;
-    transform: translateX(0%);
-
+    width: 100%;
     transition: 0.2s;
 }
 @media screen and (min-aspect-ratio: 1/1){
     .screen {
         width: 70%;
-        height: 100%;
-
-        left: 50%;
-        transform: translateX(-50%);
-
         transition: 0.2s;
     }
 }
@@ -622,9 +636,7 @@ input[type="checkbox"]:checked::before {
 
 @keyframes shake {
     0% { transform: translateY(0); }
-    /*25% { transform: translateY(-5px); }*/
     8% { transform: translateY(-3px); }
     30% { transform: translateY(6px); }
-    /*75% { transform: translateY(-5px); }*/
     100% { transform: translateY(0); }
 }
