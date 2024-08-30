@@ -32,7 +32,7 @@ function AddRecord(table, record)
 }
 
 const builtinCharsetRecords = {};
-AddRecord(builtinCharsetRecords, new CharsetRecord("Numbers", "0123456789", 4)
+AddRecord(builtinCharsetRecords, new CharsetRecord("Numbers", "0123456789", 3)
     .SetMyuid("071050236146145001000000000000000000000000000001"));
 AddRecord(builtinCharsetRecords, new CharsetRecord("Specials", ".,~!@#$%^&*()`'\"<>?/\\{}[]:;|+=_-", 1)
     .SetMyuid("071050236146145001000000000000000000000000000002"));
@@ -40,9 +40,9 @@ AddRecord(builtinCharsetRecords, new CharsetRecord("En Lower", "abcdefghijklmnop
     .SetMyuid("071050236146145001000000000000000000000000000003"));
 AddRecord(builtinCharsetRecords, new CharsetRecord("En Upper", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", 2)
     .SetMyuid("071050236146145001000000000000000000000000000004"));
-AddRecord(builtinCharsetRecords, new CharsetRecord("Ru Lower", "абвгдеёжзийклмнопрстуфхцчшщъыьэюя", 1)
+AddRecord(builtinCharsetRecords, new CharsetRecord("Ru Lower", "абвгдеёжзийклмнопрстуфхцчшщъыьэюя", 2)
     .SetMyuid("071050236146145001000000000000000000000000000005"));
-AddRecord(builtinCharsetRecords, new CharsetRecord("Ru Upper", "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ", 1)
+AddRecord(builtinCharsetRecords, new CharsetRecord("Ru Upper", "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ", 2)
     .SetMyuid("071050236146145001000000000000000000000000000006"));
 
 //console.log(builtinCharsetRecords);
