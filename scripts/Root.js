@@ -1,3 +1,14 @@
+//    оставь  надежду
+//        совесть
+//      вежливость
+//     свое  мнение
+//       уважение
+//      воспитание
+//  критическое мышление
+// а также 90% своего iq
+//   всяк сюда входящий
+
+// в общем тут получилась посредственная архитектура, тяп-ляп
 
 class ScreensController
 {
@@ -17,12 +28,6 @@ class ScreensController
         this.screens.set(screenType, screen);
         return this;
     }
-}
-
-class User
-{
-    userData;
-    session;
 }
 
 var userSession = new UserSession;

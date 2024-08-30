@@ -13,23 +13,20 @@ function GeneratePassword(rawPassword, allCharsets, masterPasswordHash)
 {
     let rawString = rawPassword.GenerateRawString();
     let hashString = sha3_512(rawString);
-    //console.log(hashString);
     let rawPasswordBytes = textEncoder.encode(hashString);
     let masterPasswordHashBytes = textEncoder.encode(masterPasswordHash);
     let charsets = [];
 
-    //перемешиваю мастер пароль и рав пароль, но так чтоб значения в массиве не выходила за пределы байта. <
+    // Перемешиваю мастер пароль и рав пароль. <
     let acm = rawPasswordBytes[rawPassword.length % rawPasswordBytes.length] ^ rawPassword.length;
     for (let i = 0; i < rawPasswordBytes.length; i++)
     {
         acm = RandomUtility.NextState(acm ^ rawPasswordBytes[i] ^ ~masterPasswordHashBytes[i % masterPasswordHashBytes.length]);
         rawPasswordBytes[i] = acm % 256;
-        //console.log("acm " + acm);
-        //console.log(rawPasswordBytes[i]);
-        //console.log("------------");
     }
     // >
 
+    // Подготовка
     for (let i = 0; i < rawPassword.usedCharsets.length; i++)
     {
         const charset = allCharsets[rawPassword.usedCharsets[i]];
@@ -46,8 +43,9 @@ function GeneratePassword(rawPassword, allCharsets, masterPasswordHash)
     }
 
     let passwordLength = rawPassword.length - charsets.length;
+    // >
 
-    //установка начального randomState <
+    // Установка начального randomState <
     let randomState = randomRootSeed;
     let rawPasswordBytesSum = 0;
     for (let i = 0; i < rawPasswordBytes.length; i++)
@@ -57,6 +55,7 @@ function GeneratePassword(rawPassword, allCharsets, masterPasswordHash)
     randomState = randomState ^ RandomUtility.NextState(rawPasswordBytesSum);
     // >
 
+    // Генерация пароля <
     let result = [];
     let index = 0;
     for (let i = 0; i < passwordLength; i++)
@@ -72,13 +71,11 @@ function GeneratePassword(rawPassword, allCharsets, masterPasswordHash)
         let charset = charsets[charsetIndex];
 
         index = randomState % charset.chars.length;
-        //console.log(randomState);
-        //console.log(index);
-        //console.log("----");
         result.push(charset.chars.charAt(index));
     }
+    // >
 
-    //вставка по одному символу из каждого набора, для гарантированного наличия даже при низком приоритете. <
+    // Вставка в пароль по одному символу из каждого набора, для гарантированного наличия даже при низком приоритете. <
     let tempCharsets = charsets.slice();
     let tempCharsetsLength = charsets.length;
 
@@ -105,7 +102,6 @@ function GeneratePassword(rawPassword, allCharsets, masterPasswordHash)
     }
     // >
 
-    //console.log("-----------");
     return result.join('');
 }
 

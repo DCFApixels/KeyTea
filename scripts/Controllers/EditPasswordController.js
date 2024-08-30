@@ -18,8 +18,6 @@ class EditPasswordController
         this.screensController = screensController;
         this.view.SubscribeController(this);
 
-        //this.SetIsCanSave(false);
-
         this.#ApplyCharsetControllers();
     }
 
@@ -27,17 +25,8 @@ class EditPasswordController
     OnPropertyChanged(propertyKey, value)
     {
         this.modelClone[propertyKey] = value;
-        //console.log(this.modelClone);
-        //this.#ApplyChanges();
     }
-    //#ApplyChanges()
-    //{
-    //    let isCanSave = 
-    //        this.modelClone.name != null && 
-    //        this.modelClone.name.length > 0 &&
-    //        this.modelClone.length >= this.modelClone.usedCharsets.length;
-    //    this.SetIsCanSave(isCanSave);
-    //}
+
 
     SaveChanges()
     {
@@ -99,8 +88,6 @@ class EditPasswordController
         this.view.length = model.length;
         this.view.version = model.version;
 
-        //this.#ApplyChanges();
-
         this.view.ShowErrorMessage(null);
         this.#ApplyCharsetControllers();
         this.OnCharsetElementSelected();
@@ -124,18 +111,10 @@ class EditPasswordController
             {
                 const charsetMyuid = charsetRecordKeys[i];
                 this.currentCharsetGroup[charsetMyuid] = charsetRecords[charsetMyuid];
-                //this.OnCharsetElementSelected(charsetMyuid);
             }
             this.OnCharsetElementSelected();
         }
     }
-
-
-    //SetIsCanSave(bool)
-    //{
-    //    //this.view.SetIsCanSave(bool)
-    //}
-
 
 
 
@@ -150,6 +129,7 @@ class EditPasswordController
 
         for (let i = this.charsetControllers.length; i < charsetRecordKeys.length; i++)
         {
+            //TODO переделать чтоб небыло явной заисимости от CharsetElementView
             let v = CharsetElementView.Create(this.view.charsetsList);
             let c = new CharsetElementController(charsetRecords[charsetRecordKeys[i]], v, this, i);
             this.charsetControllers.push(c);
@@ -180,8 +160,6 @@ class EditPasswordController
             {
                 this.currentCharsetGroup[myuid] = this.db.data.charsetRecords[myuid];
             }
-
-            //console.log(this.currentCharsetGroup);
         }
 
         for (let i = 0; i < this.charsetControllers.length; i++) 

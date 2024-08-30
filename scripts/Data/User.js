@@ -41,7 +41,7 @@ class UserData
         let userData = JSON.parse(json);
 
         if(userData == null) { return null; }
-        //TODO блэт, ктож знал что класс JSON не умеет сохранять прототипы классов
+        //TODO блэт, ктож знал что класс JSON не умеет сохранять прототипы классов, только я не додумался до этого.
         //пришлось написать костыль, который по хорошему тоже бы переработать.
         //В общем приходится агрессивно вручную восстанавливать прототипы после загрузки.
         //Чтобы исправить нужно просто убрать все поведение из объектов, одних только данных вполне достаточно
@@ -77,7 +77,7 @@ class UserSession
     EnterMasterPassword(password)
     {
         //TODO доработать хеширование мастер пароля
-        this.masterPasswordHash = GeneratePasswordWithDefaultHash(new RawPasswordRecord("Master", null, null, 32), builtinCharsetRecords, password);
+        this.masterPasswordHash = GeneratePasswordWithDefaultHash(new RawPasswordRecord("Master", null, null, 256), builtinCharsetRecords, password);
         //console.log(this.masterPasswordHash);
     }
 }
