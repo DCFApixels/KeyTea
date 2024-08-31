@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-<img alt="Version" src="https://img.shields.io/github/package-json/v/DCFApixels/PasswordCalculator?color=%231e90ff&style=for-the-badge">
+<img alt="Version" src="https://img.shields.io/github/manifest-json/v/DCFApixels/PasswordCalculator?color=%231e90ff&style=for-the-badge">
 <img alt="License" src="https://img.shields.io/github/license/DCFApixels/PasswordCalculator?color=1e90ff&style=for-the-badge">
 </p>
 
