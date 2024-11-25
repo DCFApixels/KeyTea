@@ -25,7 +25,14 @@ class RawPasswordElementController
             this.view.Hide();
             return;
         }
-        this.view.name = model.name;
+        if(model.userName != null && model.userName != "")
+        {
+            this.view.name = model.name + " (" + model.userName + ")";
+        }
+        else
+        {
+            this.view.name = model.name;
+        }
         this.view.Show();
     }
 
