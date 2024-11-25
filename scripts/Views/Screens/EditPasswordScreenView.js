@@ -6,7 +6,7 @@ class EditPasswordScreenView extends ViewBase
     set user(value) 
     {
         if(value == null)
-            {
+        {
             this.userField.value = "";
             return;
         }
@@ -71,7 +71,7 @@ class EditPasswordScreenView extends ViewBase
 
     SetOutputPassword(password)
     {
-        console.log(password);
+        //console.log(password);
         this.outputPassword.value = password;
     }
 

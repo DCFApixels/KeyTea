@@ -84,7 +84,7 @@ class EditPasswordController
         this.view.Open(); 
 
         this.view.name = model.name;
-        this.view.user = model.user;
+        this.view.user = model.userName;
         this.view.length = model.length;
         this.view.version = model.version;
 
