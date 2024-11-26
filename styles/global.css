@@ -153,6 +153,22 @@ body{
     font-size: 16pt;
     flex-grow: 1;
 }
+.form header a
+{
+    width: 22pt;
+    padding-right: 6pt;
+}
+.form header img
+{
+    object-fit: contain;
+
+    width:  calc(100% + 4pt);
+    height: calc(100% + 4pt);
+    margin: -2pt;
+
+    position: relative;
+}
+
 @media screen and (max-aspect-ratio: 1/1){
     .form{
         border-radius: 0;
