@@ -139,7 +139,7 @@ body{
 }
 
 .form header{
-    background-color: #0099ffe8;
+    background-color: #6287ffe8;
     margin: -10px -10px 5px -10px;
     border-radius: 10px 10px 0 0;
     display: flex;
@@ -222,7 +222,7 @@ button.icon_button.records_list_add_button{
 button{
     height: 22pt;
 
-    background-color: #0099ffe8;
+    background-color: #6287ffe8;
     transition: 0.09s background-color;
 
     border-radius: 5px;
@@ -234,11 +234,11 @@ button{
     font-size: 13pt;
 }
 button:hover {
-    background-color: #52c8ff;
+    background-color: #82a3ff;
     transition: background-color 0.08s;
 }
 button:active {
-    background-color: #008cff;
+    background-color: #384ece;
     transition: background-color 0.08s;
 }
 button:focus {
@@ -252,14 +252,14 @@ button[disabled] {
     background-color: rgba(137, 145, 155, 0.815);
 }
 button.green{
-    background-color: #00f120e8;
+    background-color: #07ce00e8;
 }
 button.green[disabled] {
     outline: none;
     background-color: rgba(137, 155, 148, 0.815);
 }
 button.green:hover{
-    background-color: #27ff5d;
+    background-color: #15ff00;
 }
 /*==============================================================*/
 .icon_button, 
@@ -558,7 +558,7 @@ input[type="checkbox"]:checked::before {
     input[type="text"], 
     input[type="password"],
     input[type="number"] {
-        box-shadow: inset 0 -3px 0 -1px #0099ffe8;
+        box-shadow: inset 0 -3px 0 -1px #6287ffe8;
     }
 
     .error_label {
