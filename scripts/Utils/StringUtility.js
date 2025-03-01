@@ -20,4 +20,18 @@ class StringUtility
         });
         return charArray.join("");
     }
+
+    static RemoveDuplicatesInSorted(sortedStr) {
+        if (sortedStr.length === 0) return sortedStr; // Если строка пустая, возвращаем её
+    
+        let result = sortedStr[0]; // Начинаем с первого символа
+    
+        for (let i = 1; i < sortedStr.length; i++) {
+            if (sortedStr[i] !== sortedStr[i - 1]) { // Сравниваем текущий символ с предыдущим
+                result += sortedStr[i]; // Если символы разные, добавляем его к результату
+            }
+        }
+    
+        return result;
+    }
 }

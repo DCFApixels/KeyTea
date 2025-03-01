@@ -8,7 +8,7 @@ class CharsetRecord
     get keyName() { return StringUtility.SimplifyString(this.name); }
 
     get chars() { return this._chars; }
-    set chars(value) { this._chars = StringUtility.SortCharset(value); }
+    set chars(value) { this._chars = StringUtility.RemoveDuplicatesInSorted(StringUtility.SortCharset(value)); }
 
     get length() { return this._chars.length; }
 
