@@ -80,7 +80,8 @@
 ![image](https://github.com/user-attachments/assets/7ec6ef39-a8ee-46e0-9c9c-7fb3cb05b0dc)
 
 ### Экран выбора пароля
-![image](https://github.com/user-attachments/assets/298b0e52-aadb-4cd5-bf1b-d52f646784bf)
+![image](https://github.com/user-attachments/assets/58f01be4-b28a-4f08-9099-e9327588093f)
+
 Выбрав ресурс снизу 
 ![image](https://github.com/user-attachments/assets/a95c86ca-522e-4674-9542-1044d54be612)
 
