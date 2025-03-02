@@ -36,14 +36,25 @@
     </td>-->
   </tr>
 </table>
-<br>
 
 Ссылка - [https://dcfapixels.github.io/KeyTea/](https://dcfapixels.github.io/KeyTea/) </br>
 Семантика версионирования - [Открыть](https://gist.github.com/DCFApixels/e53281d4628b19fe5278f3e77a7da9e8#file-dcfapixels_versioning_ru-md)
 
+<br>
+
 <p align="justify">
 Небольшое приложение имеющее функционал хранилища паролей, но не хранящее эти пароли ни на компьютере пользователя ни на сервере. Работает на любом устройстве и если сохранить страницу, то KeyTea можно запустить и без подключения к интернету.
 </p>
+
+## Оглавление
+- [Как это работает?](#Как-это-работает?)
+- [Безопасность](#Безопасность)
+- [Особенности](#Особенности)
+- [Руководство](#Руководство)
+    - [Ввод мастер-пароля](#Экран-ввода-мастер-пароля)
+    - [Выбор пароля](#Экран-выбора-пароля)
+    - [Редактирование информации для пароля](#Экран-редактирования-информации-для-пароля)
+    - [Редактирование набора символов](#Экран-редактирования-набора-символов)
 
 </br>
 
@@ -163,7 +174,7 @@
 
 ## Лицензия
 
-MIT Лицензия: [https://raw.githubusercontent.com/DCFApixels/KeyTea/blob/main/LICENSE](https://raw.githubusercontent.com/DCFApixels/KeyTea/blob/main/LICENSE)
+MIT Лицензия: [https://raw.githubusercontent.com/DCFApixels/KeyTea/refs/heads/main/LICENSE](https://raw.githubusercontent.com/DCFApixels/KeyTea/refs/heads/main/LICENSE)
 
 </br>
 </br>

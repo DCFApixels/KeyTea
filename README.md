@@ -36,14 +36,25 @@
     </td>-->
   </tr>
 </table>
-<br>
 
 Link - [https://dcfapixels.github.io/KeyTea/](https://dcfapixels.github.io/KeyTea/) </br>
 Versioning semantics - [Open](https://gist.github.com/DCFApixels/c3b178a308b411f530361d1d56f1f929#file-dcfapixels_versioning_en-md)
 
+</br>
+
 <p align="justify">
 A small application with the functionality of a password manager, but it does not store these passwords either on the user's computer or on a server. It works on any device, and if the page is saved, KeyTea can be launched even without an internet connection.
 </p>
+
+## Table of Contents
+- [How does it work?](#How-does-it-work?)
+- [Security](#Security)
+- [Features](#Features)
+- [Guide](#Guide)
+    - [Master Password Input](#Master-Password-Input-Screen)
+    - [Password Selection](#Password-Selection-Screen)
+    - [Password Information Editing](#Password-Information-Editing-Screen)
+    - [Character Set Editing](#Character-Set-Editing)
 
 </br>
 
@@ -165,7 +176,7 @@ After completing the edits, click the Save button to save the changes or Cancel 
 
 ## License
 
-The MIT License: [https://raw.githubusercontent.com/DCFApixels/KeyTea/blob/main/LICENSE](https://raw.githubusercontent.com/DCFApixels/KeyTea/blob/main/LICENSE)
+The MIT License: [https://raw.githubusercontent.com/DCFApixels/KeyTea/refs/heads/main/LICENSE](https://raw.githubusercontent.com/DCFApixels/KeyTea/refs/heads/main/LICENSE)
 
 </br>
 </br>
