@@ -28,12 +28,12 @@
         <span>English</span>
       </a>  
     </td>
-    <td nowrap width="100">
+    <!--<td nowrap width="100">
       <a href="https://github.com/DCFApixels/KeyTea/blob/main/README-ZH.md">
         <img src="https://github.com/user-attachments/assets/8e598a9a-826c-4a1f-b842-0c56301d2927"></br>
         <span>中文</span>
       </a>  
-    </td>
+    </td>-->
   </tr>
 </table>
 <br>
@@ -50,7 +50,7 @@ A small application with the functionality of a password manager, but it does no
 ## :question: How does it work?
 
 <p align="justify">
-In short, passwords are generated. It is based on a master password that you have to think up and remembered. From the combination of the master password and the website's name, a unique password for that site is generated. Since the same pair of master password and website name always generates the same result, there is no need to save the generated passwords. The generation process uses a cryptographically secure hash function, meaning that the final password cannot be converted back into the master password.
+In short, passwords are generated based on a master password that the user must create and remember. From the combination of the master password and the website's name, a unique password for that site is generated. Since the same pair of master password and website name always generates the same result, there is no need to save the generated passwords. The generation process uses a cryptographically secure hash function, meaning that the final password cannot be converted back into the master password.
 </p>
 
 
@@ -61,7 +61,7 @@ In short, passwords are generated. It is based on a master password that you hav
 **This application guarantees that passwords are not stored or transmitted to third parties in the following ways:**<br>
 + The app can function without an internet connection; 
 + It does not use third-party frameworks or libraries, except for the browser and the [js-sha3](https://github.com/emn178/js-sha3) script for calculations; 
-+ It is an open-source project and the source code is available for review. You can independently verify that everything is clean.
++ It is an open-source project and the source code is available for review. Users can independently verify that everything is clean.
 
 **Advantages:**<br>
 + It is enough to remember just one master password, but a unique one is generated for each site;
@@ -134,11 +134,11 @@ At the bottom of the screen, there are buttons for importing and exporting user 
 
 At the top, there are 4 fields available for editing:
 + **Name** - the name of the resource for which the password is being generated; this name will also be displayed on the password selection screen.
-+ **User** - in case there are multiple accounts for the same resource, you can enter account logins here, which will generate different passwords.
++ **User** - in case there are multiple accounts for the same resource, the user can enter account logins here, which will generate different passwords.
 + **Length** - the length of the password.
-+ **Version** - the password version. You can increase the version by clicking the `Up` button, which generates a completely new password.
++ **Version** - the password version. The user can increase the version by clicking the `Up` button, which generates a completely new password.
 
-Below is a list of character sets from which you can select the ones to be used in password generation.
+Below is a list of character sets from which the user can select the ones to be used in password generation.
 
 The list of character sets is editable. The button at the bottom of the list with a plus icon adds a new empty set, the gear icon button opens the screen for editing the character set, and the adjacent trash bin icon button removes the set from the list.
 
@@ -162,5 +162,10 @@ After completing the edits, click the Save button to save the changes or Cancel 
 ![image](https://github.com/user-attachments/assets/efb2d3da-8c45-4468-b562-dbd89e055514)
 
 </br>
+
+## License
+
+The MIT License: [https://raw.githubusercontent.com/DCFApixels/KeyTea/blob/main/LICENSE](https://raw.githubusercontent.com/DCFApixels/KeyTea/blob/main/LICENSE)
+
 </br>
 </br>

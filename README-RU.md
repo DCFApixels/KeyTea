@@ -28,12 +28,12 @@
         <span>English</span>
       </a>  
     </td>
-    <td nowrap width="100">
+    <!--<td nowrap width="100">
       <a href="https://github.com/DCFApixels/KeyTea/blob/main/README-ZH.md">
         <img src="https://github.com/user-attachments/assets/8e598a9a-826c-4a1f-b842-0c56301d2927"></br>
         <span>中文</span>
       </a>  
-    </td>
+    </td>-->
   </tr>
 </table>
 <br>
@@ -160,5 +160,10 @@
 ![image](https://github.com/user-attachments/assets/efb2d3da-8c45-4468-b562-dbd89e055514)
 
 </br>
+
+## Лицензия
+
+MIT Лицензия: [https://raw.githubusercontent.com/DCFApixels/KeyTea/blob/main/LICENSE](https://raw.githubusercontent.com/DCFApixels/KeyTea/blob/main/LICENSE)
+
 </br>
 </br>
