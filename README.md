@@ -47,10 +47,10 @@ A small application with the functionality of a password manager, but it does no
 </p>
 
 ## Table of Contents
-- [How does it work?](#How-does-it-work?)
-- [Security](#Security)
-- [Features](#Features)
-- [Guide](#Guide)
+- [How does it work?](#-How-does-it-work?)
+- [Security](#-Security)
+- [Features](#-Features)
+- [Guide](#-Guide)
     - [Master Password Input](#Master-Password-Input-Screen)
     - [Password Selection](#Password-Selection-Screen)
     - [Password Information Editing](#Password-Information-Editing-Screen)
