@@ -208,7 +208,7 @@ body{
 }
 button.icon_button.records_list_add_button{
     border-radius: 0 0 10px 10px;
-    background-image: url(../svgs/add_white_24dp.svg);
+    background-image: url(../svgs/Add_White.svg);
     height: 22pt;
     display: block;
     width: 100%;
@@ -288,23 +288,23 @@ button.green:hover{
     background-color: transparent;
 }
 .icon_button.copy{
-    background-image: url(../svgs/file_copy_white_24dp.svg);
+    background-image: url(../svgs/FileCopy_White.svg);
 }
 .icon_button.show_aye.on{
-    background-image: url(../svgs/show-svgrepo-com.svg);
+    background-image: url(../svgs/ShowOn_White.svg);
 }
 .icon_button.show_aye.off{
-    background-image: url(../svgs/hide-svgrepo-com.svg);
+    background-image: url(../svgs/ShowOff_White.svg);
 }
 
 .trnsp.icon_button.setting{
-    background-image: url(../svgs/settings_white_24dp.svg);
+    background-image: url(../svgs/Settings_Blue.svg);
 }
 .trnsp.icon_button.delete{
-    background-image: url(../svgs/delete_white_24dp.svg);
+    background-image: url(../svgs/Delete_Red.svg);
 }
 .trnsp.icon_button.logout_button{
-    background-image: url(../svgs/logout-svgrepo-com.svg);
+    background-image: url(../svgs/Logout_White.svg);
     height: 25pt;
     width: 25pt;
     background-size: 22pt;
@@ -486,13 +486,13 @@ input[type="checkbox"]::before {
     flex-grow: 0;
 
     margin-right: 0.5em;
-    background-image: url(../svgs/check_box_outline_blank_white_24dp.svg);
+    background-image: url(../svgs/CheckboxOff_Blue.svg);
     background-repeat: no-repeat;
     background-position: center center;
     transition: 0.08s;
 }
 input[type="checkbox"]:checked::before {
-    background-image: url(../svgs/check_box_white_24dp.svg);
+    background-image: url(../svgs/CheckboxOn_Blue.svg);
     transition: 0.08s;
 }
 /*==============================================================*/
