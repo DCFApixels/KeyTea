@@ -7,7 +7,7 @@
 <img alt="License" src="https://img.shields.io/github/license/DCFApixels/KeyTea?color=1e90ff&style=for-the-badge">
 </p>
 
-# :tea: Key Tea
+# 🍵 Key Tea
 
 <table>
   <tr></tr>
@@ -46,19 +46,20 @@ Versioning semantics - [Open](https://gist.github.com/DCFApixels/c3b178a308b411f
 A small application with the functionality of a password manager, but it does not store these passwords either on the user's computer or on a server. It works on any device, and if the page is saved, KeyTea can be launched even without an internet connection.
 </p>
 
-## Table of Contents
-- [How does it work?](#-How-does-it-work?)
-- [Security](#-Security)
-- [Features](#-Features)
-- [Guide](#-Guide)
+## 📖 Table of Contents
+- [How does it work?](#-how-does-it-work?)
+- [Security](#-security)
+- [Features](#-features)
+- [Guide](#-guide)
     - [Master Password Input](#Master-Password-Input-Screen)
     - [Password Selection](#Password-Selection-Screen)
     - [Password Information Editing](#Password-Information-Editing-Screen)
     - [Character Set Editing](#Character-Set-Editing)
+- [License](#-license)
 
 </br>
 
-## :question: How does it work?
+## ❓ How does it work?
 
 <p align="justify">
 In short, passwords are generated based on a master password that the user must create and remember. From the combination of the master password and the website's name, a unique password for that site is generated. Since the same pair of master password and website name always generates the same result, there is no need to save the generated passwords. The generation process uses a cryptographically secure hash function, meaning that the final password cannot be converted back into the master password.
@@ -67,7 +68,7 @@ In short, passwords are generated based on a master password that the user must 
 
 </br>
 
-## :lock: Security
+## 🔒 Security
 
 **This application guarantees that passwords are not stored or transmitted to third parties in the following ways:**<br>
 + The app can function without an internet connection; 
@@ -86,7 +87,7 @@ In short, passwords are generated based on a master password that the user must 
 
 </br>
 
-## :star: Features
+## ⭐ Features
 
 + **Cross-platform:**
 
@@ -114,7 +115,7 @@ Passwords are generated the same no matter what device the app is running on.
 
 </br>
 
-## :scroll: Guide
+## 📜 Guide
 
 ### Master Password Input Screen
 On the initial screen, the user is prompted to enter the master password, which is used to generate passwords.
@@ -174,7 +175,7 @@ After completing the edits, click the Save button to save the changes or Cancel 
 
 </br>
 
-## License
+## 📑 License
 
 The MIT License: [https://raw.githubusercontent.com/DCFApixels/KeyTea/refs/heads/main/LICENSE](https://raw.githubusercontent.com/DCFApixels/KeyTea/refs/heads/main/LICENSE)
 
