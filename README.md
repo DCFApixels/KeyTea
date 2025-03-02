@@ -76,11 +76,11 @@
 ### Экран ввода мастер пароля
 Начальный экрна предлагает ввести мастер пароль, на основе которого будут генерироваться пароли. 
 
-![image](https://github.com/user-attachments/assets/afebc1c8-4204-40b0-a031-6f886d1fcb7b)
+![image](https://github.com/user-attachments/assets/396df36d-1381-433c-9b66-44ca7cec2ce5)
 
 После ввода можно нажать Continue для перехода к списку паролей
 
-![image](https://github.com/user-attachments/assets/7ec6ef39-a8ee-46e0-9c9c-7fb3cb05b0dc)
+![image](https://github.com/user-attachments/assets/5360397a-ba85-4855-9fc0-9f009c318080)
 
 ### Экран выбора пароля
 
@@ -88,9 +88,11 @@
 
 Выбрав ресурс снизу в поле password появится сгенерированный пароль для этого ресурса. Справа от поля кнопка копирования пароля в буфер обмена. Еще правее кнопка показа пароля, по умолчанию пароль скрыт.
 
+![image](https://github.com/user-attachments/assets/08958b72-9549-4fdb-b105-482b9807af13)
+
 Под паролем расположены кнопки импорта и экспорта данных пользователя, для переноса между устройствами.
 
-![image](https://github.com/user-attachments/assets/a95c86ca-522e-4674-9542-1044d54be612)
+![image](https://github.com/user-attachments/assets/d776ade5-f000-4ec4-b21f-0041d19a389f)
 
 ### Экран редактирования информации для пароля
 
