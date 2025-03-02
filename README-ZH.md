@@ -24,19 +24,19 @@
     </td>
     <td nowrap width="100">
       <a href="https://github.com/DCFApixels/KeyTea">
-        <img src="https://github.com/user-attachments/assets/3c699094-f8e6-471d-a7c1-6d2e9530e721"></br>
+        <img src="https://github.com/user-attachments/assets/30528cb5-f38e-49f0-b23e-d001844ae930"></br>
         <span>English</span>
       </a>  
     </td>
     <td nowrap width="100">
       <a href="https://github.com/DCFApixels/KeyTea/blob/main/README-ZH.md">
-        <img src="https://github.com/user-attachments/assets/8e598a9a-826c-4a1f-b842-0c56301d2927"></br>
+        <img src="https://github.com/user-attachments/assets/3c699094-f8e6-471d-a7c1-6d2e9530e721"></br>
         <span>中文</span>
       </a>  
     </td>
   </tr>
 </table>
-<br>
+</br>
 
 Link - [https://dcfapixels.github.io/KeyTea/](https://dcfapixels.github.io/KeyTea/) </br>
 Versioning semantics - [Open](https://gist.github.com/DCFApixels/c3b178a308b411f530361d1d56f1f929#file-dcfapixels_versioning_en-md)
