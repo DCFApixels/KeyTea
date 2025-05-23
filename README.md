@@ -7,7 +7,7 @@
 <img alt="License" src="https://img.shields.io/github/license/DCFApixels/KeyTea?color=1e90ff&style=for-the-badge">
 </p>
 
-# 🍵 Key Tea
+# 🍵 PasswordTea - Password generator and manager
 
 <table>
   <tr></tr>
@@ -43,7 +43,7 @@ Versioning semantics - [Open](https://gist.github.com/DCFApixels/c3b178a308b411f
 </br>
 
 <p align="justify">
-A small application with the functionality of a password manager, but it does not store these passwords either on the user's computer or on a server. It works on any device, and if the page is saved, KeyTea can be launched even without an internet connection.
+A small application with the functionality of a password manager, but it does not store these passwords either on the user's computer or on a server. It works on any device, and if the page is saved, PasswordTea can be launched even without an internet connection.
 </p>
 
 ## 📖 Table of Contents
