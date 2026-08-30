@@ -7,12 +7,12 @@
 <img alt="License" src="https://img.shields.io/github/license/DCFApixels/PasswordTea?color=1e90ff&style=for-the-badge">
 </p>
 
-# 🍵 PasswordTea - Password generator and manager
+# 🍵 Password Tea — Password Generator and Manager
 
 <table>
   <tr></tr>
   <tr>
-    <td colspan="3">Readme Languages:</td>
+    <td colspan="3">README languages:</td>
   </tr>
   <tr></tr>
   <tr>
@@ -37,13 +37,13 @@
   </tr>
 </table>
 
-Link - [https://dcfapixels.github.io/PasswordTea/](https://dcfapixels.github.io/PasswordTea/) </br>
-Versioning semantics - [Open](https://gist.github.com/DCFApixels/c3b178a308b411f530361d1d56f1f929#file-dcfapixels_versioning_en-md)
+Web app: [https://dcfapixels.github.io/PasswordTea/](https://dcfapixels.github.io/PasswordTea/) </br>
+Versioning scheme: [Open](https://gist.github.com/DCFApixels/c3b178a308b411f530361d1d56f1f929#file-dcfapixels_versioning_en-md)
 
 </br>
 
 <p align="justify">
-A small application with the functionality of a password manager, but it does not store these passwords either on the user's computer or on a server. It works on any device, and if the page is saved, PasswordTea can be launched even without an internet connection.
+A small password manager that derives passwords instead of storing them on the user's device or on a server. It runs on any device with a compatible browser, and a saved copy of Password Tea can also be used without an internet connection.
 </p>
 
 ## 📖 Table of Contents
@@ -62,7 +62,7 @@ A small application with the functionality of a password manager, but it does no
 ## ❓ How does it work?
 
 <p align="justify">
-In short, passwords are generated based on a master password that the user must create and remember. From the combination of the master password and the website's name, a unique password for that site is generated. Since the same pair of master password and website name always generates the same result, there is no need to save the generated passwords. The generation process uses a cryptographically secure hash function, meaning that the final password cannot be converted back into the master password.
+In short, Password Tea derives passwords instead of storing them. A unique password for each site is generated from the master password and the site's name. The same inputs always produce the same result, so generated passwords do not need to be saved. SHA3-512 is used for hashing, after which the app's deterministic algorithm maps the result to the configured character sets. The generated password cannot be directly converted back into the master password, although a weak master password may still be guessed by brute force.
 </p>
 
 
@@ -70,20 +70,20 @@ In short, passwords are generated based on a master password that the user must 
 
 ## 🔒 Security
 
-**This application guarantees that passwords are not stored or transmitted to third parties in the following ways:**<br>
-+ The app can function without an internet connection; 
-+ It does not use third-party frameworks or libraries, except for the browser and the [js-sha3](https://github.com/emn178/js-sha3) script for calculations; 
-+ It is an open-source project and the source code is available for review. Users can independently verify that everything is clean.
+**The following properties help ensure that the application neither stores passwords nor transmits them to third parties:**<br>
++ The app can function without an internet connection;
++ It does not use third-party frameworks or libraries, except for the bundled [js-sha3](https://github.com/emn178/js-sha3) script used for SHA3 calculations;
++ It is an open-source project, so users can review the source code and independently verify its behavior.
 
 **Advantages:**<br>
-+ It is enough to remember just one master password, but a unique one is generated for each site;
++ You only need to remember one master password, while a unique password is generated for each site;
 + Generated passwords consist of a random set of characters, making them secure;
-+ Since the app does not store passwords, these passwords are not susceptible to leakage by hacks;
-+ Quickly change the generated password, adding just one character creates a new unique password.
++ Password Tea does not store generated passwords, so there is no central password vault whose compromise would expose them all at once;
++ Generated passwords can be changed quickly: changing even one input character produces a new password.
 
 **Disadvantages:**<br>
-+ A master password leak exposes access to all passwords;
-+ A single master password is more vulnerable to various types of attacks.
++ If the master password is leaked, all generated passwords become accessible;
++ A single master password is easier to target with various types of attacks.
 
 </br>
 
@@ -92,25 +92,25 @@ In short, passwords are generated based on a master password that the user must 
 + **Cross-platform:**
 
 <p align="justify">
-The use of web languages allows the application to run on any device with a browser. And also it can be embedded in other applications. 
+The use of web technologies allows the application to run on any device with a compatible browser. It can also be embedded in other applications.
 </p>
 
 + **Customizable character set:**
 
 <p align="justify">
-Some websites have specific requirements for the presence or absence of certain characters, fine-tuning the characters used allows the generation of passwords that meet these requirements. Additionally, for creating more complex passwords, characters from not only the English alphabet but also symbols can be used. By default, there are sets of special characters, numbers, the English alphabet, and the Russian alphabet.
+Some websites require or forbid specific characters. Fine-tuning the character sets allows Password Tea to generate passwords that meet these requirements. Passwords can use Latin letters, digits, and special characters, as well as letters from other alphabets. By default, the app provides sets of special characters, digits, Latin letters, and Cyrillic letters.
 </p>
 
 + **Password generation using versioning:**
 
 <p align="justify">
-In case the user needs to change the password, the password version can be modified in the settings, and increasing the version completely changes the password to a unique new one.
+If a password needs to be changed, its version can be increased in the settings to generate a new one.
 </p>
 
 + **Deterministic calculations:**
 
 <p align="justify">
-Passwords are generated the same no matter what device the app is running on.
+The same inputs produce the same password on every supported device.
 </p>
 
 </br>
@@ -130,11 +130,11 @@ After entering the master password, press the "Continue" button to proceed to th
 
 At the top of the screen, a list of resources is displayed. To retrieve a password, select the desired resource from the list.
 
-The resource list is editable. The button at the bottom of the list with a plus icon adds a new entry, the gear icon button opens the screen for editing resource information for the password, and the adjacent recycle bin icon button removes the resource from the list.
+The resource list can be edited. The plus button at the bottom adds a new entry, the gear button opens the resource editing screen, and the adjacent trash button removes the resource from the list.
 
 ![image](https://github.com/user-attachments/assets/58f01be4-b28a-4f08-9099-e9327588093f)
 
-After selecting a resource, the generated password for this resource will appear in the "password" field at the bottom. To the right of the field is the button to copy the password to the clipboard. Further right is the button to show the password, which is hidden by default.
+After selecting a resource, its generated password appears in the "password" field at the bottom. The button to the right copies the password to the clipboard, while the next button reveals the password, which is hidden by default.
 
 ![image](https://github.com/user-attachments/assets/08958b72-9549-4fdb-b105-482b9807af13)
 
@@ -144,32 +144,32 @@ At the bottom of the screen, there are buttons for importing and exporting user 
 
 ### Password Information Editing Screen
 
-At the top, there are 4 fields available for editing:
-+ **Name** - the name of the resource for which the password is being generated; this name will also be displayed on the password selection screen.
-+ **User** - in case there are multiple accounts for the same resource, the user can enter account logins here, which will generate different passwords.
+At the top, four fields are available for editing:
++ **Name** - the name of the resource for which the password is generated; this name is also displayed on the password selection screen.
++ **User** - an account identifier used to generate different passwords for multiple accounts on the same resource.
 + **Length** - the length of the password.
-+ **Version** - the password version. The user can increase the version by clicking the `Up` button, which generates a completely new password.
++ **Version** - the password version. Clicking the `Up` button increases the version and generates a new password.
 
 Below is a list of character sets from which the user can select the ones to be used in password generation.
 
-The list of character sets is editable. The button at the bottom of the list with a plus icon adds a new empty set, the gear icon button opens the screen for editing the character set, and the adjacent trash bin icon button removes the set from the list.
+The character set list can be edited. The plus button at the bottom adds a new empty set, the gear button opens the character set editing screen, and the adjacent trash button removes the set from the list.
 
 ![image](https://github.com/user-attachments/assets/538cf86a-47c9-4296-8290-6224c6f8af0a)
 
-After completing the edits, click the Save button to save the changes or Cancel to discard them.
+After completing the edits, click `Save` to save the changes or `Cancel` to discard them.
 
 ![image](https://github.com/user-attachments/assets/efb2d3da-8c45-4468-b562-dbd89e055514)
 
 ### Character Set Editing Screen
 
-For editing, there are 3 fields available:
+Three fields are available for editing:
 + **Name** - the name of the set displayed in the application. This does not affect password generation.
-+ **Charset** - the set of characters as text. After saving, the text will be formatted, with characters sorted and duplicates removed.
-+ **Priority** - the priority of the set. Priority affects the frequency with which characters from the set appear in the password. The frequency is calculated relative to the priority of all sets. The higher the priority, the more frequently characters from this set will appear. Regardless of priority, at least one character from the set will be used in the password.
++ **Charset** - the set of characters as text. After saving, the characters are sorted and duplicates are removed.
++ **Priority** - the priority of the set. It affects how frequently characters from the set appear in the password relative to the priorities of all selected sets. The higher the priority, the more frequently its characters appear. Regardless of priority, the password contains at least one character from each selected set.
 
 ![image](https://github.com/user-attachments/assets/b38c4022-d33d-44f8-b446-d7372f65616f)
 
-After completing the edits, click the Save button to save the changes or Cancel to discard them.
+After completing the edits, click `Save` to save the changes or `Cancel` to discard them.
 
 ![image](https://github.com/user-attachments/assets/efb2d3da-8c45-4468-b562-dbd89e055514)
 
