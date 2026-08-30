@@ -1,10 +1,10 @@
 <p align="center">
-<img width="300" src="https://github.com/DCFApixels/PasswordTea/blob/main/images/MainIcon.png">
+<img width="300" src="https://github.com/DCFApixels/KeyTea/blob/main/images/MainIcon.png">
 </p>
 
 <p align="center">
-<img alt="Version" src="https://img.shields.io/github/manifest-json/v/DCFApixels/PasswordTea?style=for-the-badge&color=1e90ff">
-<img alt="License" src="https://img.shields.io/github/license/DCFApixels/PasswordTea?color=1e90ff&style=for-the-badge">
+<img alt="Version" src="https://img.shields.io/github/manifest-json/v/DCFApixels/KeyTea?style=for-the-badge&color=1e90ff">
+<img alt="License" src="https://img.shields.io/github/license/DCFApixels/KeyTea?color=1e90ff&style=for-the-badge">
 </p>
 
 # 🍵 Password Tea — Генератор и менеджер паролей
@@ -17,27 +17,27 @@
   <tr></tr>
   <tr>
     <td nowrap width="100">
-      <a href="https://github.com/DCFApixels/PasswordTea/blob/main/README-RU.md">
-        <img src="https://github.com/user-attachments/assets/3c699094-f8e6-471d-a7c1-6d2e9530e721"></br>
+      <a href="https://github.com/DCFApixels/KeyTea/blob/main/README-RU.md">
+        <img src="https://github.com/user-attachments/assets/3c699094-f8e6-471d-a7c1-6d2e9530e721"><br>
         <span>Русский</span>
       </a>  
     </td>
     <td nowrap width="100">
-      <a href="https://github.com/DCFApixels/PasswordTea">
-        <img src="https://github.com/user-attachments/assets/30528cb5-f38e-49f0-b23e-d001844ae930"></br>
+      <a href="https://github.com/DCFApixels/KeyTea">
+        <img src="https://github.com/user-attachments/assets/30528cb5-f38e-49f0-b23e-d001844ae930"><br>
         <span>English</span>
       </a>  
     </td>
     <!--<td nowrap width="100">
-      <a href="https://github.com/DCFApixels/PasswordTea/blob/main/README-ZH.md">
-        <img src="https://github.com/user-attachments/assets/8e598a9a-826c-4a1f-b842-0c56301d2927"></br>
+      <a href="https://github.com/DCFApixels/KeyTea/blob/main/README-ZH.md">
+        <img src="https://github.com/user-attachments/assets/8e598a9a-826c-4a1f-b842-0c56301d2927"><br>
         <span>中文</span>
       </a>  
     </td>-->
   </tr>
 </table>
 
-Веб-приложение: [https://dcfapixels.github.io/PasswordTea/](https://dcfapixels.github.io/PasswordTea/) </br>
+Веб-приложение: [https://dcfapixels.github.io/KeyTea/](https://dcfapixels.github.io/KeyTea/) <br>
 Семантика версионирования: [Открыть](https://gist.github.com/DCFApixels/e53281d4628b19fe5278f3e77a7da9e8#file-dcfapixels_versioning_ru-md)
 
 <br>
@@ -47,17 +47,17 @@
 </p>
 
 ## 📖 Оглавление
-- [Как это работает?](#-Как-это-работает?)
-- [Безопасность](#-Безопасность)
-- [Особенности](#-Особенности)
-- [Руководство](#-Руководство)
-    - [Ввод мастер-пароля](#Экран-ввода-мастер-пароля)
-    - [Выбор пароля](#Экран-выбора-пароля)
-    - [Редактирование информации для пароля](#Экран-редактирования-информации-для-пароля)
-    - [Редактирование набора символов](#Экран-редактирования-набора-символов)
+- [Как это работает?](#-как-это-работает)
+- [Безопасность](#-безопасность)
+- [Особенности](#-особенности)
+- [Руководство](#-руководство)
+    - [Ввод мастер-пароля](#экран-ввода-мастер-пароля)
+    - [Выбор пароля](#экран-выбора-пароля)
+    - [Редактирование информации для пароля](#экран-редактирования-информации-для-пароля)
+    - [Редактирование набора символов](#экран-редактирования-набора-символов)
 - [Лицензия](#-лицензия)
 
-</br>
+<br>
 
 ## ❓ Как это работает?
 
@@ -65,7 +65,7 @@
 Если коротко, Password Tea вычисляет пароли вместо их хранения. Из комбинации мастер-пароля и названия сайта генерируется уникальный пароль для этого сайта. Одинаковые входные данные всегда дают одинаковый результат, поэтому сгенерированные пароли не нужно сохранять. Для хеширования используется SHA3-512, после чего детерминированный алгоритм приложения преобразует результат с учётом настроенных наборов символов. Сгенерированный пароль нельзя напрямую преобразовать обратно в мастер-пароль, однако слабый мастер-пароль всё ещё можно подобрать перебором.
 </p>
 
-</br>
+<br>
 
 ## 🔒 Безопасность
 
@@ -76,7 +76,7 @@
 
 **Преимущества:**<br>
 + Достаточно запомнить всего один мастер-пароль, а для каждого сайта генерируется отдельный пароль;
-+ Генерируемые пароли имеют случайный набор символов, что делает их надёжными;
++ Генерируемые пароли детерминированы, но выглядят случайными, поэтому их трудно угадать;
 + Password Tea не хранит сгенерированные пароли, поэтому в приложении нет единого хранилища, компрометация которого раскрыла бы все пароли сразу;
 + Сгенерированный пароль можно быстро изменить: изменение даже одного входного символа создаёт новый пароль.
 
@@ -84,7 +84,7 @@
 + Утечка мастер-пароля открывает доступ ко всем сгенерированным паролям;
 + Один мастер-пароль легче подвергается различным видам атак.
 
-</br>
+<br>
 
 ## ⭐ Особенности
 
@@ -112,7 +112,7 @@
 Одинаковые входные данные дают одинаковый пароль на любом поддерживаемом устройстве.
 </p>
 
-</br>
+<br>
 
 ## 📜 Руководство
 
@@ -171,11 +171,11 @@
 
 ![image](https://github.com/user-attachments/assets/efb2d3da-8c45-4468-b562-dbd89e055514)
 
-</br>
+<br>
 
 ## 📑 Лицензия
 
-Лицензия MIT: [https://raw.githubusercontent.com/DCFApixels/PasswordTea/refs/heads/main/LICENSE](https://raw.githubusercontent.com/DCFApixels/PasswordTea/refs/heads/main/LICENSE)
+Лицензия MIT: [https://raw.githubusercontent.com/DCFApixels/KeyTea/refs/heads/main/LICENSE](https://raw.githubusercontent.com/DCFApixels/KeyTea/refs/heads/main/LICENSE)
 
-</br>
-</br>
+<br>
+<br>

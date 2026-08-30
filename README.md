@@ -1,10 +1,10 @@
 <p align="center">
-<img width="300" src="https://github.com/DCFApixels/PasswordTea/blob/main/images/MainIcon.png">
+<img width="300" src="https://github.com/DCFApixels/KeyTea/blob/main/images/MainIcon.png">
 </p>
 
 <p align="center">
-<img alt="Version" src="https://img.shields.io/github/manifest-json/v/DCFApixels/PasswordTea?style=for-the-badge&color=1e90ff">
-<img alt="License" src="https://img.shields.io/github/license/DCFApixels/PasswordTea?color=1e90ff&style=for-the-badge">
+<img alt="Version" src="https://img.shields.io/github/manifest-json/v/DCFApixels/KeyTea?style=for-the-badge&color=1e90ff">
+<img alt="License" src="https://img.shields.io/github/license/DCFApixels/KeyTea?color=1e90ff&style=for-the-badge">
 </p>
 
 # 🍵 Password Tea — Password Generator and Manager
@@ -17,47 +17,47 @@
   <tr></tr>
   <tr>
     <td nowrap width="100">
-      <a href="https://github.com/DCFApixels/PasswordTea/blob/main/README-RU.md">
-        <img src="https://github.com/user-attachments/assets/7bc29394-46d6-44a3-bace-0a3bae65d755"></br>
+      <a href="https://github.com/DCFApixels/KeyTea/blob/main/README-RU.md">
+        <img src="https://github.com/user-attachments/assets/7bc29394-46d6-44a3-bace-0a3bae65d755"><br>
         <span>Русский</span>
       </a>  
     </td>
     <td nowrap width="100">
-      <a href="https://github.com/DCFApixels/PasswordTea">
-        <img src="https://github.com/user-attachments/assets/3c699094-f8e6-471d-a7c1-6d2e9530e721"></br>
+      <a href="https://github.com/DCFApixels/KeyTea">
+        <img src="https://github.com/user-attachments/assets/3c699094-f8e6-471d-a7c1-6d2e9530e721"><br>
         <span>English</span>
       </a>  
     </td>
     <!--<td nowrap width="100">
-      <a href="https://github.com/DCFApixels/PasswordTea/blob/main/README-ZH.md">
-        <img src="https://github.com/user-attachments/assets/8e598a9a-826c-4a1f-b842-0c56301d2927"></br>
+      <a href="https://github.com/DCFApixels/KeyTea/blob/main/README-ZH.md">
+        <img src="https://github.com/user-attachments/assets/8e598a9a-826c-4a1f-b842-0c56301d2927"><br>
         <span>中文</span>
       </a>  
     </td>-->
   </tr>
 </table>
 
-Web app: [https://dcfapixels.github.io/PasswordTea/](https://dcfapixels.github.io/PasswordTea/) </br>
+Web app: [https://dcfapixels.github.io/KeyTea/](https://dcfapixels.github.io/KeyTea/) <br>
 Versioning scheme: [Open](https://gist.github.com/DCFApixels/c3b178a308b411f530361d1d56f1f929#file-dcfapixels_versioning_en-md)
 
-</br>
+<br>
 
 <p align="justify">
 A small password manager that derives passwords instead of storing them on the user's device or on a server. It runs on any device with a compatible browser, and a saved copy of Password Tea can also be used without an internet connection.
 </p>
 
 ## 📖 Table of Contents
-- [How does it work?](#-how-does-it-work?)
+- [How does it work?](#-how-does-it-work)
 - [Security](#-security)
 - [Features](#-features)
 - [Guide](#-guide)
-    - [Master Password Input](#Master-Password-Input-Screen)
-    - [Password Selection](#Password-Selection-Screen)
-    - [Password Information Editing](#Password-Information-Editing-Screen)
-    - [Character Set Editing](#Character-Set-Editing)
+    - [Master Password Input](#master-password-input-screen)
+    - [Password Selection](#password-selection-screen)
+    - [Password Information Editing](#password-information-editing-screen)
+    - [Character Set Editing](#character-set-editing-screen)
 - [License](#-license)
 
-</br>
+<br>
 
 ## ❓ How does it work?
 
@@ -66,7 +66,7 @@ In short, Password Tea derives passwords instead of storing them. A unique passw
 </p>
 
 
-</br>
+<br>
 
 ## 🔒 Security
 
@@ -77,7 +77,7 @@ In short, Password Tea derives passwords instead of storing them. A unique passw
 
 **Advantages:**<br>
 + You only need to remember one master password, while a unique password is generated for each site;
-+ Generated passwords consist of a random set of characters, making them secure;
++ Generated passwords are deterministic but look random, making them difficult to guess;
 + Password Tea does not store generated passwords, so there is no central password vault whose compromise would expose them all at once;
 + Generated passwords can be changed quickly: changing even one input character produces a new password.
 
@@ -85,7 +85,7 @@ In short, Password Tea derives passwords instead of storing them. A unique passw
 + If the master password is leaked, all generated passwords become accessible;
 + A single master password is easier to target with various types of attacks.
 
-</br>
+<br>
 
 ## ⭐ Features
 
@@ -113,7 +113,7 @@ If a password needs to be changed, its version can be increased in the settings 
 The same inputs produce the same password on every supported device.
 </p>
 
-</br>
+<br>
 
 ## 📜 Guide
 
@@ -173,11 +173,11 @@ After completing the edits, click `Save` to save the changes or `Cancel` to disc
 
 ![image](https://github.com/user-attachments/assets/efb2d3da-8c45-4468-b562-dbd89e055514)
 
-</br>
+<br>
 
 ## 📑 License
 
-The MIT License: [https://raw.githubusercontent.com/DCFApixels/PasswordTea/refs/heads/main/LICENSE](https://raw.githubusercontent.com/DCFApixels/PasswordTea/refs/heads/main/LICENSE)
+The MIT License: [https://raw.githubusercontent.com/DCFApixels/KeyTea/refs/heads/main/LICENSE](https://raw.githubusercontent.com/DCFApixels/KeyTea/refs/heads/main/LICENSE)
 
-</br>
-</br>
+<br>
+<br>
