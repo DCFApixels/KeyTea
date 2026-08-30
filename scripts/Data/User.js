@@ -1,74 +1,266 @@
-const USER_DATA_KEY = "PasswordCalculator-UserData";
+const USER_DATA_KEY = "PasswordTea-UserData";
 
-class UserData
-{
-    rawPasswordRecords;
-    charsetRecords;
-
-    static CreateDefault()
+const UserData = {
+    CreateDefault()
     {
-        let ud = new UserData();
-        ud.rawPasswordRecords = Object.assign(builtinRawPasswordRecords);
-        ud.charsetRecords = Object.assign(builtinCharsetRecords);
-        return ud;
-    }
+        let charsetRecords = {};
+        let charsetIds = Object.keys(builtinCharsetRecords);
 
-    static Clear()
-    {
-        localStorage.clear();
-    }
-
-    static Load()
-    {
-        //this.Clear(); 
-        
-        let json = localStorage.getItem(USER_DATA_KEY);
-        let userData = this.FromJson(json);
-        if(userData == null)
+        for (let i = 0; i < charsetIds.length; i++)
         {
-            userData = UserData.CreateDefault(); 
+            const record = CharsetRecords.Create(builtinCharsetRecords[charsetIds[i]]);
+            charsetRecords[record.myuid] = record;
         }
 
-        return userData;
-    }
-    static Save(userData)
-    {
-        let json = this.ToJson(userData);
-        localStorage.setItem(USER_DATA_KEY, json);
-    }
+        return {
+            rawPasswordRecords: builtinRawPasswordRecords.map(record => RawPasswordRecords.Create(record)),
+            charsetRecords: charsetRecords,
+            generationAlgorithm: null,
+        };
+    },
 
-    static FromJson(json)
+    Normalize(value)
     {
-        let userData = JSON.parse(json);
-
-        if(userData == null) { return null; }
-        //TODO блэт, ктож знал что класс JSON не умеет сохранять прототипы классов, только я не додумался до этого.
-        //пришлось написать костыль, который по хорошему тоже бы переработать.
-        //В общем приходится агрессивно вручную восстанавливать прототипы после загрузки.
-        //Чтобы исправить нужно просто убрать все поведение из объектов, одних только данных вполне достаточно
-        let charsetRecordKeys = Object.keys(userData.charsetRecords);
-        for (let i = 0; i < userData.rawPasswordRecords.length; i++)
+        if(this.IsRecord(value) == false)
         {
-            const element = userData.rawPasswordRecords[i];
-            let obj = new RawPasswordRecord();
-            userData.rawPasswordRecords[i] = Object.assign(obj, element);;
-        }
-        for (let i = 0; i < charsetRecordKeys.length; i++)
-        {
-            const element = userData.charsetRecords[charsetRecordKeys[i]];
-            let obj = new CharsetRecord();
-            userData.charsetRecords[charsetRecordKeys[i]] = Object.assign(obj, element);
+            return this.CreateDefault();
         }
 
-        //console.log(userData);
+        const defaults = this.CreateDefault();
+        let charsetRecords = this.NormalizeCharsetRecords(value.charsetRecords);
 
-        return userData;
-    }
-    static ToJson(userData)
+        if(Object.keys(charsetRecords).length <= 0)
+        {
+            charsetRecords = defaults.charsetRecords;
+        }
+
+        return {
+            rawPasswordRecords: this.NormalizeRawPasswordRecords(
+                value.rawPasswordRecords,
+                charsetRecords,
+                defaults.rawPasswordRecords),
+            charsetRecords: charsetRecords,
+            generationAlgorithm: this.NormalizeGenerationAlgorithm(value.generationAlgorithm),
+        };
+    },
+
+    NormalizeCharsetRecords(value)
     {
-        return JSON.stringify(userData);
-    }
-}
+        if(value == null || typeof value !== "object")
+        {
+            return {};
+        }
+
+        const sourceIsArray = Array.isArray(value);
+        const entries = Object.entries(value);
+        let result = {};
+
+        for (let i = 0; i < entries.length; i++)
+        {
+            const sourceKey = entries[i][0];
+            const sourceRecord = entries[i][1];
+
+            if(CharsetRecords.IsRecord(sourceRecord) == false)
+            {
+                continue;
+            }
+
+            let id = sourceIsArray == false && this.IsSafeId(sourceKey)
+                ? sourceKey
+                : sourceRecord.myuid;
+
+            if(this.IsSafeId(id) == false)
+            {
+                id = MYUID.Generate();
+            }
+
+            const record = CharsetRecords.Create(Object.assign({}, sourceRecord, { myuid: id }));
+            if(record.chars.length <= 0)
+            {
+                continue;
+            }
+
+            result[id] = record;
+        }
+
+        return result;
+    },
+
+    NormalizeRawPasswordRecords(value, charsetRecords, fallbackRecords)
+    {
+        let sourceRecords;
+
+        if(Array.isArray(value))
+        {
+            if(value.length <= 0)
+            {
+                return [];
+            }
+            sourceRecords = value;
+        }
+        else if(this.IsRecord(value))
+        {
+            sourceRecords = Object.values(value);
+            if(sourceRecords.length <= 0)
+            {
+                sourceRecords = fallbackRecords;
+            }
+        }
+        else
+        {
+            sourceRecords = fallbackRecords;
+        }
+
+        let result = [];
+        for (let i = 0; i < sourceRecords.length; i++)
+        {
+            if(RawPasswordRecords.IsRecord(sourceRecords[i]))
+            {
+                result.push(this.NormalizeRawPasswordRecord(sourceRecords[i], charsetRecords));
+            }
+        }
+
+        if(result.length <= 0 && sourceRecords.length > 0)
+        {
+            return fallbackRecords.map(record => this.NormalizeRawPasswordRecord(record, charsetRecords));
+        }
+
+        return result;
+    },
+
+    NormalizeRawPasswordRecord(value, charsetRecords)
+    {
+        const record = RawPasswordRecords.Create(value);
+        const availableCharsetIds = Object.keys(charsetRecords);
+        let usedCharsets = [];
+
+        for (let i = 0; i < record.usedCharsets.length; i++)
+        {
+            const id = record.usedCharsets[i];
+            if(Object.prototype.hasOwnProperty.call(charsetRecords, id) && usedCharsets.includes(id) == false)
+            {
+                usedCharsets.push(id);
+            }
+        }
+
+        if(usedCharsets.length <= 0)
+        {
+            usedCharsets = DEFAULT_USED_CHARSET_IDS.filter(
+                id => Object.prototype.hasOwnProperty.call(charsetRecords, id));
+        }
+        if(usedCharsets.length <= 0)
+        {
+            usedCharsets = availableCharsetIds.slice(0, 4);
+        }
+
+        record.usedCharsets = usedCharsets;
+        record.length = Math.max(record.length, usedCharsets.length, 1);
+        return record;
+    },
+
+    IsRecord(value)
+    {
+        return value != null && typeof value === "object" && Array.isArray(value) == false;
+    },
+
+    NormalizeGenerationAlgorithm(value)
+    {
+        if(typeof value !== "string" || value.trim().length <= 0)
+        {
+            return null;
+        }
+
+        try
+        {
+            new Function(
+                "rawPasswordString",
+                "masterPasswordHash",
+                "charsetsArray",
+                "resultPasswordLength",
+                value);
+            return value;
+        }
+        catch(error)
+        {
+            return null;
+        }
+    },
+
+    IsSafeId(value)
+    {
+        return typeof value === "string"
+            && value.trim().length > 0
+            && value !== "__proto__"
+            && value !== "prototype"
+            && value !== "constructor";
+    },
+};
+
+const UserDataStorage = {
+    Clear()
+    {
+        try
+        {
+            localStorage.removeItem(USER_DATA_KEY);
+            return true;
+        }
+        catch(error)
+        {
+            console.error("Unable to clear saved user data.", error);
+            return false;
+        }
+    },
+
+    Load()
+    {
+        try
+        {
+            return this.FromJson(localStorage.getItem(USER_DATA_KEY));
+        }
+        catch(error)
+        {
+            console.warn("Unable to read saved user data. Defaults were restored.", error);
+            return UserData.CreateDefault();
+        }
+    },
+
+    Save(userData)
+    {
+        try
+        {
+            localStorage.setItem(USER_DATA_KEY, this.ToJson(userData));
+            return true;
+        }
+        catch(error)
+        {
+            console.error("Unable to save user data.", error);
+            return false;
+        }
+    },
+
+    FromJson(json)
+    {
+        if(typeof json !== "string" || json.trim().length <= 0)
+        {
+            return UserData.CreateDefault();
+        }
+
+        try
+        {
+            return UserData.Normalize(JSON.parse(json));
+        }
+        catch(error)
+        {
+            console.warn("Saved user data is invalid. Defaults were restored.", error);
+            return UserData.CreateDefault();
+        }
+    },
+
+    ToJson(userData)
+    {
+        return JSON.stringify(UserData.Normalize(userData));
+    },
+};
 
 class UserSession
 {
@@ -78,7 +270,8 @@ class UserSession
     EnterMasterPassword(password)
     {
         //TODO доработать хеширование мастер пароля
-        this.masterPasswordHash = GeneratePasswordWithDefaultHash(new RawPasswordRecord("Master", null, null, 256), builtinCharsetRecords, password);
+        const masterPasswordRecord = RawPasswordRecords.Create({ name: "Master", length: 256 });
+        this.masterPasswordHash = GeneratePasswordWithDefaultHash(masterPasswordRecord, builtinCharsetRecords, password);
         //console.log(this.masterPasswordHash);
     }
 }

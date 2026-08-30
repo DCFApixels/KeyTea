@@ -22,13 +22,15 @@ class SelectRawPasswordController
     {
         let rawPasswordRecords = this.model.data.rawPasswordRecords;
         let rawPasswordRecordKeys = Object.keys(rawPasswordRecords);
+        let newElementsFragment = document.createDocumentFragment();
 
         for (let i = this.rawPasswordControllers.length; i < rawPasswordRecordKeys.length; i++)
         {
-            let v = RawPasswordElementView.Create(this.view.rawPasswordsList);
+            let v = RawPasswordElementView.Create(newElementsFragment);
             let c = new RawPasswordElementController(rawPasswordRecords[rawPasswordRecordKeys[i]], v, this, i);
             this.rawPasswordControllers.push(c);
         }
+        this.view.rawPasswordsList.appendChild(newElementsFragment);
 
         for (let i = 0; i < rawPasswordRecordKeys.length; i++)
         {
@@ -89,7 +91,7 @@ class SelectRawPasswordController
     OnAddRawPasswordButtonClick()
     {
         let rawPasswordRecords = this.model.data.rawPasswordRecords;
-        rawPasswordRecords.push(new RawPasswordRecord());
+        rawPasswordRecords.push(RawPasswordRecords.Create());
         this.#ApplyRawPasswordControllers();
     }
 
@@ -121,7 +123,7 @@ class SelectRawPasswordController
 
     OnExportButtonClick()
     {
-        ImportExportDialogUtility.OpenExportJsonDialog(UserData.ToJson(this.model.data));
+        ImportExportDialogUtility.OpenExportJsonDialog(UserDataStorage.ToJson(this.model.data));
     }
     OnImportButtonClick()
     {
@@ -136,21 +138,21 @@ class SelectRawPasswordController
 
     #OnImportDataComplete(contents)
     {
-        this.model.data = UserData.FromJson(contents);
+        this.model.data = UserDataStorage.FromJson(contents);
         this.SaveUserData();
         this.#ApplyRawPasswordControllers();
     }
 
     SaveUserData()
     {
-        UserData.Save(this.model.data);
+        UserDataStorage.Save(this.model.data);
     }
 
     Open() 
     {
-        this.view.Open();
         this.#ApplyRawPasswordControllers();
         this.OnRawPasswordElementSelected(this.currentRawPasswordNumber);
+        this.view.Open();
     }
     Close() { this.view.Close(); }
 }

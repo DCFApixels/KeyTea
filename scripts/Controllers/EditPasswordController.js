@@ -33,7 +33,7 @@ class EditPasswordController
         if(this.#CheckSaveRequires()) 
         {
             this.modelClone.usedCharsets = Object.keys(this.currentCharsetGroup);
-            Object.assign(this.model, this.modelClone);
+            Object.assign(this.model, RawPasswordRecords.Create(this.modelClone));
             this.#ReturnToSelectPasswordScreen();
         }
     }
@@ -72,16 +72,15 @@ class EditPasswordController
     
     OpenRestore()
     {
-        this.view.Open(); 
         this.view.ShowErrorMessage(null);
         this.#ApplyCharsetControllers();
         this.OnCharsetElementSelected();
+        this.view.Open();
     }
     Open(db, model) 
     {
         this.SetDB(db);
         this.SetModel(model);
-        this.view.Open(); 
 
         this.view.name = model.name;
         this.view.user = model.userName;
@@ -91,6 +90,7 @@ class EditPasswordController
         this.view.ShowErrorMessage(null);
         this.#ApplyCharsetControllers();
         this.OnCharsetElementSelected();
+        this.view.Open();
     }
     Close() { this.view.Close(); }
 
@@ -126,14 +126,16 @@ class EditPasswordController
         }
         let charsetRecords = this.db.data.charsetRecords;
         let charsetRecordKeys = Object.keys(charsetRecords);
+        let newElementsFragment = document.createDocumentFragment();
 
         for (let i = this.charsetControllers.length; i < charsetRecordKeys.length; i++)
         {
             //TODO переделать чтоб небыло явной заисимости от CharsetElementView
-            let v = CharsetElementView.Create(this.view.charsetsList);
+            let v = CharsetElementView.Create(newElementsFragment);
             let c = new CharsetElementController(charsetRecords[charsetRecordKeys[i]], v, this, i);
             this.charsetControllers.push(c);
         }
+        this.view.charsetsList.appendChild(newElementsFragment);
 
         for (let i = 0; i < charsetRecordKeys.length; i++)
         {
@@ -181,7 +183,7 @@ class EditPasswordController
     OnAddCharsetButtonClick()
     {
         let charsetRecords = this.db.data.charsetRecords;
-        let newRecord = new CharsetRecord();
+        let newRecord = CharsetRecords.Create();
         charsetRecords[newRecord.myuid] = newRecord;
         this.#ApplyCharsetControllers();
     }
@@ -203,6 +205,6 @@ class EditPasswordController
 
     SaveUserData()
     {
-        UserData.Save(this.db.data);
+        UserDataStorage.Save(this.db.data);
     }
 }

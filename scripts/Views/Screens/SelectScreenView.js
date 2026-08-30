@@ -93,11 +93,11 @@ class SelectScreenView extends ViewBase
     Open()
     {
         this.root.classList.remove('disabled');
-        this.root.classList.remove('hidden');
+        this.ShowRoot(this.root);
     }
     Close()
     {
         //this.root.classList.add('disabled');
-        this.root.classList.add('hidden');
+        this.HideRoot(this.root);
     }
 }

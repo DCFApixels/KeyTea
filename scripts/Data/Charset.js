@@ -1,48 +1,104 @@
-class CharsetRecord
-{
-    myuid = "";
-    name = "Unnamed";
-    _chars = "";
-    priority = 1;
-
-    get keyName() { return StringUtility.SimplifyString(this.name); }
-
-    get chars() { return this._chars; }
-    set chars(value) { this._chars = StringUtility.RemoveDuplicatesInSorted(StringUtility.SortCharset(value)); }
-
-    get length() { return this._chars.length; }
-
-    constructor(name, chars, priority) 
+const CharsetRecords = {
+    Create(values = {})
     {
-        this.myuid = MYUID.Generate();
-        if(name != null) { this.name = name; }
-        if(chars != null) { this.chars = chars; }
-        if(priority != null) { this.priority = priority; }
-    } 
-    SetMyuid(myuid)
-    {
-        this.myuid = myuid;
-        return this;
-    }
-}
+        if(this.IsRecord(values) == false)
+        {
+            values = {};
+        }
 
-function AddRecord(table, record)
-{
-    table[record.myuid] = record;
-}
+        return {
+            myuid: this.NormalizeId(values.myuid),
+            name: this.NormalizeName(values.name),
+            chars: this.NormalizeChars(values.chars),
+            priority: this.NormalizePriority(values.priority),
+        };
+    },
+
+    IsRecord(value)
+    {
+        return value != null && typeof value === "object" && Array.isArray(value) == false;
+    },
+
+    NormalizeId(value)
+    {
+        if(typeof value === "string" && value.trim().length > 0)
+        {
+            return value;
+        }
+        return MYUID.Generate();
+    },
+
+    NormalizeName(value)
+    {
+        if(typeof value === "string" && value.trim().length > 0)
+        {
+            return value;
+        }
+        return "Unnamed";
+    },
+
+    NormalizeChars(value)
+    {
+        if(typeof value !== "string")
+        {
+            return "";
+        }
+
+        return StringUtility.RemoveDuplicatesInSorted(StringUtility.SortCharset(value));
+    },
+
+    NormalizePriority(value)
+    {
+        let number = typeof value === "number" ? value : Number(value);
+        if(Number.isSafeInteger(number) && number >= 0)
+        {
+            return number;
+        }
+        return 1;
+    },
+};
 
 const builtinCharsetRecords = {};
-AddRecord(builtinCharsetRecords, new CharsetRecord("Numbers", "0123456789", 3)
-    .SetMyuid("071050236146145001000000000000000000000000000001"));
-AddRecord(builtinCharsetRecords, new CharsetRecord("Specials", ".,~!@#$%^&*()`'\"<>?/\\{}[]:;|+=_-", 1)
-    .SetMyuid("071050236146145001000000000000000000000000000002"));
-AddRecord(builtinCharsetRecords, new CharsetRecord("En Lower", "abcdefghijklmnopqrstuvwxyz", 2)
-    .SetMyuid("071050236146145001000000000000000000000000000003"));
-AddRecord(builtinCharsetRecords, new CharsetRecord("En Upper", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", 2)
-    .SetMyuid("071050236146145001000000000000000000000000000004"));
-AddRecord(builtinCharsetRecords, new CharsetRecord("Ru Lower", "абвгдеёжзийклмнопрстуфхцчшщъыьэюя", 2)
-    .SetMyuid("071050236146145001000000000000000000000000000005"));
-AddRecord(builtinCharsetRecords, new CharsetRecord("Ru Upper", "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ", 2)
-    .SetMyuid("071050236146145001000000000000000000000000000006"));
 
-//console.log(builtinCharsetRecords);
+function AddBuiltinCharset(values)
+{
+    const record = CharsetRecords.Create(values);
+    builtinCharsetRecords[record.myuid] = record;
+}
+
+AddBuiltinCharset({
+    myuid: "071050236146145001000000000000000000000000000001",
+    name: "Numbers",
+    chars: "0123456789",
+    priority: 3,
+});
+AddBuiltinCharset({
+    myuid: "071050236146145001000000000000000000000000000002",
+    name: "Specials",
+    chars: ".,~!@#$%^&*()`'\"<>?/\\{}[]:;|+=_-",
+    priority: 1,
+});
+AddBuiltinCharset({
+    myuid: "071050236146145001000000000000000000000000000003",
+    name: "En Lower",
+    chars: "abcdefghijklmnopqrstuvwxyz",
+    priority: 2,
+});
+AddBuiltinCharset({
+    myuid: "071050236146145001000000000000000000000000000004",
+    name: "En Upper",
+    chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    priority: 2,
+});
+AddBuiltinCharset({
+    myuid: "071050236146145001000000000000000000000000000005",
+    name: "Ru Lower",
+    chars: "абвгдеёжзийклмнопрстуфхцчшщъыьэюя",
+    priority: 2,
+});
+AddBuiltinCharset({
+    myuid: "071050236146145001000000000000000000000000000006",
+    name: "Ru Upper",
+    chars: "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ",
+    priority: 2,
+});

@@ -11,25 +11,45 @@
 </head>
 <body>
     <div  class="screen_group">
+
+        <div class="screen" id="login_screen_X">
+            <div class="form hidden">
+                <header>
+                    <a href="https://github.com/DCFApixels/PasswordTea">
+                        <img width="" src="images/MainIcon.png" alt="">
+                    </a>  
+                    <h1>Generation Algorithm</h1>
+                </header>
+                <div class="vertical_expand_layout">
+                    <textarea class="code_area" title="Generation Algorithm" placeholder="Enter generation algorithm..." type="text" name="" id="generation_algorithm_field"></textarea>
+                </div>      
+                <div style="height: 10px"></div>
+                <div class="horizontal_buttons_group">
+                    <button id="raw_password_save_button" type="button" class="green">Save</button>
+                    <button id="raw_password_cancel_button" type="button">Cancel</button>
+                </div>
+            </div>
+        </div>
+
         <div class="screen" id="login_screen">
             <div class="form">
                 <header>
-                    <a href="https://github.com/DCFApixels/KeyTea">
+                    <a href="https://github.com/DCFApixels/PasswordTea">
                         <img width="" src="images/MainIcon.png" alt="">
                     </a>  
                     <h1>Master Password</h1>
                 </header>
                 <div class="input_button_pair">
-                    <input title="Master password" placeholder="Enter master password..." type="password" name="" id="master_password_field">
+                    <input class="field" title="Master password" placeholder="Enter master password..." type="password" name="" id="master_password_field">
                     <button type="button" id="master_password_continue_button">Continue</button>
-                </div>    
+                </div>  
             </div>
         </div>
 
         <div class="screen" id="select_screen">
             <div class="form hidden">
                 <header>
-                    <a href="https://github.com/DCFApixels/KeyTea">
+                    <a href="https://github.com/DCFApixels/PasswordTea">
                         <img width="" src="images/MainIcon.png" alt="">
                     </a>  
                     <h1>Passwords</h1>
@@ -45,7 +65,7 @@
                 
                 <div class="result_password_block">
                     <label>Password</label>
-                    <input id="output_password" title="Password" readonly placeholder="Select any site..." type="password" name="" id="">
+                    <input class="field" id="output_password" title="Password" readonly placeholder="Select any site..." type="password" name="" id="">
                     <button id="output_password_copy_button" class="icon_button copy">.</button>
                     <button id="output_password_show_button" class="icon_button show_aye on">.</input>
                 </div>
@@ -61,23 +81,23 @@
         <div class="screen" id="edit_password_screen">
             <div class="form hidden">
                 <header>
-                    <a href="https://github.com/DCFApixels/KeyTea">
+                    <a href="https://github.com/DCFApixels/PasswordTea">
                         <img width="" src="images/MainIcon.png" alt="">
                     </a>  
                     <h1>Edit password info</h1>
                 </header>
                 <div class="label_input_pair">
-                    <label>Name</label><input id="raw_password_name_field" type="text">
+                    <label>Name</label><input class="field" id="raw_password_name_field" type="text">
                 </div>
                 <div class="label_input_pair">
-                    <label>User</label><input id="raw_password_user_field" type="text">
+                    <label>User</label><input class="field" id="raw_password_user_field" type="text">
                 </div>
                 <div class="label_input_pair">
-                    <label>Length</label><input id="raw_password_length_field" type="number">
+                    <label>Length</label><input class="field" id="raw_password_length_field" type="number">
                 </div>
                 <div class="label_input_pair">
                     <label>Version</label>
-                    <input id="raw_password_version_field" type="number" value="1">
+                    <input class="field" id="raw_password_version_field" type="number" value="1">
                     <button id="raw_password_up_version_button" type="button">Up</button>
                 </div>
 
@@ -100,19 +120,19 @@
         <div class="screen" id="edit_charset_screen">
             <div class="form hidden">
                 <header>
-                    <a href="https://github.com/DCFApixels/KeyTea">
+                    <a href="https://github.com/DCFApixels/PasswordTea">
                         <img width="" src="images/MainIcon.png" alt="">
                     </a>  
                     <h1>Edit charset</h1>
                 </header>
                 <div class="label_input_pair">
-                    <label>Name</label><input id="charset_name_field" type="text"><br>
+                    <label>Name</label><input class="field" id="charset_name_field" type="text"><br>
                 </div>
                 <div class="label_input_pair">
-                    <label>Charset</label><input id="charset_chars_field" type="text"><br>
+                    <label>Charset</label><input class="field" id="charset_chars_field" type="text"><br>
                 </div>
                 <div class="label_input_pair">
-                    <label>Priority</label><input id="charset_priority_field" type="text"><br>
+                    <label>Priority</label><input class="field" id="charset_priority_field" type="text"><br>
                 </div>
                 <div class="auto_space"></div>
                 <div class="horizontal_buttons_group">

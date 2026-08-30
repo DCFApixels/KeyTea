@@ -31,7 +31,7 @@ class ScreensController
 }
 
 var userSession = new UserSession;
-userSession.data = UserData.Load();
+userSession.data = UserDataStorage.Load();
 
 var screensController = new ScreensController();
 

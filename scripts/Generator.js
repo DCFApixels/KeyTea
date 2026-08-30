@@ -5,54 +5,87 @@ Array.prototype.insert = function ( index, ...items ) {
     this.splice( index, 0, ...items );
 };
 
-function GeneratePasswordWithDefaultHash(rawPassword, allCharsets, masterPassword)
+function GeneratePasswordWithDefaultHash(rawPassword, allCharsets, masterPassword, algorithm)
 {
-    return GeneratePassword(rawPassword, allCharsets, sha3_512(masterPassword));
+    return GeneratePassword(rawPassword, allCharsets, sha3_512(masterPassword), algorithm);
 }
-function GeneratePassword(rawPassword, allCharsets, masterPasswordHash)
+function GeneratePassword(rawPassword, allCharsets, masterPasswordHash, algorithm)
 {
-    let rawString = rawPassword.GenerateRawString();
-    let hashString = sha3_512(rawString);
-    let rawPasswordBytes = textEncoder.encode(hashString);
-    let masterPasswordHashBytes = textEncoder.encode(masterPasswordHash);
-    let charsets = [];
+    let rawPasswordString = RawPasswordRecords.GenerateRawString(rawPassword);
+    let charsetsArray = SelectUsedCharsets(rawPassword, allCharsets);
 
-    // Перемешиваю мастер пароль и рав пароль. <
-    let acm = rawPasswordBytes[rawPassword.length % rawPasswordBytes.length] ^ rawPassword.length;
-    for (let i = 0; i < rawPasswordBytes.length; i++)
-    {
-        acm = RandomUtility.NextState(acm ^ rawPasswordBytes[i] ^ ~masterPasswordHashBytes[i % masterPasswordHashBytes.length]);
-        rawPasswordBytes[i] = acm % 256;
-    }
-    // >
-
-    // Подготовка
-    for (let i = 0; i < rawPassword.usedCharsets.length; i++)
-    {
-        const charset = allCharsets[rawPassword.usedCharsets[i]];
-        charsets.push(charset);
-    } 
-
-    if(charsets.length <= 0)
+    if(charsetsArray.length <= 0)
     {
         throw new Error("нет выбранных наборов символов");
     }
-    if(rawPassword.length < charsets.length)
+    if(rawPassword.length < charsetsArray.length)
     {
         throw new Error("длинна пароля меньше числа выбранных наборов символов");
     }
 
-    let passwordLength = rawPassword.length - charsets.length;
+    return RunGeneratePasswordAlgorithm(rawPasswordString, charsetsArray, masterPasswordHash, rawPassword.length, algorithm);
+}
+function RunGeneratePasswordAlgorithm(rawPasswordString, charsetsArray, masterPasswordHash, resultPasswordLength, algorithm)
+{
+    if(IsEmptyString(algorithm))
+    {
+        return DefaultGeneratePasswordAlgorithm(rawPasswordString, masterPasswordHash, charsetsArray, resultPasswordLength);
+    }
+    else
+    {
+        let func = new Function('rawPasswordString', 'masterPasswordHash', 'charsetsArray', 'resultPasswordLength', algorithm);
+        return func(rawPasswordString, masterPasswordHash, charsetsArray, resultPasswordLength);
+    }
+}
+
+
+
+
+
+function DefaultGeneratePasswordAlgorithm(rawPasswordString, masterPasswordHash, charsetsArray, resultPasswordLength)
+{
+    let rawPasswordHash = sha3_512(rawPasswordString);
+    let result = CombineAndConvertToPassword(rawPasswordHash, masterPasswordHash, charsetsArray, resultPasswordLength);
+    return result;
+}
+
+
+
+function CombineAndConvertToPassword(rawPasswordHash, masterPasswordHash, charsetsArray, resultPasswordLength)
+{
+    let rawPasswordHashBytes = textEncoder.encode(rawPasswordHash);
+    let masterPasswordHashBytes = textEncoder.encode(masterPasswordHash);
+
+    // Перемешиваю мастер пароль и рав пароль. <
+    let acm = rawPasswordHashBytes[resultPasswordLength % rawPasswordHashBytes.length] ^ resultPasswordLength;
+    for (let i = 0; i < rawPasswordHashBytes.length; i++)
+    {
+        acm = RandomUtility.NextState(acm ^ rawPasswordHashBytes[i] ^ ~masterPasswordHashBytes[i % masterPasswordHashBytes.length]);
+        rawPasswordHashBytes[i] = acm % 256;
+    }
+    // >
+
+    // Подготовка
+    if(charsetsArray.length <= 0)
+    {
+        throw new Error("нет выбранных наборов символов");
+    }
+    if(resultPasswordLength < charsetsArray.length)
+    {
+        throw new Error("длинна пароля меньше числа выбранных наборов символов");
+    }
+
+    let passwordLength = resultPasswordLength - charsetsArray.length;
     // >
 
     // Установка начального randomState <
     let randomState = randomRootSeed;
-    let rawPasswordBytesSum = 0;
-    for (let i = 0; i < rawPasswordBytes.length; i++)
+    let rawPasswordHashBytesSum = 0;
+    for (let i = 0; i < rawPasswordHashBytes.length; i++)
     {
-        rawPasswordBytesSum += rawPasswordBytes[i];
+        rawPasswordHashBytesSum += rawPasswordHashBytes[i];
     }
-    randomState = randomState ^ RandomUtility.NextState(rawPasswordBytesSum);
+    randomState = randomState ^ RandomUtility.NextState(rawPasswordHashBytesSum);
     // >
 
     // Генерация пароля <
@@ -60,15 +93,15 @@ function GeneratePassword(rawPassword, allCharsets, masterPasswordHash)
     let index = 0;
     for (let i = 0; i < passwordLength; i++)
     {
-        let byteValue = rawPasswordBytes[i % rawPasswordBytes.length];
+        let byteValue = rawPasswordHashBytes[i % rawPasswordHashBytes.length];
         randomState = Math.abs(RandomUtility.NextState(randomState + byteValue));
 
-        let charsetIndex = GetIndex(randomState, charsets);
+        let charsetIndex = GetIndex(randomState, charsetsArray);
 
-        byteValue = rawPasswordBytes[(i + 1) % rawPasswordBytes.length];
+        byteValue = rawPasswordHashBytes[(i + 1) % rawPasswordHashBytes.length];
         randomState = Math.abs(RandomUtility.NextState(randomState + byteValue));
 
-        let charset = charsets[charsetIndex];
+        let charset = charsetsArray[charsetIndex];
 
         index = randomState % charset.chars.length;
         result.push(charset.chars.charAt(index));
@@ -76,13 +109,13 @@ function GeneratePassword(rawPassword, allCharsets, masterPasswordHash)
     // >
 
     // Вставка в пароль по одному символу из каждого набора, для гарантированного наличия даже при низком приоритете. <
-    let tempCharsets = charsets.slice();
-    let tempCharsetsLength = charsets.length;
+    let tempCharsets = charsetsArray.slice();
+    let tempCharsetsLength = charsetsArray.length;
 
     randomState = Math.abs(RandomUtility.NextState(randomState));
-    let indexInResult = (randomState + rawPasswordBytes[rawPasswordBytes.length - 1]) % passwordLength;
+    let indexInResult = (randomState + rawPasswordHashBytes[rawPasswordHashBytes.length - 1]) % passwordLength;
 
-    for (let i = 0; i < charsets.length; i++)
+    for (let i = 0; i < charsetsArray.length; i++)
     {
         //берем в рандомном порядке чарсеты, так чтоб они не повторялись
         randomState = Math.abs(RandomUtility.NextState(randomState));
@@ -92,19 +125,36 @@ function GeneratePassword(rawPassword, allCharsets, masterPasswordHash)
         tempCharsetsLength--;
         //получен рандомный чарсет
 
-        let byteValue = rawPasswordBytes[i % rawPasswordBytes.length];
+        let byteValue = rawPasswordHashBytes[i % rawPasswordHashBytes.length];
 
         randomState = Math.abs(RandomUtility.NextState(randomState + byteValue));
         indexInResult = (indexInResult + randomState) % passwordLength;
-        index = randomState % charset.length;
+        index = randomState % charset.chars.length;
 
         result.insert(indexInResult, charset.chars.charAt(index));
     }
     // >
 
-    return result.join('');
+
+    let jointedResult = result.join('');
+    return jointedResult;
+
+
 }
 
+
+
+
+function SelectUsedCharsets(rawPassword, allCharsets)
+{
+    let charsets = [];
+    for (let i = 0; i < rawPassword.usedCharsets.length; i++)
+    {
+        const charset = allCharsets[rawPassword.usedCharsets[i]];
+        charsets.push(charset);
+    } 
+    return charsets;
+}
 function GetIndex(value, charsets) 
 {
     let sum = 0;
@@ -132,4 +182,8 @@ function GetIndex(value, charsets)
     }
 
     return priorities.length - 1;
+}
+function IsEmptyString(value)
+{
+    return value == null || (typeof value === 'string' && value.trim() === '');
 }

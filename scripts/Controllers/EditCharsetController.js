@@ -46,7 +46,7 @@ class EditCharsetController
     }
     SaveChanges()
     {
-        Object.assign(this.model, this.modelClone);
+        Object.assign(this.model, CharsetRecords.Create(this.modelClone));
         this.#ReturnToEditRawPasswordScreen();
     }
     CancelChanges()
@@ -65,13 +65,13 @@ class EditCharsetController
     Open(model) 
     {
         this.SetModel(model);
-        this.view.Open(); 
 
         this.view.name = model.name;
         this.view.chars = model.chars;
         this.view.priority = model.priority;
 
         //this.#ApplyChanges();
+        this.view.Open();
     }
     Close() { this.view.Close(); }
 
