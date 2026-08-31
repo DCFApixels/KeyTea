@@ -251,6 +251,15 @@ button.green[disabled] {
 button.green:hover{
     background-color: #15ff00;
 }
+button.danger{
+    background-color: #d92353;
+}
+button.danger:hover{
+    background-color: #f03264;
+}
+button.danger:active{
+    background-color: #a8173d;
+}
 /*==============================================================*/
 .icon_button, 
 .icon_button:hover,
@@ -295,10 +304,45 @@ button.green:hover{
 }
 .trnsp.icon_button.logout_button{
     background-image: url(../svgs/Logout_White.svg);
+}
+.trnsp.icon_button.clear_storage_button{
+    background-image: url(../svgs/ClearStorage_White.svg);
+}
+.trnsp.icon_button.logout_button,
+.trnsp.icon_button.clear_storage_button{
     height: 25pt;
     width: 25pt;
     background-size: 22pt;
     margin: -3pt;
+}
+/*==============================================================*/
+.modal_overlay{
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #00000099;
+}
+.modal_dialog{
+    width: min(420px, 100%);
+    padding: 20px;
+    border-radius: 10px;
+}
+.modal_dialog h2{
+    margin-bottom: 12px;
+    font-size: 16pt;
+}
+.modal_dialog p{
+    line-height: 1.45;
+}
+.modal_dialog .horizontal_buttons_group{
+    margin-top: 20px;
+}
+.modal_dialog .error_label{
+    margin-top: 12px;
 }
 /*==============================================================*/
 label{
@@ -543,6 +587,11 @@ input[type="checkbox"]:checked::before {
     .error_label {
         color: rgb(236, 0, 59);
     }
+    .modal_dialog {
+        color: #000000;
+        background-color: #fcfeff;
+        box-shadow: 0 8px 30px #08154b66;
+    }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -588,6 +637,11 @@ input[type="checkbox"]:checked::before {
 
     .error_label {
         color: rgb(255, 125, 157);
+    }
+    .modal_dialog {
+        color: #e3ebf1ec;
+        background-color: #474b4e;
+        box-shadow: 0 8px 30px #00000099;
     }
 }
 

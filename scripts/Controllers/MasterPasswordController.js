@@ -20,6 +20,18 @@ class MasterPasswordController
         this.Close();
     }
 
+    ClearUserData()
+    {
+        if(UserDataStorage.Clear() == false)
+        {
+            return false;
+        }
+
+        this.model.ClearMasterPassword();
+        this.model.data = UserData.CreateDefault();
+        return true;
+    }
+
     Open() { this.view.Open(); }
     Close() { this.view.Close(); }
 }

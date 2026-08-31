@@ -20,6 +20,7 @@
                         <img width="" src="images/MainIcon.png" alt="">
                     </a>  
                     <h1>Master Password</h1>
+                    <button id="clear_user_data_button" type="button" class="trnsp icon_button clear_storage_button" title="Clear local data" aria-label="Clear local data"></button>
                 </header>
                 <div class="input_button_pair">
                     <input class="field" title="Master password" placeholder="Enter master password..." type="password" name="" id="master_password_field">
@@ -126,6 +127,19 @@
             </div>
         </div>
     </div>
+
+    <div id="clear_user_data_dialog" class="modal_overlay hidden" role="dialog" aria-modal="true" aria-labelledby="clear_user_data_title" aria-describedby="clear_user_data_description">
+        <div class="modal_dialog">
+            <h2 id="clear_user_data_title">Clear local data?</h2>
+            <p id="clear_user_data_description">All saved password records and custom character sets will be deleted from this browser. This action cannot be undone.</p>
+            <div class="horizontal_buttons_group">
+                <button id="clear_user_data_cancel_button" type="button">Cancel</button>
+                <button id="clear_user_data_confirm_button" type="button" class="danger">Clear data</button>
+            </div>
+            <p id="clear_user_data_error" class="error_label hidden">Unable to clear saved data.</p>
+        </div>
+    </div>
+
     <div class="version"><span>1.0.0</span></div>
     
     <script src='scripts/Utils/Utility.js'></script>
