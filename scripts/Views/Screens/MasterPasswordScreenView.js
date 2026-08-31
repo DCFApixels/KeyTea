@@ -25,17 +25,26 @@ class MasterPasswordScreenView extends ViewBase
 
     #OnPasswordButtonClick()
     {
-        this.passwordField.value = "";
-        this.controller.Login(this.#masterPassword);
+        const masterPassword = this.#masterPassword;
+        this.Reset();
+        this.controller.Login(masterPassword);
     }
 
     #PrivateUpdateButton()
     {
-        this.passwordButton.disabled = !this.#masterPassword > 0;
+        this.passwordButton.disabled = this.#masterPassword.length <= 0;
+    }
+
+    Reset()
+    {
+        this.#masterPassword = "";
+        this.passwordField.value = "";
+        this.#PrivateUpdateButton();
     }
 
     Open()
     {
+        this.Reset();
         this.root.classList.remove('disabled');
         this.ShowRoot(this.root);
     }

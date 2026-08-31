@@ -32,7 +32,7 @@ const CharsetRecords = {
     {
         if(typeof value === "string" && value.trim().length > 0)
         {
-            return value;
+            return value.normalize("NFC");
         }
         return "Unnamed";
     },
@@ -44,7 +44,8 @@ const CharsetRecords = {
             return "";
         }
 
-        return StringUtility.RemoveDuplicatesInSorted(StringUtility.SortCharset(value));
+        const normalizedValue = value.normalize("NFC");
+        return StringUtility.RemoveDuplicatesInSorted(StringUtility.SortCharset(normalizedValue));
     },
 
     NormalizePriority(value)

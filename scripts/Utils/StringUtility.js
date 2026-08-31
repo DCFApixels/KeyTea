@@ -3,12 +3,14 @@ class StringUtility
     static SimplifyString(str)
     {
         //упрощение строки для упрощения запоминания пользователем
-        return str.trim() 
+        return (typeof str === "string" ? str.normalize("NFC") : "")
+            .trim()
             .replace(/\s+/g, ' ')
             .toLowerCase()
-            .replace("\\", "/")
-            .replace("—", "-")
-            .replace(/["`]/g, "'");
+            .replace(/\\/g, "/")
+            .replace(/—/g, "-")
+            .replace(/["`]/g, "'")
+            .normalize("NFC");
     }
 
     static SortCharset(str)

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="manifest" href="manifest.json">
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; script-src-attr 'none'; style-src 'self'; style-src-attr 'none'; img-src 'self'; font-src 'self'; manifest-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; worker-src 'none'">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="manifest.json">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <title>Password Tea</title>
 
@@ -11,25 +12,6 @@
 </head>
 <body>
     <div  class="screen_group">
-
-        <div class="screen" id="login_screen_X">
-            <div class="form hidden">
-                <header>
-                    <a href="https://github.com/DCFApixels/PasswordTea">
-                        <img width="" src="images/MainIcon.png" alt="">
-                    </a>  
-                    <h1>Generation Algorithm</h1>
-                </header>
-                <div class="vertical_expand_layout">
-                    <textarea class="code_area" title="Generation Algorithm" placeholder="Enter generation algorithm..." type="text" name="" id="generation_algorithm_field"></textarea>
-                </div>      
-                <div style="height: 10px"></div>
-                <div class="horizontal_buttons_group">
-                    <button id="raw_password_save_button" type="button" class="green">Save</button>
-                    <button id="raw_password_cancel_button" type="button">Cancel</button>
-                </div>
-            </div>
-        </div>
 
         <div class="screen" id="login_screen">
             <div class="form">

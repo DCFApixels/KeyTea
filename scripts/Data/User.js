@@ -15,7 +15,6 @@ const UserData = {
         return {
             rawPasswordRecords: builtinRawPasswordRecords.map(record => RawPasswordRecords.Create(record)),
             charsetRecords: charsetRecords,
-            generationAlgorithm: null,
         };
     },
 
@@ -40,7 +39,6 @@ const UserData = {
                 charsetRecords,
                 defaults.rawPasswordRecords),
             charsetRecords: charsetRecords,
-            generationAlgorithm: this.NormalizeGenerationAlgorithm(value.generationAlgorithm),
         };
     },
 
@@ -163,29 +161,6 @@ const UserData = {
         return value != null && typeof value === "object" && Array.isArray(value) == false;
     },
 
-    NormalizeGenerationAlgorithm(value)
-    {
-        if(typeof value !== "string" || value.trim().length <= 0)
-        {
-            return null;
-        }
-
-        try
-        {
-            new Function(
-                "rawPasswordString",
-                "masterPasswordHash",
-                "charsetsArray",
-                "resultPasswordLength",
-                value);
-            return value;
-        }
-        catch(error)
-        {
-            return null;
-        }
-    },
-
     IsSafeId(value)
     {
         return typeof value === "string"
@@ -273,5 +248,10 @@ class UserSession
         const masterPasswordRecord = RawPasswordRecords.Create({ name: "Master", length: 256 });
         this.masterPasswordHash = GeneratePasswordWithDefaultHash(masterPasswordRecord, builtinCharsetRecords, password);
         //console.log(this.masterPasswordHash);
+    }
+
+    ClearMasterPassword()
+    {
+        this.masterPasswordHash = "";
     }
 }

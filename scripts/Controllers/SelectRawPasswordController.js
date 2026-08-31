@@ -131,6 +131,9 @@ class SelectRawPasswordController
     }
     OnReturnToMasterPasswordButtonClick()
     {
+        this.model.ClearMasterPassword();
+        this.OnRawPasswordElementSelected(-1);
+
         let controller = this.screensController.GetScreen(MasterPasswordController);
         controller.Open();
         this.Close();

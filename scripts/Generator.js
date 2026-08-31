@@ -5,11 +5,14 @@ Array.prototype.insert = function ( index, ...items ) {
     this.splice( index, 0, ...items );
 };
 
-function GeneratePasswordWithDefaultHash(rawPassword, allCharsets, masterPassword, algorithm)
+function GeneratePasswordWithDefaultHash(rawPassword, allCharsets, masterPassword)
 {
-    return GeneratePassword(rawPassword, allCharsets, sha3_512(masterPassword), algorithm);
+    const normalizedMasterPassword = typeof masterPassword === "string"
+        ? masterPassword.normalize("NFC")
+        : "";
+    return GeneratePassword(rawPassword, allCharsets, sha3_512(normalizedMasterPassword));
 }
-function GeneratePassword(rawPassword, allCharsets, masterPasswordHash, algorithm)
+function GeneratePassword(rawPassword, allCharsets, masterPasswordHash)
 {
     let rawPasswordString = RawPasswordRecords.GenerateRawString(rawPassword);
     let charsetsArray = SelectUsedCharsets(rawPassword, allCharsets);
@@ -23,19 +26,7 @@ function GeneratePassword(rawPassword, allCharsets, masterPasswordHash, algorith
         throw new Error("длинна пароля меньше числа выбранных наборов символов");
     }
 
-    return RunGeneratePasswordAlgorithm(rawPasswordString, charsetsArray, masterPasswordHash, rawPassword.length, algorithm);
-}
-function RunGeneratePasswordAlgorithm(rawPasswordString, charsetsArray, masterPasswordHash, resultPasswordLength, algorithm)
-{
-    if(IsEmptyString(algorithm))
-    {
-        return DefaultGeneratePasswordAlgorithm(rawPasswordString, masterPasswordHash, charsetsArray, resultPasswordLength);
-    }
-    else
-    {
-        let func = new Function('rawPasswordString', 'masterPasswordHash', 'charsetsArray', 'resultPasswordLength', algorithm);
-        return func(rawPasswordString, masterPasswordHash, charsetsArray, resultPasswordLength);
-    }
+    return DefaultGeneratePasswordAlgorithm(rawPasswordString, masterPasswordHash, charsetsArray, rawPassword.length);
 }
 
 
@@ -182,8 +173,4 @@ function GetIndex(value, charsets)
     }
 
     return priorities.length - 1;
-}
-function IsEmptyString(value)
-{
-    return value == null || (typeof value === 'string' && value.trim() === '');
 }

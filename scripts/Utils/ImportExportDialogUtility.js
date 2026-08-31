@@ -4,9 +4,9 @@ class ImportExportDialogUtility
     {
         var fileInput = document.createElement("input");
         fileInput.type = "file";
-        fileInput.style.display = "none";
+        fileInput.classList.add("hidden");
 
-        fileInput.onchange = function(e)
+        fileInput.addEventListener("change", function(e)
         {
             var file = e.target.files[0];
             if(!file)
@@ -22,7 +22,7 @@ class ImportExportDialogUtility
                 //console.log("Import: \n\n" + contents);
             }
             reader.readAsText(file);
-        }
+        });
 
         fileInput.click();
     }
@@ -34,17 +34,17 @@ class ImportExportDialogUtility
 
         var downloadLink = document.createElement("a");
         downloadLink.download = fileNameToSaveAs;
-        downloadLink.innerHTML = "Скачать файл";
+        downloadLink.textContent = "Скачать файл";
         if (window.webkitURL != null) {
             // Chrome allows the link to be clicked without actually adding it to the DOM.
             downloadLink.href = window.webkitURL.createObjectURL(textToSaveAsBlob);
         } else {
             // Firefox requires the link to be added to the DOM before it can be clicked.
             downloadLink.href = window.URL.createObjectURL(textToSaveAsBlob);
-            downloadLink.onclick = function(event) {
+            downloadLink.addEventListener("click", function(event) {
                 document.body.removeChild(event.target);
-            };
-            downloadLink.style.display = "none";
+            });
+            downloadLink.classList.add("hidden");
             document.body.appendChild(downloadLink);
         }
     

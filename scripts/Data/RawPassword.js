@@ -16,7 +16,7 @@ const RawPasswordRecords = {
         return {
             myuid: this.NormalizeId(values.myuid),
             name: this.NormalizeName(values.name),
-            userName: typeof values.userName === "string" ? values.userName : "",
+            userName: typeof values.userName === "string" ? values.userName.normalize("NFC") : "",
             usedCharsets: this.NormalizeCharsetIds(values.usedCharsets),
             length: this.NormalizePositiveInteger(values.length, 12),
             version: this.NormalizePositiveInteger(values.version, 1),
@@ -41,7 +41,7 @@ const RawPasswordRecords = {
     {
         if(typeof value === "string" && value.trim().length > 0)
         {
-            return value;
+            return value.normalize("NFC");
         }
         return "Unnamed";
     },
@@ -75,8 +75,13 @@ const RawPasswordRecords = {
 
     GenerateRawString(record)
     {
-        let str = record.version + record.name.trim() + record.version + record.userName.trim() + record.version;
-        return StringUtility.SimplifyString(str);
+        const version = String(record.version);
+        const name = StringUtility.SimplifyString(record.name);
+        const userName = StringUtility.SimplifyString(record.userName);
+
+        return `${version};${version.length};`
+            + `${name};${name.length};`
+            + `${userName};${userName.length};`;
     },
 };
 
