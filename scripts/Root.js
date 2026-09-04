@@ -41,3 +41,14 @@ screensController.AddScreen(new EditPasswordController(null, new EditPasswordScr
 screensController.AddScreen(new EditCharsetController(null, new EditCharsetScreenView(), screensController));
 
 screensController.GetScreen(SelectRawPasswordController).Close();
+
+if("serviceWorker" in navigator && window.isSecureContext)
+{
+    window.addEventListener("load", () =>
+    {
+        navigator.serviceWorker.register("./service-worker.js").catch(error =>
+        {
+            console.warn("Unable to register the offline service worker.", error);
+        });
+    });
+}

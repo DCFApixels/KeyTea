@@ -1,6 +1,10 @@
 {
     "name": "Password Tea",
     "short_name": "Password Tea",
+    "id": "./",
+    "start_url": "./",
+    "scope": "./",
+    "display": "standalone",
     "version": "1.0.0",
     "theme_color": "#3e6df4",
     "background_color": "#17171a",
