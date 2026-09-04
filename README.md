@@ -158,11 +158,11 @@ The same inputs produce the same password on every supported device.
 ### Master Password Input Screen
 On the initial screen, the user is prompted to enter the master password, which is used to generate passwords.
 
-![image](https://github.com/user-attachments/assets/396df36d-1381-433c-9b66-44ca7cec2ce5)
+<img width="1233" height="607" alt="01-master-password-empty" src="https://github.com/user-attachments/assets/6ed0bf5b-2eea-4d62-b641-cbe4e2080e07" />
 
 After entering the master password, press the "Continue" button to proceed to the password list.
 
-![image](https://github.com/user-attachments/assets/5360397a-ba85-4855-9fc0-9f009c318080)
+<img width="1233" height="102" alt="02-master-password-filled" src="https://github.com/user-attachments/assets/c52a83c7-4dc2-42d2-b3dd-143019fdd823" />
 
 ### Password Selection Screen
 
@@ -170,15 +170,15 @@ At the top of the screen, a list of resources is displayed. To retrieve a passwo
 
 The resource list can be edited. The plus button at the bottom adds a new entry, the gear button opens the resource editing screen, and the adjacent trash button removes the resource from the list.
 
-![image](https://github.com/user-attachments/assets/58f01be4-b28a-4f08-9099-e9327588093f)
+<img width="1233" height="607" alt="03-password-selection" src="https://github.com/user-attachments/assets/9af87c6f-c6fe-444b-9291-d2b5f7c5e3f8" />
 
 After selecting a resource, its generated password appears in the "password" field at the bottom. The button to the right copies the password to the clipboard, while the next button reveals the password, which is hidden by default.
 
-![image](https://github.com/user-attachments/assets/08958b72-9549-4fdb-b105-482b9807af13)
+<img width="1233" height="248" alt="04-generated-password-focused" src="https://github.com/user-attachments/assets/29b91894-87af-45c0-8d67-64bca66f9b1e" />
 
 At the bottom of the screen, there are buttons for importing and exporting user data. These functions allow data to be transferred between devices.
 
-![image](https://github.com/user-attachments/assets/d776ade5-f000-4ec4-b21f-0041d19a389f)
+<img width="1233" height="61" alt="05-import-export" src="https://github.com/user-attachments/assets/9376934a-677e-4a69-aca9-48c4f4a58849" />
 
 ### Password Information Editing Screen
 
@@ -192,11 +192,11 @@ Below is a list of character sets from which the user can select the ones to be 
 
 The character set list can be edited. The plus button at the bottom adds a new empty set, the gear button opens the character set editing screen, and the adjacent trash button removes the set from the list.
 
-![image](https://github.com/user-attachments/assets/538cf86a-47c9-4296-8290-6224c6f8af0a)
+<img width="1233" height="607" alt="06-password-editing" src="https://github.com/user-attachments/assets/10c7dba9-39db-4156-adb4-0161e2f98f89" />
 
 After completing the edits, click `Save` to save the changes or `Cancel` to discard them.
 
-![image](https://github.com/user-attachments/assets/efb2d3da-8c45-4468-b562-dbd89e055514)
+<img width="1233" height="46" alt="07-save-cancel" src="https://github.com/user-attachments/assets/6baf470e-f86d-4d8f-bdd2-cac10f98c4ee" />
 
 ### Character Set Editing Screen
 
@@ -204,12 +204,13 @@ Three fields are available for editing:
 + **Name** - the name of the set displayed in the application. This does not affect password generation.
 + **Charset** - the set of characters as text. After saving, the characters are sorted and duplicates are removed.
 + **Priority** - the priority of the set. It affects how frequently characters from the set appear in the password relative to the priorities of all selected sets. The higher the priority, the more frequently its characters appear. Regardless of priority, the password contains at least one character from each selected set.
-
-![image](https://github.com/user-attachments/assets/b38c4022-d33d-44f8-b446-d7372f65616f)
+  
+<img width="1233" height="607" alt="08-charset-editing" src="https://github.com/user-attachments/assets/d7872ce1-1646-4d3d-9e3c-734156a3339c" />
 
 After completing the edits, click `Save` to save the changes or `Cancel` to discard them.
 
-![image](https://github.com/user-attachments/assets/efb2d3da-8c45-4468-b562-dbd89e055514)
+<img width="1233" height="46" alt="07-save-cancel" src="https://github.com/user-attachments/assets/6baf470e-f86d-4d8f-bdd2-cac10f98c4ee" />
+
 
 <br>
 
