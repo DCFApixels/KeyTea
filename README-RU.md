@@ -157,11 +157,11 @@ Password Tea сохраняет в `localStorage` только настройк�
 ### Экран ввода мастер-пароля
 На начальном экране пользователю предлагается ввести мастер-пароль, который используется для генерации паролей.
 
-![image](https://github.com/user-attachments/assets/396df36d-1381-433c-9b66-44ca7cec2ce5)
+<img width="1233" height="607" alt="01-master-password-empty" src="https://github.com/user-attachments/assets/6ed0bf5b-2eea-4d62-b641-cbe4e2080e07" />
 
 После ввода мастер-пароля нажмите кнопку Continue, чтобы перейти к списку паролей.
 
-![image](https://github.com/user-attachments/assets/5360397a-ba85-4855-9fc0-9f009c318080)
+<img width="1233" height="102" alt="02-master-password-filled" src="https://github.com/user-attachments/assets/c52a83c7-4dc2-42d2-b3dd-143019fdd823" />
 
 ### Экран выбора пароля
 
@@ -169,15 +169,15 @@ Password Tea сохраняет в `localStorage` только настройк�
 
 Список ресурсов можно редактировать. Кнопка со значком плюса внизу списка добавляет новую запись, кнопка в виде шестерни открывает экран редактирования ресурса, а соседняя кнопка в виде корзины удаляет ресурс из списка.
 
-![image](https://github.com/user-attachments/assets/58f01be4-b28a-4f08-9099-e9327588093f)
+<img width="1233" height="607" alt="03-password-selection" src="https://github.com/user-attachments/assets/9af87c6f-c6fe-444b-9291-d2b5f7c5e3f8" />
 
 После выбора ресурса в расположенном снизу поле `password` появится сгенерированный для него пароль. Кнопка справа от поля копирует пароль в буфер обмена, а следующая кнопка показывает пароль, который по умолчанию скрыт.
 
-![image](https://github.com/user-attachments/assets/08958b72-9549-4fdb-b105-482b9807af13)
+<img width="1233" height="248" alt="04-generated-password-focused" src="https://github.com/user-attachments/assets/29b91894-87af-45c0-8d67-64bca66f9b1e" />
 
 В нижней части экрана расположены кнопки для импорта и экспорта данных пользователя. Эти функции позволяют переносить данные между устройствами.
 
-![image](https://github.com/user-attachments/assets/d776ade5-f000-4ec4-b21f-0041d19a389f)
+<img width="1233" height="61" alt="05-import-export" src="https://github.com/user-attachments/assets/9376934a-677e-4a69-aca9-48c4f4a58849" />
 
 ### Экран редактирования информации для пароля
 
@@ -191,11 +191,11 @@ Password Tea сохраняет в `localStorage` только настройк�
 
 Список наборов символов можно редактировать. Кнопка со значком плюса внизу списка добавляет новый пустой набор, кнопка в виде шестерни открывает экран его редактирования, а соседняя кнопка в виде корзины удаляет набор из списка.
 
-![image](https://github.com/user-attachments/assets/538cf86a-47c9-4296-8290-6224c6f8af0a)
+<img width="1233" height="607" alt="06-password-editing" src="https://github.com/user-attachments/assets/10c7dba9-39db-4156-adb4-0161e2f98f89" />
 
 После завершения редактирования нажмите кнопку `Save` для сохранения изменений или `Cancel` для отмены.
 
-![image](https://github.com/user-attachments/assets/efb2d3da-8c45-4468-b562-dbd89e055514)
+<img width="1233" height="46" alt="07-save-cancel" src="https://github.com/user-attachments/assets/6baf470e-f86d-4d8f-bdd2-cac10f98c4ee" />
 
 ### Экран редактирования набора символов
 Для редактирования доступны три поля:
@@ -203,11 +203,11 @@ Password Tea сохраняет в `localStorage` только настройк�
 + **Charset** - набор символов в виде текста. После сохранения символы сортируются, а дубликаты удаляются.
 + **Priority** - приоритет набора. Он влияет на частоту, с которой символы этого набора встречаются в пароле, относительно приоритетов всех выбранных наборов. Чем выше приоритет, тем чаще используются символы набора. Независимо от приоритета, пароль содержит как минимум один символ из каждого выбранного набора.
 
-![image](https://github.com/user-attachments/assets/b38c4022-d33d-44f8-b446-d7372f65616f)
+<img width="1233" height="607" alt="08-charset-editing" src="https://github.com/user-attachments/assets/d7872ce1-1646-4d3d-9e3c-734156a3339c" />
 
 После завершения редактирования нажмите кнопку `Save` для сохранения изменений или `Cancel` для отмены.
 
-![image](https://github.com/user-attachments/assets/efb2d3da-8c45-4468-b562-dbd89e055514)
+<img width="1233" height="46" alt="07-save-cancel" src="https://github.com/user-attachments/assets/6baf470e-f86d-4d8f-bdd2-cac10f98c4ee" />
 
 <br>
 

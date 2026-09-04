@@ -1,12 +1,12 @@
 const CACHE_PREFIX = "password-tea-shell-";
-const CACHE_NAME = `${CACHE_PREFIX}v2`;
+const CACHE_NAME = `${CACHE_PREFIX}v1.1.0`;
 
 const APP_SHELL = [
     "./",
     "./index.html",
     "./manifest.json",
     "./favicon.ico",
-    "./styles/global.css?v=1.0.0",
+    "./styles/global.css?v=1.1.0",
     "./images/PasswordTeaBackdrop.svg",
     "./images/PasswordTeaIcon.svg",
     "./images/PasswordTeaIcon-192.png",
