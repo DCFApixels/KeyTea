@@ -1,5 +1,5 @@
 <p align="center">
-<img width="300" src="https://github.com/DCFApixels/KeyTea/blob/main/images/PasswordTeaIcon.svg">
+<img width="300" src="./images/PasswordTeaIcon.svg">
 </p>
 
 <p align="center">
