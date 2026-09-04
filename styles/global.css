@@ -746,7 +746,7 @@ input[type="checkbox"]:checked::before {
     }
 }
 
-@media screen and (min-aspect-ratio: 1/1) and (max-width: 512px) {
+@media screen and (min-aspect-ratio: 1/1) and (max-width: 960px) {
     body::before{
         display: none;
     }
