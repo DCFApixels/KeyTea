@@ -47,6 +47,7 @@ A small password manager that derives passwords instead of storing them on the u
 </p>
 
 ## 📖 Table of Contents
+- [Usage and installation](#-usage-and-installation)
 - [How does it work?](#-how-does-it-work)
 - [Security](#-security)
 - [Features](#-features)
@@ -56,6 +57,36 @@ A small password manager that derives passwords instead of storing them on the u
     - [Password Information Editing](#password-information-editing-screen)
     - [Character Set Editing](#character-set-editing-screen)
 - [License](#-license)
+
+<br>
+
+## 📲 Usage and installation
+
+Password Tea can be used in three ways.
+
+### Use the web version
+
+Open the [Password Tea web app](https://dcfapixels.github.io/PasswordTea/) in a browser. No installation is required. The application's settings are stored in the current browser profile for this web address.
+
+### Install as a PWA
+
+Password Tea is a Progressive Web App (PWA) and can be installed from the web version on supported devices:
+
++ **Android:** open the web app in a compatible browser and select `Install app` or `Add to Home screen` from the browser menu;
++ **Desktop:** click the install icon in the browser's address bar or select `Install Password Tea` from its menu. Depending on the browser and operating system, a desktop shortcut can also be created.
+
+The installed PWA opens in a separate window and appears in the device's application list. After the first complete online launch, the application files are cached and Password Tea can be started without an internet connection. The exact menu names and installation options depend on the browser and operating system.
+
+### Run locally from source
+
+This option keeps the application files on your device and does not require an internet connection after they have been downloaded:
+
+1. Download the [source code archive](https://github.com/DCFApixels/PasswordTea/archive/refs/heads/main.zip) and extract it, or clone the repository with `git clone https://github.com/DCFApixels/PasswordTea.git`.
+2. Open `index.html` in a browser.
+
+This is the simplest fully local option and works without a server. The browser opens the application through a `file://` address. PWA installation and automatic application updates are not available in this mode.
+
+If a browser restricts storage or other APIs for local files, run Password Tea through a dedicated local web server instead. For example, run `python -m http.server 8765` in the project directory and open `http://127.0.0.1:8765/`. Any static local web server can be used instead of Python.
 
 <br>
 
@@ -90,7 +121,7 @@ In short, Password Tea derives passwords instead of storing them. A unique passw
 **Local data:**<br>
 Password Tea stores only generation settings in `localStorage`: resource names, user names, versions, and character sets. Neither the master password nor generated passwords are written there. As with any web application, this storage is accessible to code running on the same web origin. Therefore, when using the hosted version, another application on the same origin could theoretically read these settings, but not the passwords themselves.
 
-To eliminate this specific risk completely, download Password Tea and run it offline through a dedicated local web server that is not shared with other applications. For example, run `python -m http.server 8765` in the project directory and open `http://127.0.0.1:8765/`. This gives Password Tea isolated local storage. It does not replace protecting the browser and device from malicious software or extensions.
+To eliminate this specific risk completely, [run Password Tea locally from source](#run-locally-from-source) through a dedicated local web server that is not shared with other applications. This gives Password Tea isolated local storage. It does not replace protecting the browser and device from malicious software or extensions.
 
 <br>
 
