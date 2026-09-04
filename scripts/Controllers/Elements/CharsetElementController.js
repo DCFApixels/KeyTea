@@ -45,10 +45,10 @@ class CharsetElementController
 
 
 
-    Select(isNotInvoke)
+    Select(notifyParent = true)
     {
         this.view.isSelected = true;
-        if(isNotInvoke || isNotInvoke == undefined)
+        if(notifyParent)
         {
             this.parentController.OnCharsetElementSelected(this.model.myuid);
         }

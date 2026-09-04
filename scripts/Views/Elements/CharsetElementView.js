@@ -6,14 +6,12 @@ class CharsetElementView extends ViewBase
     #settingsButton;
     #deleteButton;
 
-    #controller;
-
     get name() { return this.#label.innerText; }
     set name(value) { this.#label.innerText = value; }
     get isSelected() { return this.#checkbox.checked; }
     set isSelected(value) 
     { 
-        if(this.#checkbox.checked != value)
+        if(this.#checkbox.checked !== value)
         {
             this.#checkbox.checked = value;
         }
@@ -28,16 +26,25 @@ class CharsetElementView extends ViewBase
         this.#settingsButton = settingsButton;
         this.#deleteButton = deleteButton;
 
-        this.#root.addEventListener('click', this.#OnCheckboxClicked.bind(this));
-        //this.#checkbox.addEventListener('click', this.#OnCheckboxClicked.bind(this));
+        this.#root.addEventListener('click', this.#OnRowClicked.bind(this));
+        this.#checkbox.addEventListener('click', this.#OnCheckboxClicked.bind(this));
+        this.#checkbox.addEventListener('change', this.#OnCheckboxChanged.bind(this));
         this.#settingsButton.addEventListener('click', this.#OnSettingsButtonClicked.bind(this));
         this.#deleteButton.addEventListener('click', this.#OnDeleteButtonClicked.bind(this));
     }
 
-    #OnCheckboxClicked(event)
+    #OnRowClicked(event)
     {
         this.controller.OnUserSelect();
         event.stopPropagation();
+    }
+    #OnCheckboxClicked(event)
+    {
+        event.stopPropagation();
+    }
+    #OnCheckboxChanged()
+    {
+        this.controller.OnUserSelect();
     }
     #OnSettingsButtonClicked(event)
     {

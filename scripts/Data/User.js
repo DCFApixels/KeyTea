@@ -240,18 +240,17 @@ const UserDataStorage = {
 class UserSession
 {
     data;
-    masterPasswordHash = "";
+    masterPasswordKey = new Uint8Array();
 
-    EnterMasterPassword(password)
+    async EnterMasterPassword(password)
     {
-        //TODO доработать хеширование мастер пароля
-        const masterPasswordRecord = RawPasswordRecords.Create({ name: "Master", length: 256 });
-        this.masterPasswordHash = GeneratePasswordWithDefaultHash(masterPasswordRecord, builtinCharsetRecords, password);
-        //console.log(this.masterPasswordHash);
+        this.ClearMasterPassword();
+        this.masterPasswordKey = await PasswordKdf.DeriveMasterKey(password);
     }
 
     ClearMasterPassword()
     {
-        this.masterPasswordHash = "";
+        this.masterPasswordKey.fill(0);
+        this.masterPasswordKey = new Uint8Array();
     }
 }

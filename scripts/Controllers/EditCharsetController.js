@@ -16,36 +16,46 @@ class EditCharsetController
         this.view = view;
         this.screensController = screensController;
         this.view.SubscribeController(this);
-
-        //this.SetIsCanSave(false);
     }
 
 
     OnPropertyChanged(propertyKey, value)
     {
         this.modelClone[propertyKey] = value;
-        //this.#ApplyChanges();
         return this.modelClone[propertyKey];
     }
-    //#ApplyChanges()
-    //{
-    //    let isCanSave = 
-    //        this.modelClone.name != null && 
-    //        this.modelClone.name.length > 0 &&
-    //        this.modelClone.length >= this.modelClone.usedCharsets.length;
-    //    this.SetIsCanSave(isCanSave);
-    //}
 
-
-    #ShowRequireMessage()
+    #CheckSaveRequirements()
     {
+        this.requireMessages.length = 0;
+
+        if(typeof this.modelClone.name !== "string" || this.modelClone.name.trim().length <= 0)
+        {
+            this.requireMessages.push("The Name field is empty.");
+        }
+        if(typeof this.modelClone.chars !== "string" || this.modelClone.chars.length <= 0)
+        {
+            this.requireMessages.push("The Charset field is empty.");
+        }
+        if(Number.isSafeInteger(this.modelClone.priority) === false || this.modelClone.priority < 0)
+        {
+            this.requireMessages.push("Priority must be a non-negative integer.");
+        }
+
         if(this.requireMessages.length > 0)
         {
             this.view.ShowErrorMessage(this.requireMessages[0]);
         }
+        return this.requireMessages.length <= 0;
     }
+
     SaveChanges()
     {
+        if(this.#CheckSaveRequirements() === false)
+        {
+            return;
+        }
+
         Object.assign(this.model, CharsetRecords.Create(this.modelClone));
         this.#ReturnToEditRawPasswordScreen();
     }
@@ -70,7 +80,7 @@ class EditCharsetController
         this.view.chars = model.chars;
         this.view.priority = model.priority;
 
-        //this.#ApplyChanges();
+        this.view.ShowErrorMessage(null);
         this.view.Open();
     }
     Close() { this.view.Close(); }
@@ -81,10 +91,4 @@ class EditCharsetController
         this.model = model;
         this.modelClone = Object.assign({}, model);
     }
-
-
-    //SetIsCanSave(bool)
-    //{
-    //    this.view.SetIsCanSave(bool)
-    //}
 }

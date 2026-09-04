@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; script-src-attr 'none'; style-src 'self'; style-src-attr 'none'; img-src 'self'; font-src 'self'; manifest-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; worker-src 'none'">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#3e6df4">
     <link rel="manifest" href="manifest.json">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/PasswordTeaIcon.svg" type="image/svg+xml">
     <title>Password Tea</title>
 
     <link rel="stylesheet" href="styles/global.css" type="text/css">
@@ -16,24 +17,28 @@
         <div class="screen" id="login_screen">
             <div class="form">
                 <header>
-                    <a href="https://github.com/DCFApixels/PasswordTea">
-                        <img width="" src="images/MainIcon.png" alt="">
+                    <a href="https://github.com/DCFApixels/KeyTea">
+                        <img width="" src="images/PasswordTeaIcon.svg" alt="Password Tea">
                     </a>  
                     <h1>Master Password</h1>
                     <button id="clear_user_data_button" type="button" class="trnsp icon_button clear_storage_button" title="Clear local data" aria-label="Clear local data"></button>
                 </header>
                 <div class="input_button_pair">
                     <input class="field" title="Master password" placeholder="Enter master password..." type="password" name="" id="master_password_field">
-                    <button type="button" id="master_password_continue_button">Continue</button>
-                </div>  
+                    <button type="button" id="master_password_continue_button" aria-label="Continue" aria-busy="false">
+                        <span class="button_label">Continue</span>
+                        <span class="button_spinner" aria-hidden="true"></span>
+                    </button>
+                </div>
+                <p id="master_password_error" class="error_label hidden">Unable to initialize password generation.</p>
             </div>
         </div>
 
         <div class="screen" id="select_screen">
             <div class="form hidden">
                 <header>
-                    <a href="https://github.com/DCFApixels/PasswordTea">
-                        <img width="" src="images/MainIcon.png" alt="">
+                    <a href="https://github.com/DCFApixels/KeyTea">
+                        <img width="" src="images/PasswordTeaIcon.svg" alt="Password Tea">
                     </a>  
                     <h1>Passwords</h1>
                     <button id="return_to_master_password" type="button" class="trnsp icon_button logout_button"></button>
@@ -48,9 +53,9 @@
                 
                 <div class="result_password_block">
                     <label>Password</label>
-                    <input class="field" id="output_password" title="Password" readonly placeholder="Select any site..." type="password" name="" id="">
-                    <button id="output_password_copy_button" class="icon_button copy">.</button>
-                    <button id="output_password_show_button" class="icon_button show_aye on">.</input>
+                    <input class="field" id="output_password" title="Password" readonly placeholder="Select any site..." type="password">
+                    <button id="output_password_copy_button" type="button" class="icon_button copy">.</button>
+                    <button id="output_password_show_button" type="button" class="icon_button show_aye on">.</button>
                 </div>
 
                 <label>User data</label>
@@ -64,8 +69,8 @@
         <div class="screen" id="edit_password_screen">
             <div class="form hidden">
                 <header>
-                    <a href="https://github.com/DCFApixels/PasswordTea">
-                        <img width="" src="images/MainIcon.png" alt="">
+                    <a href="https://github.com/DCFApixels/KeyTea">
+                        <img width="" src="images/PasswordTeaIcon.svg" alt="Password Tea">
                     </a>  
                     <h1>Edit password info</h1>
                 </header>
@@ -103,8 +108,8 @@
         <div class="screen" id="edit_charset_screen">
             <div class="form hidden">
                 <header>
-                    <a href="https://github.com/DCFApixels/PasswordTea">
-                        <img width="" src="images/MainIcon.png" alt="">
+                    <a href="https://github.com/DCFApixels/KeyTea">
+                        <img width="" src="images/PasswordTeaIcon.svg" alt="Password Tea">
                     </a>  
                     <h1>Edit charset</h1>
                 </header>
@@ -148,6 +153,7 @@
     <script src='scripts/Utils/StringUtility.js'></script>
     <script src='scripts/Utils/RandomUtility.js'></script>
     <script src="scripts/Utils/js-sha3/sha3.js"></script>
+    <script src="scripts/Utils/PasswordKdf.js"></script>
     <script src="scripts/Utils/MYUID.js"></script>
 
     <script src="scripts/Data/Charset.js"></script>

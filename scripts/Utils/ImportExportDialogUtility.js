@@ -2,25 +2,24 @@ class ImportExportDialogUtility
 {
     static OpenImportDialog(callback)
     {
-        var fileInput = document.createElement("input");
+        const fileInput = document.createElement("input");
         fileInput.type = "file";
         fileInput.classList.add("hidden");
 
         fileInput.addEventListener("change", function(e)
         {
-            var file = e.target.files[0];
+            const file = e.target.files[0];
             if(!file)
             {
                 return;
             }
 
-            var reader = new FileReader();
+            const reader = new FileReader();
             reader.onload = function(e)
             {
-                var contents = e.target.result;
+                const contents = e.target.result;
                 callback(contents);
-                //console.log("Import: \n\n" + contents);
-            }
+            };
             reader.readAsText(file);
         });
 
@@ -29,25 +28,13 @@ class ImportExportDialogUtility
 
     static OpenExportJsonDialog(exportJson)
     {
-        var textToSaveAsBlob = new Blob([exportJson], { type: "text/plain" });
-        var fileNameToSaveAs = "userdata.txt";
-
-        var downloadLink = document.createElement("a");
+        const textToSaveAsBlob = new Blob([exportJson], { type: "application/json" });
+        const fileNameToSaveAs = "userdata.json";
+        const downloadUrl = URL.createObjectURL(textToSaveAsBlob);
+        const downloadLink = document.createElement("a");
         downloadLink.download = fileNameToSaveAs;
-        downloadLink.textContent = "Скачать файл";
-        if (window.webkitURL != null) {
-            // Chrome allows the link to be clicked without actually adding it to the DOM.
-            downloadLink.href = window.webkitURL.createObjectURL(textToSaveAsBlob);
-        } else {
-            // Firefox requires the link to be added to the DOM before it can be clicked.
-            downloadLink.href = window.URL.createObjectURL(textToSaveAsBlob);
-            downloadLink.addEventListener("click", function(event) {
-                document.body.removeChild(event.target);
-            });
-            downloadLink.classList.add("hidden");
-            document.body.appendChild(downloadLink);
-        }
-    
+        downloadLink.href = downloadUrl;
         downloadLink.click();
+        setTimeout(() => URL.revokeObjectURL(downloadUrl), 0);
     }
 }

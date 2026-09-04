@@ -15,7 +15,6 @@ class SelectRawPasswordController
 
         this.#ApplyRawPasswordControllers();
         this.OnRawPasswordElementSelected(-1);
-        //=//специальная ошибка-напоминался
     }
 
     #ApplyRawPasswordControllers()
@@ -62,7 +61,7 @@ class SelectRawPasswordController
         for (let i = 0; i < this.rawPasswordControllers.length; i++) 
         {
             const rawPasswordController = this.rawPasswordControllers[i];
-            if(i == number)
+            if(i === number)
             {
                 rawPasswordController.Select();
                 this.currentRawPassword = rawPasswordController.model;
@@ -80,10 +79,10 @@ class SelectRawPasswordController
             return;
         }
 
-        let pw = GeneratePasswordWithDefaultHash(
+        let pw = GeneratePassword(
             this.currentRawPassword, 
             this.model.data.charsetRecords, 
-            this.model.masterPasswordHash);
+            this.model.masterPasswordKey);
 
         this.view.SetOutputPassword(pw);
     }
@@ -109,7 +108,7 @@ class SelectRawPasswordController
     OnDeleteRawPasswordButtonClick(number)
     {
         this.model.data.rawPasswordRecords.splice(number, 1);
-        if(this.currentRawPasswordNumber == number)
+        if(this.currentRawPasswordNumber === number)
         {
             this.OnRawPasswordElementSelected(-1);
         }

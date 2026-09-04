@@ -1,3 +1,8 @@
+:root{
+    --primary-blue: #3e6df4;
+    --primary-blue-hover: #5d85f7;
+    --primary-blue-active: #304fbf;
+}
 *{
     margin: 0;
     padding: 0;
@@ -17,12 +22,33 @@ body{
     overflow: hidden;
     position: absolute;
 }
+body::before{
+    content: '';
+    display: none;
+    pointer-events: none;
+}
+@media screen and (min-aspect-ratio: 1/1){
+    body::before{
+        --backdrop-size: min(64vw, 96vh);
+        display: block;
+        position: fixed;
+        right: 15vw;
+        bottom: 0;
+        z-index: 0;
+        width: var(--backdrop-size);
+        height: var(--backdrop-size);
+        background: url(../images/PasswordTeaBackdrop.svg) center / contain no-repeat;
+        transform: translate(76%, 10%);
+        opacity: 0.03;
+    }
+}
 .version span{
     position: fixed;
     top: 2px;
     right: 2px;
     font-size: 7pt;
     color: #ffffff70;
+    z-index: 2;
 }
 /*==============================================================*/
 .screen_group
@@ -47,6 +73,7 @@ body{
 .screen{
     display: block;
     position: absolute;
+    z-index: 1;
     height: 100%;
     width: 100%;
     transition: width 0.2s;
@@ -129,7 +156,8 @@ body{
 }
 
 .form header{
-    background-color: #6287ffe8;
+    background-color: var(--primary-blue);
+    background-image: none;
     margin: -10px -10px 5px -10px;
     border-radius: 10px 10px 0 0;
     display: flex;
@@ -145,8 +173,8 @@ body{
 }
 .form header a
 {
-    width: 22pt;
-    padding-right: 6pt;
+    width: 26pt;
+    padding-right: 7pt;
 }
 .form header img
 {
@@ -212,7 +240,8 @@ button.icon_button.records_list_add_button{
 button{
     height: 22pt;
 
-    background-color: #6287ffe8;
+    background-color: var(--primary-blue);
+    background-image: none;
     transition: 0.09s background-color;
 
     border-radius: 5px;
@@ -224,41 +253,55 @@ button{
     font-size: 13pt;
 }
 button:hover {
-    background-color: #82a3ff;
+    background-color: var(--primary-blue-hover);
+    background-image: none;
     transition: background-color 0.08s;
 }
 button:active {
-    background-color: #384ece;
+    background-color: var(--primary-blue-active);
+    background-image: none;
     transition: background-color 0.08s;
 }
 button:focus {
     /*outline: none;
     box-shadow: 0 0 0 1px #ffffffc5, 0 0 0 2.5px rgb(0, 132, 255);*/
     outline: none;
-    box-shadow: inset 0 0 0 1px #0084ff, inset 0 0 0 2px #ffffffc5;
+    box-shadow: inset 0 0 0 1px #24b8f5, inset 0 0 0 2px #ffffffc5;
 }
 button[disabled] {
     outline: none;
     background-color: rgba(137, 145, 155, 0.815);
+    background-image: none;
 }
 button.green{
+    color: #ffffff;
     background-color: #07ce00e8;
+    background-image: none;
 }
 button.green[disabled] {
     outline: none;
     background-color: rgba(137, 155, 148, 0.815);
+    background-image: none;
 }
 button.green:hover{
     background-color: #15ff00;
+    background-image: none;
+}
+button.green:active{
+    background-color: #049e00;
+    background-image: none;
 }
 button.danger{
     background-color: #d92353;
+    background-image: none;
 }
 button.danger:hover{
     background-color: #f03264;
+    background-image: none;
 }
 button.danger:active{
     background-color: #a8173d;
+    background-image: none;
 }
 /*==============================================================*/
 .icon_button, 
@@ -408,6 +451,36 @@ input.field::placeholder {
     order: 2; 
     transition: 0.2s;
 }
+#master_password_continue_button{
+    position: relative;
+}
+#master_password_continue_button.loading .button_label{
+    visibility: hidden;
+}
+.button_spinner{
+    display: none;
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    top: 50%;
+    left: 50%;
+    margin: -8px 0 0 -8px;
+    border: 2px solid #ffffff59;
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: buttonSpinnerRotation 0.65s linear infinite;
+}
+#master_password_continue_button.loading .button_spinner{
+    display: block;
+}
+@keyframes buttonSpinnerRotation{
+    to { transform: rotate(360deg); }
+}
+@media (prefers-reduced-motion: reduce){
+    .button_spinner{
+        animation: none;
+    }
+}
 @media screen and (max-aspect-ratio: 1/1){
     .input_button_pair>input{
         flex-grow: 1; 
@@ -443,14 +516,14 @@ input.field::placeholder {
 }
 .passwords_list_element.checked
 {
-    background-color: #54b2ff36;
+    background-color: #3e6df436;
 } 
 .passwords_list_element:hover{
-    background-color: #54b2ff18;
+    background-color: #3e6df418;
     transition: 0.1s;
 }
 .passwords_list_element.checked:hover{
-    background-color: #54b2ff36;
+    background-color: #3e6df436;
     transition: 0.1s;
 }
 .passwords_list_element *{
@@ -467,6 +540,26 @@ input.field::placeholder {
 .passwords_list_element button {
     order: 3; 
     margin: 0 3px;
+}
+.records_list .icon_button.setting,
+.records_list .icon_button.delete {
+    position: relative;
+}
+.records_list .icon_button.setting::after,
+.records_list .icon_button.delete::after {
+    content: '';
+    position: absolute;
+    top: -6px;
+    bottom: -6px;
+    background-color: transparent;
+}
+.records_list .icon_button.setting::after {
+    left: -7px;
+    right: -3px;
+}
+.records_list .icon_button.delete::after {
+    left: -3px;
+    right: -7px;
 }
 /*==============================================================*/
 .result_password_block{
@@ -549,6 +642,10 @@ input[type="checkbox"]:checked::before {
     body{
         background-color: #d0cfd3;
     }
+    body::before{
+        mix-blend-mode: multiply;
+        opacity: 0.04;
+    }
     .form{
         box-shadow: 0 0 15px -5px #08154bb0;
         color: #000000;
@@ -574,14 +671,14 @@ input[type="checkbox"]:checked::before {
 
     .records_list{
         background-color: transparent;
-        box-shadow: inset 0 0 10px #0039b317, inset 0 0 50px #0039b317;
+        box-shadow: inset 0 0 10px #3e6df417, inset 0 0 50px #3e6df417;
     }
     .records_list>ul>li{
         box-shadow: 0 14px 0 -12px #001d3809;
     }
 
     input.field {
-        box-shadow: inset 0 -3px 0 -1px #6287ffe8;
+        box-shadow: inset 0 -3px 0 -1px #3e6df4e8;
     }
 
     .error_label {
@@ -597,6 +694,10 @@ input[type="checkbox"]:checked::before {
 @media (prefers-color-scheme: dark) {
     body{
         background-color: #17171a;
+    }
+    body::before{
+        mix-blend-mode: screen;
+        opacity: 0.028;
     }
     .form{
         box-shadow: 0 0 15px -5px #000000b0;

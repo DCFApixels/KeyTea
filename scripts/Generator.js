@@ -1,18 +1,7 @@
 const textEncoder = new TextEncoder();
 const randomRootSeed = 1171693525;
 
-Array.prototype.insert = function ( index, ...items ) {
-    this.splice( index, 0, ...items );
-};
-
-function GeneratePasswordWithDefaultHash(rawPassword, allCharsets, masterPassword)
-{
-    const normalizedMasterPassword = typeof masterPassword === "string"
-        ? masterPassword.normalize("NFC")
-        : "";
-    return GeneratePassword(rawPassword, allCharsets, sha3_512(normalizedMasterPassword));
-}
-function GeneratePassword(rawPassword, allCharsets, masterPasswordHash)
+function GeneratePassword(rawPassword, allCharsets, masterPasswordKey)
 {
     let rawPasswordString = RawPasswordRecords.GenerateRawString(rawPassword);
     let charsetsArray = SelectUsedCharsets(rawPassword, allCharsets);
@@ -26,32 +15,36 @@ function GeneratePassword(rawPassword, allCharsets, masterPasswordHash)
         throw new Error("длинна пароля меньше числа выбранных наборов символов");
     }
 
-    return DefaultGeneratePasswordAlgorithm(rawPasswordString, masterPasswordHash, charsetsArray, rawPassword.length);
+    if((masterPasswordKey instanceof Uint8Array) === false || masterPasswordKey.length <= 0)
+    {
+        throw new Error("ключ мастер-пароля отсутствует");
+    }
+
+    return DefaultGeneratePasswordAlgorithm(rawPasswordString, masterPasswordKey, charsetsArray, rawPassword.length);
 }
 
 
 
 
 
-function DefaultGeneratePasswordAlgorithm(rawPasswordString, masterPasswordHash, charsetsArray, resultPasswordLength)
+function DefaultGeneratePasswordAlgorithm(rawPasswordString, masterPasswordKey, charsetsArray, resultPasswordLength)
 {
     let rawPasswordHash = sha3_512(rawPasswordString);
-    let result = CombineAndConvertToPassword(rawPasswordHash, masterPasswordHash, charsetsArray, resultPasswordLength);
+    let result = CombineAndConvertToPassword(rawPasswordHash, masterPasswordKey, charsetsArray, resultPasswordLength);
     return result;
 }
 
 
 
-function CombineAndConvertToPassword(rawPasswordHash, masterPasswordHash, charsetsArray, resultPasswordLength)
+function CombineAndConvertToPassword(rawPasswordHash, masterPasswordKey, charsetsArray, resultPasswordLength)
 {
     let rawPasswordHashBytes = textEncoder.encode(rawPasswordHash);
-    let masterPasswordHashBytes = textEncoder.encode(masterPasswordHash);
 
     // Перемешиваю мастер пароль и рав пароль. <
     let acm = rawPasswordHashBytes[resultPasswordLength % rawPasswordHashBytes.length] ^ resultPasswordLength;
     for (let i = 0; i < rawPasswordHashBytes.length; i++)
     {
-        acm = RandomUtility.NextState(acm ^ rawPasswordHashBytes[i] ^ ~masterPasswordHashBytes[i % masterPasswordHashBytes.length]);
+        acm = RandomUtility.NextState(acm ^ rawPasswordHashBytes[i] ^ ~masterPasswordKey[i % masterPasswordKey.length]);
         rawPasswordHashBytes[i] = acm % 256;
     }
     // >
@@ -122,7 +115,7 @@ function CombineAndConvertToPassword(rawPasswordHash, masterPasswordHash, charse
         indexInResult = (indexInResult + randomState) % passwordLength;
         index = randomState % charset.chars.length;
 
-        result.insert(indexInResult, charset.chars.charAt(index));
+        result.splice(indexInResult, 0, charset.chars.charAt(index));
     }
     // >
 
@@ -155,7 +148,7 @@ function GetIndex(value, charsets)
         sum += charsets[i].priority;
     } 
 
-    if (sum == 0) 
+    if (sum === 0)
     {
         return 0;
     }
@@ -172,5 +165,5 @@ function GetIndex(value, charsets)
         }
     }
 
-    return priorities.length - 1;
+    return charsets.length - 1;
 }

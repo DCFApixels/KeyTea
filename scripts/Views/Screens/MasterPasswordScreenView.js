@@ -2,6 +2,7 @@
 class MasterPasswordScreenView extends ViewBase
 {
     #masterPassword = "";
+    #loginInProgress = false;
 
     constructor()
     {
@@ -10,6 +11,7 @@ class MasterPasswordScreenView extends ViewBase
         
         this.passwordField = this.root.querySelector("#master_password_field");
         this.passwordButton = this.root.querySelector("#master_password_continue_button");
+        this.passwordError = this.root.querySelector("#master_password_error");
         this.clearUserDataButton = this.root.querySelector("#clear_user_data_button");
 
         this.clearUserDataDialog = document.querySelector("#clear_user_data_dialog");
@@ -31,19 +33,52 @@ class MasterPasswordScreenView extends ViewBase
     #OnPasswordFieldInput(event)
     {
         this.#masterPassword = event.target.value;
+        this.passwordError.classList.add("hidden");
         this.#PrivateUpdateButton();
     }
 
-    #OnPasswordButtonClick()
+    async #OnPasswordButtonClick()
     {
-        const masterPassword = this.#masterPassword;
+        if(this.#loginInProgress || this.#masterPassword.length <= 0)
+        {
+            return;
+        }
+
+        let masterPassword = this.#masterPassword;
         this.Reset();
-        this.controller.Login(masterPassword);
+        this.#SetLoginInProgress(true);
+
+        try
+        {
+            await this.controller.Login(masterPassword);
+        }
+        catch(error)
+        {
+            console.error("Unable to derive the master-password key.", error);
+            this.passwordError.classList.remove("hidden");
+            this.#SetLoginInProgress(false);
+            this.passwordField.focus();
+        }
+        finally
+        {
+            masterPassword = "";
+        }
     }
 
     #PrivateUpdateButton()
     {
-        this.passwordButton.disabled = this.#masterPassword.length <= 0;
+        this.passwordButton.disabled = this.#loginInProgress || this.#masterPassword.length <= 0;
+    }
+
+    #SetLoginInProgress(value)
+    {
+        this.#loginInProgress = value;
+        this.passwordField.disabled = value;
+        this.clearUserDataButton.disabled = value;
+        this.passwordButton.classList.toggle("loading", value);
+        this.passwordButton.setAttribute("aria-busy", value.toString());
+        this.passwordButton.setAttribute("aria-label", value ? "Generating password" : "Continue");
+        this.#PrivateUpdateButton();
     }
 
     #OpenClearUserDataDialog()
@@ -102,7 +137,7 @@ class MasterPasswordScreenView extends ViewBase
             event.preventDefault();
             lastButton.focus();
         }
-        else if(event.shiftKey == false && document.activeElement === lastButton)
+        else if(event.shiftKey === false && document.activeElement === lastButton)
         {
             event.preventDefault();
             firstButton.focus();
@@ -113,19 +148,20 @@ class MasterPasswordScreenView extends ViewBase
     {
         this.#masterPassword = "";
         this.passwordField.value = "";
+        this.passwordError.classList.add("hidden");
         this.#PrivateUpdateButton();
     }
 
     Open()
     {
         this.clearUserDataDialog.classList.add("hidden");
+        this.#SetLoginInProgress(false);
         this.Reset();
         this.root.classList.remove('disabled');
         this.ShowRoot(this.root);
     }
     Close()
     {
-        //this.root.classList.add('disabled');
         this.HideRoot(this.root);
     }
 }

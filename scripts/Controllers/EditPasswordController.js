@@ -30,7 +30,7 @@ class EditPasswordController
 
     SaveChanges()
     {
-        if(this.#CheckSaveRequires()) 
+        if(this.#CheckSaveRequirements())
         {
             this.modelClone.usedCharsets = Object.keys(this.currentCharsetGroup);
             Object.assign(this.model, RawPasswordRecords.Create(this.modelClone));
@@ -39,14 +39,24 @@ class EditPasswordController
     }
 
     requireMessages = [];
-    #CheckSaveRequires()
+    #CheckSaveRequirements()
     {
         this.requireMessages.length = 0;
-        if(this.modelClone.name == null || this.modelClone.name.length <= 0)
+        const selectedCharsetCount = Object.keys(this.currentCharsetGroup).length;
+
+        if(typeof this.modelClone.name !== "string" || this.modelClone.name.trim().length <= 0)
         {
             this.requireMessages.push("The Name field is empty.");
         }
-        if(this.modelClone.length < Object.keys(this.currentCharsetGroup).length)
+        if(selectedCharsetCount <= 0)
+        {
+            this.requireMessages.push("Select at least one character set.");
+        }
+        if(Number.isSafeInteger(this.modelClone.length) === false || this.modelClone.length <= 0)
+        {
+            this.requireMessages.push("Password length must be a positive integer.");
+        }
+        else if(this.modelClone.length < selectedCharsetCount)
         {
             this.requireMessages.push("Password length is less than the number of selected character sets.");
         }
@@ -102,15 +112,19 @@ class EditPasswordController
     {
         this.model = model;
         this.modelClone = Object.assign({}, model);
+        this.currentCharsetGroup = {};
 
-        if(this.model != null)
+        if(this.model != null && this.db != null)
         {
-            let charsetRecords = this.db.data.charsetRecords;
-            let charsetRecordKeys = this.model.usedCharsets;
+            const charsetRecords = this.db.data.charsetRecords;
+            const charsetRecordKeys = this.model.usedCharsets;
             for (let i = 0; i < charsetRecordKeys.length; i++)
             {
                 const charsetMyuid = charsetRecordKeys[i];
-                this.currentCharsetGroup[charsetMyuid] = charsetRecords[charsetMyuid];
+                if(Object.prototype.hasOwnProperty.call(charsetRecords, charsetMyuid))
+                {
+                    this.currentCharsetGroup[charsetMyuid] = charsetRecords[charsetMyuid];
+                }
             }
             this.OnCharsetElementSelected();
         }
@@ -130,8 +144,7 @@ class EditPasswordController
 
         for (let i = this.charsetControllers.length; i < charsetRecordKeys.length; i++)
         {
-            //TODO переделать чтоб небыло явной заисимости от CharsetElementView
-            let v = CharsetElementView.Create(newElementsFragment);
+            let v = this.view.CreateCharsetElementView(newElementsFragment);
             let c = new CharsetElementController(charsetRecords[charsetRecordKeys[i]], v, this, i);
             this.charsetControllers.push(c);
         }
@@ -154,11 +167,11 @@ class EditPasswordController
     {
         if(myuid != null)
         {
-            if(this.currentCharsetGroup.hasOwnProperty(myuid))
+            if(Object.prototype.hasOwnProperty.call(this.currentCharsetGroup, myuid))
             {
                 delete this.currentCharsetGroup[myuid];
             }
-            else
+            else if(Object.prototype.hasOwnProperty.call(this.db.data.charsetRecords, myuid))
             {
                 this.currentCharsetGroup[myuid] = this.db.data.charsetRecords[myuid];
             }
@@ -167,7 +180,8 @@ class EditPasswordController
         for (let i = 0; i < this.charsetControllers.length; i++) 
         {
             const charsetController = this.charsetControllers[i];
-            if(charsetController.model != null && this.currentCharsetGroup.hasOwnProperty(charsetController.model.myuid))
+            if(charsetController.model != null
+                && Object.prototype.hasOwnProperty.call(this.currentCharsetGroup, charsetController.model.myuid))
             {
                 charsetController.Select(false);
             }

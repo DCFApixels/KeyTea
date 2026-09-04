@@ -7,7 +7,7 @@ class EditCharsetScreenView extends ViewBase
     set chars(value) 
     {
         if(value == null)
-            {
+        {
             this.charsField.value = "";
             return;
         }
@@ -40,16 +40,16 @@ class EditCharsetScreenView extends ViewBase
 
     ShowErrorMessage(message)
     {
-        if(message == null || message == "")
+        if(message == null || message === "")
         {
             message = "";
         }
-        this.errorLabel.innerHTML = "" + message;
-        if(this.errorLabel.classList.contains("hidden") == false)
+        this.errorLabel.textContent = "" + message;
+        if(this.errorLabel.classList.contains("hidden") === false)
         {
             this.errorLabel.classList.add("hidden");
         }
-        if(message != "")
+        if(message !== "")
         {
             setTimeout((x) => {
                 x.classList.remove("hidden");
@@ -95,7 +95,6 @@ class EditCharsetScreenView extends ViewBase
     }
     Close()
     {
-        //this.root.classList.add('disabled');
         this.HideRoot(this.root);
     }
 }

@@ -1,5 +1,14 @@
 {
-    "name": "PasswordTea",
-    "short_name": "PasswordTea",
-    "version": "1.0.0"
+    "name": "Password Tea",
+    "short_name": "Password Tea",
+    "version": "1.0.0",
+    "theme_color": "#3e6df4",
+    "background_color": "#17171a",
+    "icons": [
+        {
+            "src": "images/PasswordTeaIcon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml"
+        }
+    ]
 }

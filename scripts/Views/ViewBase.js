@@ -3,9 +3,8 @@ class ViewBase
     #hideAnimationEndHandler;
     #hideAnimationFallback;
 
-    constructor() { } 
-    //по идее так не правильно делать, но js с динамической типизацией, потому это будет нормально работать, 
-    //так как работа будет настроена как с событиями, а передача экземпляра это аналог подписки
+    constructor() { }
+
     controller;
     SubscribeController(controller)
     {
@@ -41,7 +40,7 @@ class ViewBase
 
     #FinishHide(root)
     {
-        if(root.classList.contains("closing") == false)
+        if(root.classList.contains("closing") === false)
         {
             return;
         }

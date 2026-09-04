@@ -13,15 +13,17 @@ class SelectScreenView extends ViewBase
     rawPasswordsList;
     outputPassword;
     outputPasswordCopyButton;
+    outputPasswordShowButton;
+    addRawPasswordButton;
     dataExportButton;
     dataImportButton;
+    returnToMasterPasswordButton;
 
     constructor()
     {
         super();
         this.root = document.querySelector("#select_screen .form");
 
-        this.rawPasswordsList = this.root.querySelector("#passwords_list");
         this.rawPasswordsList = this.root.querySelector("#passwords_list");
 
         this.outputPassword = this.root.querySelector("#output_password");
@@ -44,7 +46,6 @@ class SelectScreenView extends ViewBase
 
     SetOutputPassword(password)
     {
-        //console.log(password);
         this.outputPassword.value = password;
 
         if(password == null || password === "")
@@ -104,7 +105,6 @@ class SelectScreenView extends ViewBase
     }
     Close()
     {
-        //this.root.classList.add('disabled');
         this.HideRoot(this.root);
     }
 }

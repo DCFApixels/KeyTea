@@ -2,10 +2,11 @@ class Utility
 {
     static parseInt(v)
     {  
-        if(v.length <= 0)
+        if(typeof v !== "string" || v.length <= 0)
         {
             return 0;
         }
-        return parseInt(v);
+        const result = Number.parseInt(v, 10);
+        return Number.isNaN(result) ? 0 : result;
     }
 }

@@ -93,12 +93,10 @@ class RawPasswordElementView extends ViewBase
 
         result.#settingsButton.type = "button";
         result.#deleteButton.type = "button";
-        //result.#checkbox.type = 'checkbox';
 
         result.#settingsButton.classList = "trnsp icon_button setting";
         result.#deleteButton.classList = "trnsp icon_button delete";
 
-        //divelem.appendChild(result.#checkbox);
         divelem.appendChild(result.#label);
         divelem.appendChild(result.#settingsButton);
         divelem.appendChild(result.#deleteButton);

@@ -1,5 +1,5 @@
 <p align="center">
-<img width="300" src="https://github.com/DCFApixels/KeyTea/blob/main/images/MainIcon.png">
+<img width="300" src="https://github.com/DCFApixels/KeyTea/blob/main/images/PasswordTeaIcon.svg">
 </p>
 
 <p align="center">
@@ -62,8 +62,10 @@ A small password manager that derives passwords instead of storing them on the u
 ## ❓ How does it work?
 
 <p align="justify">
-In short, Password Tea derives passwords instead of storing them. A unique password for each site is generated from the master password and the site's name. The same inputs always produce the same result, so generated passwords do not need to be saved. SHA3-512 is used for hashing, after which the app's deterministic algorithm maps the result to the configured character sets. The generated password cannot be directly converted back into the master password, although a weak master password may still be guessed by brute force.
+In short, Password Tea derives passwords instead of storing them. A unique password for each site is generated from the master password and the site's name. The same inputs always produce the same result, so generated passwords do not need to be saved. The master password is strengthened with PBKDF2-HMAC-SHA-256 (600,000 iterations), while SHA3-512 hashes the generation settings before the app's deterministic algorithm maps the result to the configured character sets. The generated password cannot be directly converted back into the master password, although a weak master password may still be guessed by brute force.
 </p>
+
+> **Compatibility:** introducing PBKDF2 changes every generated password compared with earlier versions. Password Tea does not migrate old generation results.
 
 
 <br>
@@ -72,7 +74,7 @@ In short, Password Tea derives passwords instead of storing them. A unique passw
 
 **The following properties help ensure that the application neither stores passwords nor transmits them to third parties:**<br>
 + The app can function without an internet connection;
-+ It does not use third-party frameworks or libraries, except for the bundled [js-sha3](https://github.com/emn178/js-sha3) script used for SHA3 calculations;
++ It does not use third-party frameworks; the [js-sha3](https://github.com/emn178/js-sha3) and [@noble/hashes](https://github.com/paulmillr/noble-hashes) cryptographic libraries are bundled with the source code;
 + It is an open-source project, so users can review the source code and independently verify its behavior.
 
 **Advantages:**<br>
@@ -84,6 +86,11 @@ In short, Password Tea derives passwords instead of storing them. A unique passw
 **Disadvantages:**<br>
 + If the master password is leaked, all generated passwords become accessible;
 + A single master password is easier to target with various types of attacks.
+
+**Local data:**<br>
+Password Tea stores only generation settings in `localStorage`: resource names, user names, versions, and character sets. Neither the master password nor generated passwords are written there. As with any web application, this storage is accessible to code running on the same web origin. Therefore, when using the hosted version, another application on the same origin could theoretically read these settings, but not the passwords themselves.
+
+To eliminate this specific risk completely, download Password Tea and run it offline through a dedicated local web server that is not shared with other applications. For example, run `python -m http.server 8765` in the project directory and open `http://127.0.0.1:8765/`. This gives Password Tea isolated local storage. It does not replace protecting the browser and device from malicious software or extensions.
 
 <br>
 
