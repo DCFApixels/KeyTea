@@ -3,8 +3,8 @@
 </p>
 
 <p align="center">
-<img alt="Version" src="https://img.shields.io/github/manifest-json/v/DCFApixels/KeyTea?style=for-the-badge&color=1e90ff">
-<img alt="License" src="https://img.shields.io/github/license/DCFApixels/KeyTea?color=1e90ff&style=for-the-badge">
+<img alt="Version" src="https://img.shields.io/github/manifest-json/v/DCFApixels/PasswordTea?style=for-the-badge&color=1e90ff">
+<img alt="License" src="https://img.shields.io/github/license/DCFApixels/PasswordTea?color=1e90ff&style=for-the-badge">
 </p>
 
 # 🍵 Password Tea — Password Generator and Manager
@@ -17,19 +17,19 @@
   <tr></tr>
   <tr>
     <td nowrap width="100">
-      <a href="https://github.com/DCFApixels/KeyTea/blob/main/README-RU.md">
+      <a href="https://github.com/DCFApixels/PasswordTea/blob/main/README-RU.md">
         <img src="https://github.com/user-attachments/assets/7bc29394-46d6-44a3-bace-0a3bae65d755"><br>
         <span>Русский</span>
       </a>  
     </td>
     <td nowrap width="100">
-      <a href="https://github.com/DCFApixels/KeyTea">
+      <a href="https://github.com/DCFApixels/PasswordTea">
         <img src="https://github.com/user-attachments/assets/3c699094-f8e6-471d-a7c1-6d2e9530e721"><br>
         <span>English</span>
       </a>  
     </td>
     <!--<td nowrap width="100">
-      <a href="https://github.com/DCFApixels/KeyTea/blob/main/README-ZH.md">
+      <a href="https://github.com/DCFApixels/PasswordTea/blob/main/README-ZH.md">
         <img src="https://github.com/user-attachments/assets/8e598a9a-826c-4a1f-b842-0c56301d2927"><br>
         <span>中文</span>
       </a>  
@@ -37,7 +37,7 @@
   </tr>
 </table>
 
-Web app: [https://dcfapixels.github.io/KeyTea/](https://dcfapixels.github.io/KeyTea/) <br>
+Web app: [https://dcfapixels.github.io/PasswordTea/](https://dcfapixels.github.io/PasswordTea/) <br>
 Versioning scheme: [Open](https://gist.github.com/DCFApixels/c3b178a308b411f530361d1d56f1f929#file-dcfapixels_versioning_en-md)
 
 <br>
@@ -184,7 +184,7 @@ After completing the edits, click `Save` to save the changes or `Cancel` to disc
 
 ## 📑 License
 
-The MIT License: [https://raw.githubusercontent.com/DCFApixels/KeyTea/refs/heads/main/LICENSE](https://raw.githubusercontent.com/DCFApixels/KeyTea/refs/heads/main/LICENSE)
+The MIT License: [https://raw.githubusercontent.com/DCFApixels/PasswordTea/refs/heads/main/LICENSE](https://raw.githubusercontent.com/DCFApixels/PasswordTea/refs/heads/main/LICENSE)
 
 <br>
 <br>
